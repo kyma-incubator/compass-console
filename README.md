@@ -1,22 +1,12 @@
-# Console
+# Compass Console
 
 ## Overview
 
-Console is a web-based UI for managing resources within Kyma. It consists of separate frontend applications. Each project is responsible for providing a user interface for particular resource management.
+The Compass Console is a web-based UI for managing resources within [Compass](https://github.com/kyma-incubator/compass).
 
 ### Components
 
-The Console project consists of the following UI projects:
-
-- [`Core`](./core) - The main frame of Kyma UI
-- [`Service-Catalog-UI`](./service-catalog-ui) - The UI layer for Service Catalog, Instances and Brokers
-- [`Addons`](./add-ons) - The view for displaying Namespace-scoped and cluster-wide Addons
-- [`Content`](./content) - The documentation view
-- [`Log UI`](./logging) - The logs view
-- [`Compass`](./compass) - The **experimental** view for the [Compass](https://github.com/kyma-incubator/compass/blob/master/README.md) project.
-- [`Tests`](./tests) - Acceptance and end-to-end tests
-
-The Console also includes React and Angular libraries:
+The Console includes React and Angular libraries:
 
 - [`React common`](./common) - common functionalities for React applications
 - [`React components`](./components/react) - components for React applications (it will be replaced by `Shared components`)
@@ -30,28 +20,33 @@ The Console also includes React and Angular libraries:
 
 ## Installation
 
-1. Install [Kyma](https://kyma-project.io/docs/master/root/kyma/#installation-install-kyma-locally) as a backing service for your local instance of Console. Make sure you import certificates into your operating system and mark them as trusted. Otherwise, you cannot access the applications hosted in the `kyma.local` domain.
+1. Change your current directory to the `console/compass` folder.
 
-2. Install Console dependencies. To install dependencies for the root and all UI projects, and prepare symlinks for local libraries within this repository, run the following command:
+2. Run the following commands in your terminal:
 
-   ```bash
-   npm run bootstrap
-   ```
+    ```bash
+    npm install
+    cd ..
+    npm run bootstrap
+    cd compass
+    npm start
+    ```
+
+3. The Compass website opens in a new tab of your browser. If not, go to `http://localhost:8080`.
 
    > **NOTE:** The `npm run bootstrap` command:
-   >
    > - installs root dependencies provided in the [package.json](./package.json) file
    > - installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries
    > - builds all the libraries
    > - installs dependencies for all the [components](#components)
-   > - updates your `/etc/hosts` with the `127.0.0.1 console-dev.kyma.local` host
+   > - updates your `/etc/hosts` with the `127.0.0.1 compass-dev.kyma.local` host
    > - creates the `.clusterConfig.gen` file if it doesn't exist, pointing at the `kyma.local` domain
 
 ## Usage
 
 ### Set the cluster (optional)
 
-By default, the Kyma cluster URL with which the Console communicates is set to `kyma.local`. To change the address of the cluster, run:
+By default, the Compass cluster URL with which the Console communicates is set to `kyma.local`. To change the address of the cluster, run:
 
 ```bash
 ./scripts/.setClusterConfig {CLUSTER_URL}
@@ -86,7 +81,7 @@ Use the following command to run the Console with the [`core`](./core) and all o
 npm run start
 ```
 
-To get the credentials required to access the local instance of the Kyma Console at `http://console-dev.kyma.local:4200`, follow the instructions from [this](https://kyma-project.io/docs/master/root/kyma#installation-install-kyma-on-a-cluster-access-the-cluster) document.
+To get the credentials required to access the local instance of the Compass Console at `http://compass-dev.kyma.local:8888`, follow the instructions from [this](https://kyma-project.io/docs/master/root/kyma#installation-install-kyma-on-a-cluster-access-the-cluster) document.
 
 ### Watch changes in React libraries
 
@@ -98,31 +93,13 @@ npm run watch:libraries
 
 ## Development
 
-Once you start Kyma with Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
+Once you start Compass Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
 
-The `Core` and other UIs run at the following addresses:
-
-- `Core` - [http://console-dev.kyma.local:4200](http://console-dev.kyma.local:4200)
-- `Log UI` - [http://console-dev.kyma.local:4400](http://console-dev.kyma.local:4400)
-- `Catalog` - [http://console-dev.kyma.local:8000](http://console-dev.kyma.local:8000)
-- `Instances` - [http://console-dev.kyma.local:8001](http://console-dev.kyma.local:8001)
-- `Brokers` - [http://console-dev.kyma.local:8002](http://console-dev.kyma.local:8002)
-- `Content` - [http://console-dev.kyma.local:8003](http://console-dev.kyma.local:8003)
-- `Addons` - [http://console-dev.kyma.local:8004](http://console-dev.kyma.local:8004)
-
-If you want to run only a specific UI, follow the instructions in the appropriate folder.
-
-### Development with local GraphQL API
-
-By default, the [`core`](./core) view and all other views are connected to the **GraphQL API** running on the cluster at the `https://console-backend.{CLUSTER_DOMAIN}/graphql` address. If you want to use the local **GraphQL API** endpoint, follow the instructions in the **Run a local version** section of [this](https://github.com/kyma-project/kyma/tree/master/components/console-backend-service#run-a-local-version) document and run this command:
-
-```bash
-npm run start:api
-```
+The Compass console is available at `http://localhost:8888` or `http://compass-dev.kyma.local:8888`.
 
 ### Security countermeasures
 
-When developing new features in Console UI, adhere to the following rules. This will help you to mitigate any security-related threats.
+When developing new features in Compass Console UI, adhere to the following rules. This will help you to mitigate any security-related threats.
 
 #### Prevent Cross-site request forgery (XSRF)
 
@@ -147,9 +124,9 @@ For the information on how to run tests and configure them, go to the [`tests`](
 
 ### CI fails on PRs related to staging dependencies
 
-Remove the `node_modules` folder and the `package-lock.json` file in all libraries in the [`components`](./components) folder and on the root. Then rerun the `npm run bootstrap` command in the root context and push all the changes.
+Remove the `node_modules` folder and the `package-lock.json` file in the [`compass`](./compass) folder and on the root. Then rerun the `npm run bootstrap` command in the root context and push all the changes.
 
-### Can't access `console.kyma.local` and `console-dev.kyma.local:4200` after hibernating the Minikube cluster
+### Can't access `compass.kyma.local:8888` after hibernating the Minikube cluster
 
 Follow the guidelines from [this](https://kyma-project.io/docs/#troubleshooting-basic-troubleshooting-can-t-log-in-to-the-console-after-hibernating-the-minikube-cluster) document to solve the problem.
 
