@@ -49,10 +49,10 @@ export default function RuntimeScenarios({
     const scenarioName = entry.scenario;
 
     let canDeactivate = true;
-    scenarioAssignments.forEach(function(asa) {
+    scenarioAssignments.some(asa => {
       if (asa.scenarioName === scenarioName) {
-        // there's no way to break foreach loop, but the unnecessary iterations should be minimal even in production cases
         canDeactivate = false;
+        return;
       }
     });
 

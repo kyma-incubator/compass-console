@@ -21,6 +21,7 @@ export default function ScenarioAssignment({
   deleteScenarioAssignment,
 }) {
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
+  const NOT_FOUND_MSG = 'NotFound';
 
   let hasScenarioAssignment = true;
   if (getScenarioAssignment.loading) {
@@ -29,7 +30,7 @@ export default function ScenarioAssignment({
   if (getScenarioAssignment.error) {
     let errorType =
       getScenarioAssignment.error.graphQLErrors[0].extensions.error;
-    if (!errorType.includes('NotFound')) {
+    if (!errorType.includes(NOT_FOUND_MSG)) {
       return `Error! ${getScenarioAssignment.error.message}`;
     }
 
@@ -65,7 +66,7 @@ export default function ScenarioAssignment({
     },
   ];
 
-  let scenarioAssignments = [];
+  const scenarioAssignments = [];
   if (hasScenarioAssignment) {
     scenarioAssignments[0] =
       getScenarioAssignment.automaticScenarioAssignmentForScenario;

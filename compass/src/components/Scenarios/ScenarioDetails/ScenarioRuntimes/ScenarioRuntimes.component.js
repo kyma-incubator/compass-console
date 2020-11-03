@@ -25,6 +25,7 @@ export default function ScenarioRuntimes({
   getScenarioAssignment,
 }) {
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
+  const NOT_FOUND_MSG = 'NotFound';
 
   if (getRuntimesForScenario.loading || getScenarioAssignment.loading) {
     return <p>Loading...</p>;
@@ -38,7 +39,7 @@ export default function ScenarioRuntimes({
 
     let assignmentErrorType =
       getScenarioAssignment.error.graphQLErrors[0].extensions.error;
-    if (!assignmentErrorType.includes('NotFound')) {
+    if (!assignmentErrorType.includes(NOT_FOUND_MSG)) {
       return `Error! ${getScenarioAssignment.error.message}`;
     }
     hasScenarioAssignment = false;
