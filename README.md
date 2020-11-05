@@ -1,4 +1,4 @@
-# Console
+# Compass Console
 
 ## Overview
 
