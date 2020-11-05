@@ -59,6 +59,14 @@ export function createApolloClient(apiUrl, tenant, token) {
     }
   });
 
+  if (tenant === undefined) {
+    // Views such as the Overview page and Tenant Search page should initialize a dummy Apollo Client
+    return new ApolloClient({
+      cache,
+      link: ApolloLink.from([]),
+    });
+  }
+
   const stateLink = withClientState({
     cache,
     defaults,

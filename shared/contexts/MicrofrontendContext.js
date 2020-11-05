@@ -5,17 +5,24 @@ export const MicrofrontendContext = createContext({});
 
 export function MicrofrontendContextProvider({ children }) {
   const [context, setContext] = useState({});
-
+  const ctx = React.useRef({});
+  function callback(newContext) {
+    if (
+      !Object.keys(ctx.current).length ||
+      ctx.current.tenantId !== newContext.tenantId
+    ) {
+      ctx.current = newContext;
+      setContext(ctx.current);
+    }
+  }
   useEffect(() => {
-    const initHandle = LuigiClient.addInitListener(setContext);
-    const updateHandle = LuigiClient.addContextUpdateListener(setContext);
-
+    const initHandle = LuigiClient.addInitListener(callback);
+    const updateHandle = LuigiClient.addContextUpdateListener(callback);
     return () => {
       LuigiClient.removeContextUpdateListener(updateHandle);
       LuigiClient.removeInitListener(initHandle);
     };
   }, []);
-
   return (
     <MicrofrontendContext.Provider value={context}>
       {children}
