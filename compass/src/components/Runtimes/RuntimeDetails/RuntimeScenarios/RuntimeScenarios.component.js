@@ -48,12 +48,11 @@ export default function RuntimeScenarios({
       fetchedScenarioAssignments.automaticScenarioAssignments.data;
     const scenarioName = entry.scenario;
 
-    let canDeactivate = true;
-    scenarioAssignments.some(asa => {
+    let canDeactivate = scenarioAssignments.some(asa => {
       if (asa.scenarioName === scenarioName) {
-        canDeactivate = false;
-        return;
+        return true;
       }
+      return false;
     });
 
     if (!canDeactivate) {
