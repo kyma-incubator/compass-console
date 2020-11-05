@@ -30,7 +30,7 @@ function ApplicationDetails({ applicationId }) {
     error,
   } = applicationQuery;
 
-  if (loading) return 'Loading...';
+  if (loading) return 'Loading....';
 
   if (!application && !error) {
     return (
