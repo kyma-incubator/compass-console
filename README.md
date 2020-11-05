@@ -49,7 +49,7 @@ The Console includes React and Angular libraries:
 By default, the Compass cluster URL with which the Console communicates is set to `kyma.local`. To change the address of the cluster, run:
 
 ```bash
-./scripts/.setClusterConfig {CLUSTER_URL}
+./scripts/setClusterConfig.sh {CLUSTER_URL}
 ```
 
 To simplify switching clusters hosted on the same domain, you can assign the domain to `CLUSTER_HOST` environment variable, then use any subdomain as a cluster name.
@@ -60,10 +60,10 @@ For example, let's assume you want to easily switch between two clusters - `foo.
 export CLUSTER_HOST=abc.com
 # If you use only one domain for your cluster, consider setting it permanently in your shell.
 
-./scripts/.setClusterConfig foo
+./scripts/setClusterConfig.sh foo
 # After setting the CLUSTER_HOST variable this is equal to running ./scripts/.setClusterConfig foo.abc.com
 
-./scripts/.setClusterConfig bar
+./scripts/setClusterConfig.sh bar
 # Switch to a different cluster on the same domain
 ```
 
@@ -95,7 +95,7 @@ npm run watch:libraries
 
 Once you start Compass Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
 
-The Compass console is available at `http://localhost:8888` or `http://compass-dev.kyma.local:8888`.
+The Compass console is available at `http://localhost:8080` or `http://compass-dev.kyma.local:8080`.
 
 ### Security countermeasures
 
