@@ -81,7 +81,7 @@ Use the following command to run the Console with the [`core`](./core) and all o
 npm run start
 ```
 
-To get the credentials required to access the local instance of the Compass Console at `http://compass-dev.kyma.local:8888`, follow the instructions from [this](https://kyma-project.io/docs/master/root/kyma#installation-install-kyma-on-a-cluster-access-the-cluster) document.
+To get the credentials required to access the local instance of the Compass Console at `http://compass-dev.kyma.local:8080`, follow the instructions from [this](https://kyma-project.io/docs/master/root/kyma#installation-install-kyma-on-a-cluster-access-the-cluster) document.
 
 ### Watch changes in React libraries
 
@@ -126,7 +126,7 @@ For the information on how to run tests and configure them, go to the [`tests`](
 
 Remove the `node_modules` folder and the `package-lock.json` file in the [`compass`](./compass) folder and on the root. Then rerun the `npm run bootstrap` command in the root context and push all the changes.
 
-### Can't access `compass.kyma.local:8888` after hibernating the Minikube cluster
+### Can't access `compass.kyma.local:8080` after hibernating the Minikube cluster
 
 Follow the guidelines from [this](https://kyma-project.io/docs/#troubleshooting-basic-troubleshooting-can-t-log-in-to-the-console-after-hibernating-the-minikube-cluster) document to solve the problem.
 
