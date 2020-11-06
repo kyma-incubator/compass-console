@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { GenericList } from 'react-shared';
 import { useMutation } from '@apollo/react-hooks';
 
@@ -12,6 +13,7 @@ ScenarioRuntimes.propTypes = {
   getRuntimesForScenario: PropTypes.object.isRequired,
   setRuntimeScenarios: PropTypes.func.isRequired,
   deleteRuntimeScenarios: PropTypes.func.isRequired,
+  getScenarioAssignment: PropTypes.func.isRequired,
 };
 
 export default function ScenarioRuntimes({
@@ -19,14 +21,28 @@ export default function ScenarioRuntimes({
   getRuntimesForScenario,
   setRuntimeScenarios,
   deleteRuntimeScenarios,
+  updateRuntimesCount,
+  getScenarioAssignment,
 }) {
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
+  const NOT_FOUND_MSG = 'NotFound';
 
-  if (getRuntimesForScenario.loading) {
+  if (getRuntimesForScenario.loading || getScenarioAssignment.loading) {
     return <p>Loading...</p>;
   }
-  if (getRuntimesForScenario.error) {
-    return `Error! ${getRuntimesForScenario.error.message}`;
+
+  let hasScenarioAssignment = true;
+  if (getRuntimesForScenario.error || getScenarioAssignment.error) {
+    if (getRuntimesForScenario.error) {
+      return `Error! ${getRuntimesForScenario.error.message}`;
+    }
+
+    let assignmentErrorType =
+      getScenarioAssignment.error.graphQLErrors[0].extensions.error;
+    if (!assignmentErrorType.includes(NOT_FOUND_MSG)) {
+      return `Error! ${getScenarioAssignment.error.message}`;
+    }
+    hasScenarioAssignment = false;
   }
 
   const showSuccessNotification = runtimeName => {
@@ -41,6 +57,12 @@ export default function ScenarioRuntimes({
     });
   };
 
+  let scenarioAssignment = undefined;
+  if (hasScenarioAssignment) {
+    scenarioAssignment =
+      getScenarioAssignment.automaticScenarioAssignmentForScenario;
+  }
+
   const actions = [
     {
       name: 'Unassign',
@@ -48,9 +70,10 @@ export default function ScenarioRuntimes({
         await unassignScenarioHandler(
           runtime.name,
           runtime.id,
-          runtime.labels.scenarios,
+          runtime.labels,
           setRuntimeScenarios,
           deleteRuntimeScenarios,
+          scenarioAssignment,
           scenarioName,
           async () => {
             showSuccessNotification(runtime.name);
@@ -62,6 +85,7 @@ export default function ScenarioRuntimes({
   ];
 
   const assignedRuntimes = getRuntimesForScenario.runtimes.data;
+  updateRuntimesCount(getRuntimesForScenario.runtimes.totalCount);
 
   const extraHeaderContent = (
     <AssignEntityToScenarioModal
