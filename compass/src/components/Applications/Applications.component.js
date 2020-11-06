@@ -80,7 +80,7 @@ class Applications extends React.Component {
     const loading = applicationsQuery && applicationsQuery.loading;
     const error = applicationsQuery && applicationsQuery.error;
 
-    if (loading) return 'Loading...';
+    if (loading) return 'Loading....';
     if (error) return `Error! ${error.message}`;
 
     const extraHeaderContent = (
