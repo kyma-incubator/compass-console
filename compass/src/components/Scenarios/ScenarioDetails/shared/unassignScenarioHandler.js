@@ -3,23 +3,31 @@ import LuigiClient from '@luigi-project/client';
 export default async function unassignScenarioHandler(
   entityName,
   entityId,
-  currentEntityScenarios,
+  currentEntityLabels,
   unassignMutation,
   deleteScenarioMutation,
+  scenarioAssignment,
   scenarioName,
   successCallback,
 ) {
   const showConfirmation = () =>
     LuigiClient.uxManager().showConfirmationModal({
       header: `Unassign ${entityName}`,
-      body: `Are you sure you want to unassign ${entityName}?`,
+      body: `Are you sure you want to unassign "${entityName}"?`,
       buttonConfirm: 'Confirm',
       buttonDismiss: 'Cancel',
     });
 
+  const showAlert = () =>
+    LuigiClient.uxManager().showAlert({
+      text: `Please remove the associated automatic scenario assignment.`,
+      type: 'error',
+      closeAfter: 5000,
+    });
+
   const tryDeleteScenario = async () => {
     try {
-      const scenarios = currentEntityScenarios.filter(
+      const scenarios = currentEntityLabels.scenarios.filter(
         scenario => scenario !== scenarioName,
       );
 
@@ -41,6 +49,24 @@ export default async function unassignScenarioHandler(
       });
     }
   };
+
+  let canDelete = true;
+  if (
+    scenarioAssignment &&
+    currentEntityLabels[scenarioAssignment.selector.key]
+  ) {
+    let asaLabelKey = scenarioAssignment.selector.key;
+    let asaLabelValue = scenarioAssignment.selector.value;
+
+    canDelete =
+      !currentEntityLabels[asaLabelKey] ||
+      currentEntityLabels[asaLabelKey] !== asaLabelValue;
+  }
+
+  if (!canDelete) {
+    showAlert().catch(() => {});
+    return;
+  }
 
   showConfirmation()
     .then(tryDeleteScenario)

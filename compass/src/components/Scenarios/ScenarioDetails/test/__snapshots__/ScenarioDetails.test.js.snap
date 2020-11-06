@@ -6,10 +6,14 @@ exports[`ScenarioDetailsHeader Renders with minimal props 1`] = `
 >
   <ScenarioDetailsHeader
     applicationsCount={0}
+    runtimesCount={0}
   />
   <ScenarioApplications
     updateApplicationsCount={[Function]}
   />
-  <fromRenderProps(Apollo(Apollo(Apollo(Apollo(ScenarioRuntimes))))) />
+  <fromRenderProps(Apollo(Apollo(Apollo(Apollo(Apollo(ScenarioRuntimes))))))
+    updateRuntimesCount={[Function]}
+  />
+  <fromRenderProps(Apollo(Apollo(Apollo(Apollo(ScenarioAssignment))))) />
 </ContextProvider>
 `;
