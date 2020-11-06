@@ -11,16 +11,16 @@ The Console includes React and Angular libraries:
 - [`React common`](./common) - common functionalities for React applications
 - [`React components`](./components/react) - components for React applications (it will be replaced by `Shared components`)
 - [`Shared components`](./components/shared) - new versions of components for React applications written in TypeScript
-- [`Generic documentation`](./components/generic-documentation) - a React component that uses [`@kyma-project/documentation-component`](https://github.com/kyma-incubator/documentation-component) for displaying documentation and various specifications in the [`Content`](./content), [`Service-Catalog-UI`](./service-catalog-ui), and [`Compass`](./compass) views.
+- [`Generic documentation`](./components/generic-documentation) - a React component that uses [`@kyma-project/documentation-component`](https://github.com/kyma-incubator/documentation-component) for displaying documentation and various specifications.
 
 ## Prerequisites
 
-- [`npm`](https://www.npmjs.com/): >= 6.4.0
-- [`node`](https://nodejs.org/en/): >= 12.0.0
+- [`npm`](https://www.npmjs.com/): min. version 6.4.0
+- [`node`](https://nodejs.org/en/): min. version 12.0.0
 
 ## Installation
 
-1. Change your current directory to the `console/compass` folder.
+1. Change your current directory to the `compass-console/compass` directory.
 
 2. Run the following commands in your terminal:
 
@@ -32,8 +32,6 @@ The Console includes React and Angular libraries:
     npm start
     ```
 
-3. The Compass website opens in a new tab of your browser. If not, go to `http://localhost:8080`.
-
    > **NOTE:** The `npm run bootstrap` command:
    > - installs root dependencies provided in the [package.json](./package.json) file
    > - installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries
@@ -41,6 +39,8 @@ The Console includes React and Angular libraries:
    > - installs dependencies for all the [components](#components)
    > - updates your `/etc/hosts` with the `127.0.0.1 compass-dev.kyma.local` host
    > - creates the `.clusterConfig.gen` file if it doesn't exist, pointing at the `kyma.local` domain
+
+3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
 ## Usage
 
@@ -73,13 +73,7 @@ To reset the domain to the default kyma.local setting, run:
 ./scripts/setClusterConfig.sh local
 ```
 
-### Start all views
-
-Use the following command to run the Console with the [`core`](./core) and all other views locally:
-
-```bash
-npm run start
-```
+### Required credentials
 
 To get the credentials required to access the local instance of the Compass Console at `http://compass-dev.kyma.local:8080`, follow the instructions from [this](https://kyma-project.io/docs/master/root/kyma#installation-install-kyma-on-a-cluster-access-the-cluster) document.
 
@@ -93,7 +87,7 @@ npm run watch:libraries
 
 ## Development
 
-Once you start Compass Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
+Once you start the Compass Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
 
 The Compass console is available at `http://localhost:8080` or `http://compass-dev.kyma.local:8080`.
 
