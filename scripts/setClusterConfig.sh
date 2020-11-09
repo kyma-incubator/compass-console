@@ -37,20 +37,20 @@ else
     fi
 fi
 
-LOCALDOMAIN=console-dev.$DOMAIN
+LOCALDOMAIN=compass-dev.$DOMAIN
 $SCRIPT_DIR/checkClusterAvailability.sh -s $DOMAIN
 
 if [ $? != 0 ]
 then
     echo -e "\033[31mIt looks like the cluster isn't running ✗ \033[39m"
-    
+
     read -p "Would you like to continue running the script anyway? (y/n)" yn
     case $yn in
         [Yy]* ) ;;
         [Nn]* ) exit 0;;
         * ) echo "Please answer yes or no.";;
     esac
-    
+
 else
     echo -e "\033[32mIt looks like the cluster is running ✓ \033[39m"
 fi
@@ -90,10 +90,10 @@ if [ $HOST != "kyma.local" ]; then
 fi
 
 # add new cluster->localhost binding to hosts file
-echo "127.0.0.1 console-dev.$DOMAIN compass-dev.$DOMAIN console-dev.kyma.local localhost"| sudo tee -a /etc/hosts
+echo "127.0.0.1 compass-dev.$DOMAIN localhost"| sudo tee -a /etc/hosts
 
 echo "Added ClusterConfig to Console"
 echo ""
 echo -e "Please run \033[94mnpm start\033[0m in the root Console folder"
-echo -e "After that you can open \033[93mhttp://console-dev.$DOMAIN:4200\033[0m"
+echo -e "After that you can open \033[93mhttp://compass-dev.$DOMAIN:8888\033[0m"
 exit 0
