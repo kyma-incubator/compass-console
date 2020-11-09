@@ -2,25 +2,24 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import ScenarioRuntimes from '../ScenarioRuntimes.component';
-import { responseMock } from './mock';
+import ScenarioAssignment from '../ScenarioAssignment.component';
+import { runtimeResponseMock } from './mock';
+import { assignmentResponseMock } from './mock';
 jest.mock('react-shared', () => ({
   GenericList: function GenericListMocked(props) {
     return 'generic-list-mocked-content';
   },
 }));
 
-describe('ScenarioRuntimes', () => {
+describe('ScenarioAssignment', () => {
   it('Renders with minimal props', () => {
     const component = shallow(
-      <ScenarioRuntimes
-        scenarioName="scenario name"
-        getRuntimesForScenario={responseMock}
-        deleteRuntimeScenarios={() => {}}
-        setRuntimeScenarios={() => {}}
-        getScenarioAssignment={() => {}}
+      <ScenarioAssignment
+        scenarioName="test-scenario"
+        getRuntimesForScenario={runtimeResponseMock}
+        getScenarioAssignment={assignmentResponseMock}
+        deleteScenarioAssignment={() => {}}
         sendNotification={() => {}}
-        updateRuntimesCount={() => {}}
       />,
     );
 

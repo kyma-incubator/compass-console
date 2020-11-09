@@ -2,33 +2,38 @@ import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { fromRenderProps } from 'recompose';
 import {
-  GET_RUNTIMES_FOR_SCENARIO,
-  SET_RUNTIME_SCENARIOS,
-  createEqualityQuery,
-  DELETE_RUNTIME_SCENARIOS_LABEL,
   GET_ASSIGNMENT_FOR_SCENARIO,
+  DELETE_ASSIGNMENT_FOR_SCENARIO,
+  GET_RUNTIMES_FOR_SCENARIO,
+  createEqualityQuery,
 } from '../../gql';
 import { SEND_NOTIFICATION } from '../../../../gql';
 
-import ScenarioRuntimes from './ScenarioRuntimes.component';
+import ScenarioAssignment from './ScenarioAssignment.component';
 import ScenarioNameContext from './../ScenarioNameContext';
 
 export default compose(
   fromRenderProps(ScenarioNameContext.Consumer, scenarioName => ({
     scenarioName,
   })),
-  graphql(SET_RUNTIME_SCENARIOS, {
+  graphql(DELETE_ASSIGNMENT_FOR_SCENARIO, {
     props: ({ mutate }) => ({
-      setRuntimeScenarios: async variables => await mutate(variables),
-    }),
-  }),
-  graphql(DELETE_RUNTIME_SCENARIOS_LABEL, {
-    props: ({ mutate }) => ({
-      deleteRuntimeScenarios: async id =>
+      deleteScenarioAssignment: async scenarioName =>
         await mutate({
-          variables: { id },
+          variables: { scenarioName },
         }),
     }),
+  }),
+  graphql(GET_ASSIGNMENT_FOR_SCENARIO, {
+    name: 'getScenarioAssignment',
+    options: ({ scenarioName }) => {
+      return {
+        errorPolicy: 'all',
+        variables: {
+          scenarioName: scenarioName,
+        },
+      };
+    },
   }),
   graphql(GET_RUNTIMES_FOR_SCENARIO, {
     name: 'getRuntimesForScenario',
@@ -44,18 +49,7 @@ export default compose(
       };
     },
   }),
-  graphql(GET_ASSIGNMENT_FOR_SCENARIO, {
-    name: 'getScenarioAssignment',
-    options: ({ scenarioName }) => {
-      return {
-        errorPolicy: 'all',
-        variables: {
-          scenarioName: scenarioName,
-        },
-      };
-    },
-  }),
   graphql(SEND_NOTIFICATION, {
     name: 'sendNotification',
   }),
-)(ScenarioRuntimes);
+)(ScenarioAssignment);
