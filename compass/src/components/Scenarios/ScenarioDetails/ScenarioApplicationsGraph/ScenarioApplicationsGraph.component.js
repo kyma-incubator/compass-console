@@ -96,7 +96,7 @@ export default function ScenarioApplicationsGraph({
     <>
       <Panel className="fd-has-margin-m">
         <Panel.Header className="fd-has-padding-xs">
-          <Panel.Head title="Scenraio visualization" />
+          <Panel.Head title="Scenario visualization" />
         </Panel.Header>
         <Panel.Body className="fd-has-padding-none">
           <svg width={innerWidth} height="400" viewBox="0 0 800 400">
