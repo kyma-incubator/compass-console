@@ -32,13 +32,13 @@ The Console includes React and Angular libraries:
     npm start
     ```
 
-   > **NOTE:** The `npm run bootstrap` command:
-   > - installs root dependencies provided in the [package.json](./package.json) file
-   > - installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries
-   > - builds all the libraries
-   > - installs dependencies for all the [components](#components)
-   > - updates your `/etc/hosts` with the `127.0.0.1 compass-dev.kyma.local` host
-   > - creates the `.clusterConfig.gen` file if it doesn't exist, pointing at the `kyma.local` domain
+   > **NOTE:** The `npm run bootstrap` command does the following:
+   > 1. Installs root dependencies provided in the [package.json](./package.json) file.
+   > 2. Installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries.
+   > 3. Builds all the libraries.
+   > 4. Installs dependencies for all the [components](#components).
+   > 5. Updates your `/etc/hosts` with the `127.0.0.1 compass-dev.kyma.local` host.
+   > 6. Creates the `.clusterConfig.gen` file if it doesn't exist, pointing at the `kyma.local` domain.
 
 3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
@@ -46,15 +46,15 @@ The Console includes React and Angular libraries:
 
 ### Set the cluster (optional)
 
-By default, the Compass cluster URL with which the Console communicates is set to `kyma.local`. To change the address of the cluster, run:
+By default, the Compass cluster URL, with which the Console communicates, is set to `kyma.local`. To change the address of the cluster, run:
 
 ```bash
 ./scripts/setClusterConfig.sh {CLUSTER_URL}
 ```
 
-To simplify switching clusters hosted on the same domain, you can assign the domain to `CLUSTER_HOST` environment variable, then use any subdomain as a cluster name.
+To simplify switching of clusters, hosted on the same domain, you can assign the domain to `CLUSTER_HOST` environment variable, and then, use any subdomain as a cluster name.
 
-For example, let's assume you want to easily switch between two clusters - `foo.abc.com` and `bar.abc.com`. Follow these steps to simplify switching between these clusters:
+For example, if you want to easily switch between two clusters `foo.abc.com` and `bar.abc.com`, run the following commands:
 
 ```bash
 export CLUSTER_HOST=abc.com
@@ -79,7 +79,7 @@ To get the credentials required to access the local instance of the Compass Cons
 
 ### Watch changes in React libraries
 
-If you want to watch changes in the React libraries, run this command in a new terminal window:
+If you want to display the changes in the React libraries simultaneously, run the following command in a new terminal window:
 
 ```bash
 npm run watch:libraries
@@ -87,9 +87,9 @@ npm run watch:libraries
 
 ## Development
 
-Once you start the Compass Console locally, you can start development. All modules have hot-reload enabled therefore you can edit the code real time and see the changes in your browser.
+You can start developing as soon as you start the Compass Console locally. All modules have hot-reload enabled, and therefore, you can edit the code in real time and see the changes in your browser.
 
-The Compass console is available at `http://localhost:8080` or `http://compass-dev.kyma.local:8080`.
+The Compass Console UI is available at `http://localhost:8080` or `http://compass-dev.kyma.local:8080`.
 
 ### Security countermeasures
 
@@ -110,23 +110,23 @@ When developing new features in Compass Console UI, adhere to the following rule
 
 ### Run tests
 
-For the information on how to run tests and configure them, go to the [`tests`](tests) directory.
+For more information about how to run tests and configure them, go to the [`tests`](tests) directory.
 
 ## Troubleshooting
 
-> **TIP:** To solve most of the problems with the Console development, clear the browser cache or do a hard refresh of the website.
+> **TIP:** To solve most of the problems with the Console development, clear the browser cache or perform a complete refresh of the web page.
 
 ### CI fails on PRs related to staging dependencies
 
-Remove the `node_modules` folder and the `package-lock.json` file in the [`compass`](./compass) folder and on the root. Then rerun the `npm run bootstrap` command in the root context and push all the changes.
+Remove the `node_modules` folder and the `package-lock.json` file in the [`compass`](./compass) directory and on the root. Then, rerun the `npm run bootstrap` command in the root context and push all changes.
 
 ### Can't access `compass.kyma.local:8080` after hibernating the Minikube cluster
 
-Follow the guidelines from [this](https://kyma-project.io/docs/#troubleshooting-basic-troubleshooting-can-t-log-in-to-the-console-after-hibernating-the-minikube-cluster) document to solve the problem.
+To solve the problem, refer to the guidelines from [this](https://kyma-project.io/docs/#troubleshooting-basic-troubleshooting-can-t-log-in-to-the-console-after-hibernating-the-minikube-cluster) document.
 
 ### Check the availability of a remote cluster
 
-Use the `checkClusterAvailability.sh` script to quickly check the availability of remote clusters.
+To quickly check the availability of remote clusters, use the `checkClusterAvailability.sh` script.
 
 ```bash
 ./scripts/checkClusterAvailability.sh {CLUSTER_URL}
