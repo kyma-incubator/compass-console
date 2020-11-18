@@ -83,11 +83,11 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
     );
   };
 
-  const headerRenderer = () => ['Name', 'Packages'];
+  const headerRenderer = () => ['Name', 'Type'];
 
   const rowRenderer = application => [
     application.name,
-    application.packages.totalCount,
+    application.labels.applicationType,
   ];
 
   const actions = [
@@ -109,7 +109,7 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
   return (
     <GenericList
       extraHeaderContent={extraHeaderContent}
-      title="Applications"
+      title="Systems & Services"
       notFoundMessage="No Applications for this Scenario"
       entries={assignedApplications}
       headerRenderer={headerRenderer}

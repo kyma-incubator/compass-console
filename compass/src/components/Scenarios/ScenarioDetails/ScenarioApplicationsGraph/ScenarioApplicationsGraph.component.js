@@ -25,8 +25,8 @@ export default function ScenarioApplicationsGraph({
   const orientation = 'horizontal';
   const linkType = 'diagonal';
 
-  const [cursor, setCursor] = useState(null);
-  const [entries, setEntries] = useState([]);
+  const [cursor] = useState(null);
+  const [, setEntries] = useState([]);
 
   const {
     data: runtimesData,
@@ -91,7 +91,6 @@ export default function ScenarioApplicationsGraph({
   const innerWidth = totalWidth - margin.left - margin.right;
   const innerHeight = totalHeight - margin.top - margin.bottom;
   const sizeWidth = innerHeight;
-  const sizeHeight = innerWidth;
   return (
     <>
       <Panel className="fd-has-margin-m">
@@ -164,7 +163,6 @@ export default function ScenarioApplicationsGraph({
                       let top = node.x;
                       let left = node.y;
                       const width = 40;
-                      const height = 20;
                       return (
                         <Group top={top} left={left} key={key}>
                           {node.depth === 0 && (
