@@ -8,7 +8,7 @@ export const InputWrapper = styled.div`
 
 export const InputField = styled.input`
   padding: 0 10px;
-  display: ${props =>
+  display: ${(props) =>
     (props.type && props.type === 'checkbox') || props.type === 'radio'
       ? 'inline-block'
       : 'block'};
@@ -21,9 +21,9 @@ export const InputField = styled.input`
     font-size: 14px;
     border-radius: 4px;
     background-color: #ffffff;
-    padding: ${props => (props.isError && '0 30px 0 10px') || '0 10px'};
+    padding: ${(props) => (props.isError && '0 30px 0 10px') || '0 10px'};
     border: solid
-      ${props =>
+      ${(props) =>
         (props.isError && '2px #ee0000') ||
         (props.isWarning && '2px #ffeb3b') ||
         (props.isSuccess && '2px #4caf50') ||
@@ -31,7 +31,7 @@ export const InputField = styled.input`
     width: 100%;
     transition: border-color ease-out 0.2s;
     height: 36px;
-    margin: ${props => (props.margin ? props.margin : '0')};
+    margin: ${(props) => (props.margin ? props.margin : '0')};
   }
 
   &[type='text']::placeholder,
@@ -44,7 +44,7 @@ export const InputField = styled.input`
   &[type='text']:hover,
   &[type='password']:hover {
     border: solid
-      ${props =>
+      ${(props) =>
         (props.isError && '2px #ee0000') ||
         (props.isWarning && '2px #ffeb3b') ||
         (props.isSuccess && '2px #4caf50') ||
@@ -55,7 +55,7 @@ export const InputField = styled.input`
   &[type='password']:focus {
     color: '#2196f3';
     border: solid
-      ${props =>
+      ${(props) =>
         (props.isError && '2px #ee0000') ||
         (props.isWarning && '2px #ffeb3b') ||
         (props.isSuccess && '2px #4caf50') ||

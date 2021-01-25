@@ -9,7 +9,7 @@ RequestInputSchemaModal.propTypes = {
 };
 
 export default function RequestInputSchemaModal({ schema }) {
-  const formatJson = json => JSON.stringify(JSON.parse(json, null, 2));
+  const formatJson = (json) => JSON.stringify(JSON.parse(json, null, 2));
 
   return (
     <Modal

@@ -7,7 +7,7 @@ const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -21,7 +21,7 @@ const libraries = [
 ];
 
 // Installing libraries
-libraries.forEach(lib => {
+libraries.forEach((lib) => {
   gulp.task(`${lib}:install`, async () => {
     const packageName = path.resolve(__dirname, `./${lib}`);
     await install(packageName);
@@ -29,10 +29,10 @@ libraries.forEach(lib => {
 });
 gulp.task(
   'install:libraries',
-  gulp.parallel(libraries.map(lib => `${lib}:install`)),
+  gulp.parallel(libraries.map((lib) => `${lib}:install`)),
 );
 
-const install = async dir => {
+const install = async (dir) => {
   log.info(
     `Installing dependencies of ${clc.magenta(dir.replace(__dirname, ''))}`,
   );
@@ -48,15 +48,15 @@ const install = async dir => {
 };
 
 // CI libraries
-libraries.forEach(lib => {
+libraries.forEach((lib) => {
   gulp.task(`${lib}:ci`, async () => {
     const packageName = path.resolve(__dirname, `./${lib}`);
     await ci(packageName);
   });
 });
-gulp.task('ci:libraries', gulp.parallel(libraries.map(lib => `${lib}:ci`)));
+gulp.task('ci:libraries', gulp.parallel(libraries.map((lib) => `${lib}:ci`)));
 
-const ci = async dir => {
+const ci = async (dir) => {
   log.info(
     `Clean installing dependencies of ${clc.magenta(
       dir.replace(__dirname, ''),
@@ -74,15 +74,18 @@ const ci = async dir => {
 };
 
 // Building libraries
-libraries.forEach(lib => {
+libraries.forEach((lib) => {
   gulp.task(`${lib}:build`, async () => {
     const packageName = path.resolve(__dirname, `./${lib}`);
     await build(packageName);
   });
 });
-gulp.task('build:libraries', gulp.series(libraries.map(lib => `${lib}:build`)));
+gulp.task(
+  'build:libraries',
+  gulp.series(libraries.map((lib) => `${lib}:build`)),
+);
 
-const build = async dir => {
+const build = async (dir) => {
   log.info(`Building library ${clc.magenta(dir.replace(__dirname, ''))}`);
 
   try {
@@ -97,7 +100,7 @@ const build = async dir => {
 
 // Watching libraries
 gulp.task('watch:libraries', () => {
-  libraries.forEach(lib => {
+  libraries.forEach((lib) => {
     gulp.watch([`./${lib}/src/**/*`], gulp.parallel(`${lib}:build`));
   });
 });
@@ -106,10 +109,10 @@ gulp.task('watch:libraries', () => {
 const apps = ['compass'];
 
 // Installing apps
-apps.forEach(app => {
+apps.forEach((app) => {
   gulp.task(`${app}:install`, async () => {
     const packageName = path.resolve(__dirname, `./${app}`);
     await install(packageName);
   });
 });
-gulp.task('install:apps', gulp.parallel(apps.map(app => `${app}:install`)));
+gulp.task('install:apps', gulp.parallel(apps.map((app) => `${app}:install`)));

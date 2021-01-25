@@ -33,7 +33,7 @@ class Tabs extends React.Component {
     };
   }
 
-  handleTabClick = tabIndex => {
+  handleTabClick = (tabIndex) => {
     this.setState({
       activeTabIndex: tabIndex,
     });
@@ -45,7 +45,7 @@ class Tabs extends React.Component {
     }
   };
 
-  renderHeader = children => {
+  renderHeader = (children) => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
         key: child.props.title,
@@ -57,7 +57,7 @@ class Tabs extends React.Component {
     });
   };
 
-  renderAdditionalHeaderContent = children => {
+  renderAdditionalHeaderContent = (children) => {
     if (
       children[this.state.activeTabIndex] &&
       children[this.state.activeTabIndex].props.addHeaderContent
@@ -66,19 +66,19 @@ class Tabs extends React.Component {
     }
   };
 
-  renderActiveTab = children => {
+  renderActiveTab = (children) => {
     if (children[this.state.activeTabIndex]) {
       return children[this.state.activeTabIndex].props.children;
     }
   };
 
-  getPropsFromActiveTab = children => {
+  getPropsFromActiveTab = (children) => {
     if (children[this.state.activeTabIndex]) {
       return children[this.state.activeTabIndex].props;
     }
   };
 
-  borderType = statusType => {
+  borderType = (statusType) => {
     switch (statusType) {
       case 'top':
         return 'top';
@@ -94,7 +94,7 @@ class Tabs extends React.Component {
   render() {
     const children = []
       .concat(...this.props.children)
-      .filter(child => child !== null && child !== undefined && child);
+      .filter((child) => child !== null && child !== undefined && child);
 
     const props = this.getPropsFromActiveTab(children);
     const currentBorderType = this.borderType(this.props.borderType);

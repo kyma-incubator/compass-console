@@ -14,7 +14,7 @@ export const InputWithPrefix = ({
     value = value.substring(prefix.length);
   }
 
-  const onValueChange = e => {
+  const onValueChange = (e) => {
     if (replacePrefix) {
       const value = e.target.value;
       if (value.startsWith(prefix)) {

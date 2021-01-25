@@ -8,8 +8,12 @@ import { MESSAGES } from '../constants';
 describe('GenericList', () => {
   const defaultNotFoundText = MESSAGES.NOT_FOUND;
 
-  const mockHeaderRenderer = entries => ['Id', 'Name', 'description'];
-  const mockEntryRenderer = entry => [entry.id, entry.name, entry.description];
+  const mockHeaderRenderer = (entries) => ['Id', 'Name', 'description'];
+  const mockEntryRenderer = (entry) => [
+    entry.id,
+    entry.name,
+    entry.description,
+  ];
 
   const mockEntries = [
     { id: '1', name: 'first_entry', description: 'testdescription1' },
@@ -126,13 +130,13 @@ describe('GenericList', () => {
       />,
     );
 
-    mockEntries.forEach(entry =>
-      Object.keys(entry).forEach(key => getByText(entry[key])),
+    mockEntries.forEach((entry) =>
+      Object.keys(entry).forEach((key) => getByText(entry[key])),
     );
   });
 
   it('Renders custom data using custom entryRenderer', async () => {
-    const customEntryRenderer = entry => [entry.name, 'maskopatol'];
+    const customEntryRenderer = (entry) => [entry.name, 'maskopatol'];
 
     const { queryByText } = render(
       <GenericList
@@ -146,7 +150,7 @@ describe('GenericList', () => {
   });
 
   it('Renders collapse entries with collapse control', async () => {
-    const mockCollapseEntryRenderer = entry => ({
+    const mockCollapseEntryRenderer = (entry) => ({
       cells: [entry.id, entry.name, entry.description],
       collapseContent: <td colSpan="4">{entry.name}</td>,
       showCollapseControl: entry.id !== '3',
@@ -160,8 +164,8 @@ describe('GenericList', () => {
       />,
     );
 
-    mockEntries.forEach(entry =>
-      Object.keys(entry).forEach(key => getByText(entry[key])),
+    mockEntries.forEach((entry) =>
+      Object.keys(entry).forEach((key) => getByText(entry[key])),
     );
 
     let foundCollapseButtons = await getAllByTestId('collapse-button-close');
@@ -179,7 +183,7 @@ describe('GenericList', () => {
   });
 
   it('Renders collapse entries without collapse control', async () => {
-    const mockCollapseEntryRenderer = entry => ({
+    const mockCollapseEntryRenderer = (entry) => ({
       cells: [entry.id, entry.name, entry.description],
       collapseContent: <td colSpan="4">{entry.name}</td>,
       withCollapseControl: false,
@@ -211,7 +215,7 @@ describe('GenericList', () => {
       />,
     );
 
-    mockHeaderRenderer().forEach(async header => await getByText(header));
+    mockHeaderRenderer().forEach(async (header) => await getByText(header));
   });
 
   it("Doesn't render header with showHeader set to false", async () => {

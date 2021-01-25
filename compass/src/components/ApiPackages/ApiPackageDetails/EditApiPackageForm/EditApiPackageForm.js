@@ -65,8 +65,8 @@ export default function EditApiPackageForm({
     apiPackage.defaultInstanceAuth,
   );
 
-  const handleSchemaChange = schema => {
-    const isNonNullObject = o => typeof o === 'object' && !!o;
+  const handleSchemaChange = (schema) => {
+    const isNonNullObject = (o) => typeof o === 'object' && !!o;
     try {
       const parsedSchema = JSON.parse(schema);
       setRequestInputSchema(parsedSchema);

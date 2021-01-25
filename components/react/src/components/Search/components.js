@@ -5,9 +5,9 @@ export const SearchBox = styled.div`
   box-sizing: border-box;
   height: 36px;
   border-radius: 4px;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : 'rgba(255, 255, 255, 0.4)'};
-  border: ${props =>
+  border: ${(props) =>
     props.darkBorder
       ? 'solid 1px rgba(50, 54, 58, 0.55)'
       : 'solid 1px rgba(50, 54, 58, 0.15)'};
@@ -56,7 +56,7 @@ export const SearchIcon = styled.div`
   }
 
   &::before {
-    content: ${props => (props.noIcon ? "''" : "'\uE00D'")};
+    content: ${(props) => (props.noIcon ? "''" : "'\uE00D'")};
     position: absolute;
     font-family: SAP-icons;
     font-size: 16px;

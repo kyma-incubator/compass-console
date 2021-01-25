@@ -14,7 +14,7 @@ export default compose(
   }),
   graphql(DELETE_LABEL_DEFINITION, {
     props: ({ mutate }) => ({
-      deleteLabelDefinition: key =>
+      deleteLabelDefinition: (key) =>
         mutate({
           variables: {
             key,

@@ -40,7 +40,7 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
   const [deleteApplicationScenariosMutation] = useMutation(
     DELETE_APPLICATION_SCENARIOS_LABEL,
   );
-  const deleteApplicationScenarios = id =>
+  const deleteApplicationScenarios = (id) =>
     deleteApplicationScenariosMutation({ variables: { id } });
 
   if (loading) {
@@ -52,8 +52,8 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
 
   updateApplicationsCount(applicationsForScenario.applications.totalCount);
 
-  const deleteHandler = async application => {
-    const showSuccessNotification = applicationName => {
+  const deleteHandler = async (application) => {
+    const showSuccessNotification = (applicationName) => {
       sendNotification({
         variables: {
           content: `Unassigned "${applicationName}" from ${scenarioName}.`,
@@ -85,7 +85,7 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
 
   const headerRenderer = () => ['Name', 'Packages'];
 
-  const rowRenderer = application => [
+  const rowRenderer = (application) => [
     application.name,
     application.packages.totalCount,
   ];

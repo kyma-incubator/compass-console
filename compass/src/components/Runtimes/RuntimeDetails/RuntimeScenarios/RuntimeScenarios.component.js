@@ -35,7 +35,7 @@ export default function RuntimeScenarios({
   }
 
   const headerRenderer = () => ['Name'];
-  const rowRenderer = label => [<b>{label.scenario}</b>];
+  const rowRenderer = (label) => [<b>{label.scenario}</b>];
   const actions = [
     {
       name: 'Deactivate',
@@ -48,7 +48,7 @@ export default function RuntimeScenarios({
       fetchedScenarioAssignments.automaticScenarioAssignments.data;
     const scenarioName = entry.scenario;
 
-    let canDeactivate = scenarioAssignments.some(asa => {
+    let canDeactivate = scenarioAssignments.some((asa) => {
       if (asa.scenarioName === scenarioName) {
         return true;
       }
@@ -75,7 +75,7 @@ export default function RuntimeScenarios({
         try {
           await updateScenarios(
             runtimeId,
-            scenarios.filter(scenario => scenario !== scenarioName),
+            scenarios.filter((scenario) => scenario !== scenarioName),
           );
           runtimeQuery.refetch();
           sendNotification({
@@ -111,7 +111,7 @@ export default function RuntimeScenarios({
     </header>
   );
 
-  const entries = scenarios.map(scenario => {
+  const entries = scenarios.map((scenario) => {
     return { scenario };
   }); // list requires a list of objects
 

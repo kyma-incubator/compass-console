@@ -13,8 +13,8 @@ export const FdModal = styled(Modal)`
 
     .fd-modal__content {
       min-width: 320px;
-      width: ${props => props.width || 'unset'};
-      border-left: ${props =>
+      width: ${(props) => props.width || 'unset'};
+      border-left: ${(props) =>
         props.type === 'negative' ? '6px solid #ee0000' : ''};
     }
 

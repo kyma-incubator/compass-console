@@ -21,7 +21,7 @@
     <script charset="utf-8" src="/luigi-core/luigi.js"></script>
     <script charset="utf-8" src="/luigiConfig.bundle.js"></script>
     <script>
-      window.addEventListener('message', function(ev) {
+      window.addEventListener('message', function (ev) {
         if (ev.data === 'unauthorized') {
           sessionStorage.removeItem('luigi.auth');
           window.location.reload();

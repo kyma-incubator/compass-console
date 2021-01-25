@@ -28,7 +28,7 @@ export const NotificationProvider = ({
 
   const methods = {
     notify,
-    notifySuccess: function(
+    notifySuccess: function (
       notificationProps,
       visibilityTime = defaultVisibilityTime,
     ) {
@@ -41,7 +41,7 @@ export const NotificationProvider = ({
       };
       notify(notificationProps, visibilityTime);
     },
-    notifyError: function(
+    notifyError: function (
       notificationProps,
       visibilityTime = defaultErrorVisibilityTime,
     ) {

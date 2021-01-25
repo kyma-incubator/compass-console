@@ -36,12 +36,12 @@ export async function fetchTenants() {
   }
 }
 
-const cacheTenants = tenants =>
+const cacheTenants = (tenants) =>
   sessionStorage.setItem('tenants', JSON.stringify(tenants));
 export const getTenantsFromCache = () =>
   JSON.parse(sessionStorage.getItem('tenants')) || [];
 
-const fetchFromGraphql = async data => {
+const fetchFromGraphql = async (data) => {
   const url = clusterConfig.compassApiUrl;
 
   const response = await fetch(url, {
@@ -61,8 +61,8 @@ const fetchFromGraphql = async data => {
   return response.json();
 };
 
-export const getTenantNames = tenants => {
-  const tenantNames = tenants.map(tenant => {
+export const getTenantNames = (tenants) => {
+  const tenantNames = tenants.map((tenant) => {
     const alternativePath = getAlternativePath(tenant.id);
     return {
       label: tenant.name,
@@ -72,7 +72,7 @@ export const getTenantNames = tenants => {
   return tenantNames.sort((a, b) => a.label.localeCompare(b.label));
 };
 
-export const customOptionsRenderer = opt => {
+export const customOptionsRenderer = (opt) => {
   // we have to manually find selected tenant by id, as Luigi distinguishes
   // "options" by their labels (which may not be unique)
   const currentTenantId = opt.id.substring(0, opt.id.indexOf('/'));

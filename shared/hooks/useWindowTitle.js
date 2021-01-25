@@ -13,7 +13,7 @@ export function useWindowTitle(title) {
 }
 
 export function withTitle(title, Component) {
-  return props => {
+  return (props) => {
     setWindowTitle(title);
     return <Component {...props} />;
   };

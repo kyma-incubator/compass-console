@@ -13,14 +13,14 @@ const SearchInput = ({ filter, setFilter }) => (
     role="search"
     placeholder="Search tenants..."
     value={filter}
-    onChange={e => setFilter(e.target.value)}
+    onChange={(e) => setFilter(e.target.value)}
     type="text"
   />
 );
 
 const TenantList = ({ tenants, chooseTenant }) => (
   <ListGroup className="fd-has-margin-top-s">
-    {tenants.map(tenant => (
+    {tenants.map((tenant) => (
       <ListGroup.Item
         role="row"
         key={tenant.id}
@@ -43,14 +43,14 @@ export function TenantSearch({ parentPath, token, _tenants }) {
     if (!tenants.length) {
       fetchTenants(token)
         .then(setTenants)
-        .catch(e =>
+        .catch((e) =>
           setError(`Error: tenants could not be loaded: ${e.message}`),
         );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const chooseTenant = tenant => {
+  const chooseTenant = (tenant) => {
     const path = getAlternativePath(tenant.id, parentPath);
     LuigiClient.linkManager().navigate(`/tenant/${path || tenant.id}`);
   };
@@ -58,10 +58,10 @@ export function TenantSearch({ parentPath, token, _tenants }) {
   const getFilteredTenants = () => {
     const searchPhrase = filter.toLowerCase();
     if (!searchPhrase.trim()) {
-      return tenants.filter(t => t.initialized);
+      return tenants.filter((t) => t.initialized);
     }
     return tenants.filter(
-      tenant =>
+      (tenant) =>
         tenant.name.toLowerCase() === searchPhrase ||
         tenant.id.toLowerCase() === searchPhrase,
     );

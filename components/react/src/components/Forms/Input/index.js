@@ -11,7 +11,7 @@ import {
 } from 'fundamental-react';
 
 const FormSetWrapper = styled.div`
-  padding-top: ${props => props.marginTop || '0'}px;
+  padding-top: ${(props) => props.marginTop || '0'}px;
 `;
 
 class Input extends React.Component {
@@ -69,7 +69,7 @@ class Input extends React.Component {
     });
   };
 
-  validate = value => {
+  validate = (value) => {
     const { validFunctions } = this.props;
     if (!validFunctions || validFunctions.length == 0) {
       return;
@@ -77,7 +77,7 @@ class Input extends React.Component {
 
     let results = [],
       numberOfSucesses = 0;
-    validFunctions.map(func => results.push(func(value)));
+    validFunctions.map((func) => results.push(func(value)));
     for (const result of results) {
       if (result !== undefined) {
         if (
@@ -151,7 +151,7 @@ class Input extends React.Component {
               name={name}
               value={value}
               state={error ? 'invalid' : '' || warning || valid}
-              onChange={e => {
+              onChange={(e) => {
                 const value = e.target.value;
                 this.setState({ value: value });
                 this.validate(value);

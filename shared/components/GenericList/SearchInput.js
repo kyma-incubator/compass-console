@@ -30,7 +30,7 @@ export default function SearchInput({
   const [isSearchHidden, setSearchHidden] = React.useState(true);
   const searchInputRef = React.useRef();
 
-  const renderSearchList = entries => {
+  const renderSearchList = (entries) => {
     const suggestions = getSearchSuggestions(entries);
 
     if (!suggestions.length) {
@@ -44,7 +44,7 @@ export default function SearchInput({
       );
     }
 
-    return suggestions.map(suggestion => (
+    return suggestions.map((suggestion) => (
       <li
         onClick={() => handleQueryChange(suggestion)}
         key={suggestion}
@@ -55,28 +55,25 @@ export default function SearchInput({
     ));
   };
 
-  const getSearchSuggestions = entries => {
+  const getSearchSuggestions = (entries) => {
     const suggestions = entries
-      .flatMap(entry => {
+      .flatMap((entry) => {
         if (typeof entry === 'string') {
           if (entryMatchesSearch(entry)) return entry;
         }
-        return suggestionProperties.map(property => {
+        return suggestionProperties.map((property) => {
           const entryValue = entry[property];
           if (entryMatchesSearch(entryValue)) return entryValue;
         });
       })
-      .filter(suggestion => suggestion);
+      .filter((suggestion) => suggestion);
     return Array.from(new Set(suggestions));
   };
 
-  const entryMatchesSearch = entry => {
+  const entryMatchesSearch = (entry) => {
     return (
       entry &&
-      entry
-        .toString()
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase())
+      entry.toString().toLowerCase().includes(searchQuery.toLowerCase())
     );
   };
 
@@ -88,7 +85,7 @@ export default function SearchInput({
     });
   };
 
-  const checkForEscapeKey = e => {
+  const checkForEscapeKey = (e) => {
     const ESCAPE_KEY_CODE = 27;
     if (e.keyCode === ESCAPE_KEY_CODE) {
       setSearchHidden(true);
@@ -116,7 +113,7 @@ export default function SearchInput({
               value={searchQuery}
               onBlur={() => setSearchHidden(true)}
               onFocus={() => setSearchHidden(false)}
-              onChange={e => handleQueryChange(e.target.value)}
+              onChange={(e) => handleQueryChange(e.target.value)}
               onKeyPress={checkForEscapeKey}
               className="fd-has-margin-right-tiny"
             />

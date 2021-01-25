@@ -16,9 +16,9 @@ let tenants = [];
   tenants = await fetchTenants();
 })();
 
-const getTenantName = tenantId => {
+const getTenantName = (tenantId) => {
   const tenantsToCheck = tenants.length > 0 ? tenants : getTenantsFromCache();
-  const match = tenantsToCheck.find(tenant => tenant.id === tenantId);
+  const match = tenantsToCheck.find((tenant) => tenant.id === tenantId);
   return match ? match.name : null;
 };
 
@@ -214,8 +214,8 @@ const navigation = {
     defaultLabel: 'Select Tenant...',
     parentNodePath: '/tenant',
     lazyloadOptions: true,
-    options: () => getTenantNames(tenants.filter(t => t.initialized)),
-    fallbackLabelResolver: tenantId => getTenantName(tenantId),
+    options: () => getTenantNames(tenants.filter((t) => t.initialized)),
+    fallbackLabelResolver: (tenantId) => getTenantName(tenantId),
     actions: [
       {
         label: 'Search tenants...',

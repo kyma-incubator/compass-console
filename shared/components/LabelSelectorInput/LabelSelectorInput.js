@@ -102,11 +102,11 @@ export const LabelSelectorInput = ({
         <div
           className={classNames(['label-selector', { 'is-invalid': !isValid }])}
         >
-          {createLabelsToDisplay(readonlyLabels).map(l => (
+          {createLabelsToDisplay(readonlyLabels).map((l) => (
             <NonRemovableLabel key={l} text={l} />
           ))}
 
-          {createLabelsToDisplay(labels).map(l => (
+          {createLabelsToDisplay(labels).map((l) => (
             <Label key={l} text={l} onClick={() => deleteLabel(l)} />
           ))}
           <input

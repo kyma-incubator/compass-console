@@ -20,7 +20,7 @@ describe('Runtimes', () => {
 
     await waitForDomChange();
 
-    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach(runtime => {
+    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach((runtime) => {
       expectRuntime(test, runtime);
     });
 
@@ -46,12 +46,14 @@ describe('Runtimes', () => {
 
     await waitForDomChange();
 
-    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach(runtime => {
+    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach((runtime) => {
       expectRuntime(test, runtime);
     });
-    MOCK_GET_ADDITIONAL_RUNTIMES.result.data.runtimes.data.forEach(runtime => {
-      expectRuntime(test, runtime);
-    });
+    MOCK_GET_ADDITIONAL_RUNTIMES.result.data.runtimes.data.forEach(
+      (runtime) => {
+        expectRuntime(test, runtime);
+      },
+    );
 
     expectNumberOfRows(test, [MOCK_GET_RUNTIMES, MOCK_GET_ADDITIONAL_RUNTIMES]);
     expect(test.queryByText('No more runtimes to show')).toBeInTheDocument();
@@ -71,7 +73,7 @@ describe('Runtimes', () => {
 
     fireScrollEvent(false);
 
-    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach(runtime => {
+    MOCK_GET_RUNTIMES.result.data.runtimes.data.forEach((runtime) => {
       expectRuntime(test, runtime);
     });
     expectNumberOfRows(test, [MOCK_GET_RUNTIMES]);
@@ -103,7 +105,7 @@ describe('Runtimes', () => {
 function expectRuntime({ queryByText }, runtime) {
   expect(queryByText(runtime.name)).toBeInTheDocument();
   expect(queryByText(runtime.description)).toBeInTheDocument();
-  runtime.labels.scenarios.forEach(s => {
+  runtime.labels.scenarios.forEach((s) => {
     expect(queryByText(s)).toBeInTheDocument();
   });
   expect(queryByText(runtime.status.condition)).toBeInTheDocument();
@@ -130,7 +132,7 @@ function fireScrollEvent(isBottom) {
 }
 
 function generateRuntimes(fromId, toId) {
-  return [...Array(toId - fromId + 1).keys()].map(id => ({
+  return [...Array(toId - fromId + 1).keys()].map((id) => ({
     name: `runtime-${id + fromId}`,
     id: `${id + fromId}`,
     description: `blablabla-${id + fromId}`,

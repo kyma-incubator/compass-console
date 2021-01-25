@@ -9,7 +9,7 @@ const ABActions = AB.Actions;
 export const ActionBar = styled(AB)`
   && {
     padding: 30px 30px 0 30px;
-    ${props => (props.background ? `background: ${props.background}` : '')};
+    ${(props) => (props.background ? `background: ${props.background}` : '')};
   }
 `;
 
@@ -27,7 +27,7 @@ export const ActionBarHeader = styled(ABHeader)`
     text-align: left;
     width: auto;
     flex-grow: 1;
-    ${props => (props.nowrap ? `white-space: normal` : '')};
+    ${(props) => (props.nowrap ? `white-space: normal` : '')};
   }
 `;
 

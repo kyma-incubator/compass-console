@@ -28,7 +28,7 @@ const AuthContext = ({ context }) => {
   try {
     const parsedContext = JSON.parse(context || '{}');
     const keys = Object.keys(parsedContext).slice(0, valuesToDisplay);
-    return keys.map(key => (
+    return keys.map((key) => (
       <Badge
         key={key}
         className="fd-has-margin-right-tiny"
@@ -43,7 +43,7 @@ const AuthContext = ({ context }) => {
 export default function AuthList({ auths }) {
   const headerRenderer = () => ['Context', 'Status', ''];
 
-  const rowRenderer = auth => [
+  const rowRenderer = (auth) => [
     <AuthContext context={auth.context} />,
     <AuthStatus {...auth.status} />,
     <AuthDetailsModal auth={auth} />,

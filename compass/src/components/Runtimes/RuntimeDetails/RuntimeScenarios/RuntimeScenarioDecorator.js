@@ -24,7 +24,7 @@ export default function RuntimeScenarioDecorator(ComponentToDecorate) {
 
   return compose(
     graphql(SET_RUNTIME_SCENARIOS, {
-      props: props => ({
+      props: (props) => ({
         setRuntimeScenarios: async (runtimeId, scenarios) => {
           await props.mutate({
             variables: {
@@ -36,8 +36,8 @@ export default function RuntimeScenarioDecorator(ComponentToDecorate) {
       }),
     }),
     graphql(DELETE_SCENARIO_LABEL, {
-      props: props => ({
-        deleteRuntimeScenarios: async runtimeId => {
+      props: (props) => ({
+        deleteRuntimeScenarios: async (runtimeId) => {
           await props.mutate({
             variables: {
               id: runtimeId,

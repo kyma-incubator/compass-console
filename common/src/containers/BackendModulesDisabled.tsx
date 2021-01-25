@@ -21,7 +21,7 @@ export const BackendModulesDisabled: React.FunctionComponent<Props> = ({
   requiredBackendModules = [],
 }) => {
   const modules = requiredBackendModules.filter(
-    reqMod => !backendModules.includes(reqMod),
+    (reqMod) => !backendModules.includes(reqMod),
   );
 
   const modulesLength = modules.length;

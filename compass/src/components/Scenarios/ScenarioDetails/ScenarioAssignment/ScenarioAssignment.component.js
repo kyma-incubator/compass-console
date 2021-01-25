@@ -37,7 +37,7 @@ export default function ScenarioAssignment({
     hasScenarioAssignment = false;
   }
 
-  const showSuccessNotification = scenarioAssignmentName => {
+  const showSuccessNotification = (scenarioAssignmentName) => {
     sendNotification({
       variables: {
         content: `Removed automatic scenario assignment from "${scenarioName}".`,
@@ -52,7 +52,7 @@ export default function ScenarioAssignment({
   const actions = [
     {
       name: 'Delete',
-      handler: async scenarioAssignment => {
+      handler: async (scenarioAssignment) => {
         await deleteScenarioAssignmentHandler(
           deleteScenarioAssignment,
           scenarioName,
@@ -79,7 +79,7 @@ export default function ScenarioAssignment({
       entries={scenarioAssignments}
       headerRenderer={() => ['Key', 'Value']}
       actions={actions}
-      rowRenderer={asa => [asa.selector.key, asa.selector.value]}
+      rowRenderer={(asa) => [asa.selector.key, asa.selector.value]}
       showSearchField={false}
     />
   );

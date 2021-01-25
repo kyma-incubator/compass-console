@@ -13,7 +13,7 @@ export const configFromEnvVariables = (env, prefix, fallback = {}) =>
     fallback,
   );
 
-const fromConfig = clusterConfig => endpoint => clusterConfig[endpoint];
+const fromConfig = (clusterConfig) => (endpoint) => clusterConfig[endpoint];
 
 export const ConfigProvider = ({
   env = process.env,

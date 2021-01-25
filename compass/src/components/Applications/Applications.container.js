@@ -14,7 +14,7 @@ export default compose(
   }),
   graphql(UNREGISTER_APPLICATION_MUTATION, {
     props: ({ mutate }) => ({
-      deleteApplication: id =>
+      deleteApplication: (id) =>
         mutate({
           variables: {
             id: id,

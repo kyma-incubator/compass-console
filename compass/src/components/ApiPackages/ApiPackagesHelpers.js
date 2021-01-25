@@ -6,7 +6,7 @@ import {
   getRefsValues,
 } from 'react-shared';
 
-export const inferCredentialType = instanceAuth => {
+export const inferCredentialType = (instanceAuth) => {
   if (!instanceAuth) {
     return CREDENTIAL_TYPE_NONE;
   }

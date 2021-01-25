@@ -28,7 +28,7 @@ const Select = ({
   const renderSelect = (
     <FormSelect
       id={randomId}
-      onChange={e => handleChange(e.target.value)}
+      onChange={(e) => handleChange(e.target.value)}
       name={name}
       disabled={disabled}
     >
@@ -40,7 +40,7 @@ const Select = ({
         ]}
 
       {groupedItems &&
-        groupedItems.map(group => {
+        groupedItems.map((group) => {
           return (
             group.items &&
             group.items.length > 0 && (

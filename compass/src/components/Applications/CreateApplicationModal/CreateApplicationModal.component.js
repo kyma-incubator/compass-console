@@ -123,18 +123,18 @@ class CreateApplicationModal extends React.Component {
     });
   }
 
-  validateApplicationName = value => {
+  validateApplicationName = (value) => {
     const regex = /^[a-z]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
     const wrongApplicationName =
       value && (!Boolean(regex.test(value || '')) || value.length > 36);
     return wrongApplicationName;
   };
 
-  validateProviderName = value => {
+  validateProviderName = (value) => {
     return value && value.length > 256;
   };
 
-  checkNameExists = async name => {
+  checkNameExists = async (name) => {
     const existingApplications =
       (this.props.existingApplications &&
         this.props.existingApplications.applications) ||
@@ -143,9 +143,9 @@ class CreateApplicationModal extends React.Component {
       this.props.existingApplications && this.props.existingApplications.error;
     const existingApplicationsArray =
       existingApplications && existingApplications.data
-        ? existingApplications.data.map(app => app.name)
+        ? existingApplications.data.map((app) => app.name)
         : [];
-    const exist = existingApplicationsArray.filter(str => {
+    const exist = existingApplicationsArray.filter((str) => {
       return str === name;
     });
     this.setState({
@@ -153,7 +153,7 @@ class CreateApplicationModal extends React.Component {
     });
   };
 
-  invalidNameMessage = name => {
+  invalidNameMessage = (name) => {
     if (!name.length) {
       return 'Please enter the name';
     }
@@ -195,7 +195,7 @@ class CreateApplicationModal extends React.Component {
     return null;
   };
 
-  onChangeName = value => {
+  onChangeName = (value) => {
     this.setState({
       enableCheckNameExists: true,
       nameFilled: Boolean(value),
@@ -208,7 +208,7 @@ class CreateApplicationModal extends React.Component {
     });
   };
 
-  onChangeProviderName = value => {
+  onChangeProviderName = (value) => {
     this.setState({
       invalidProviderName: this.validateProviderName(value),
       providerNameFilled: Boolean(value),
@@ -219,7 +219,7 @@ class CreateApplicationModal extends React.Component {
     });
   };
 
-  onChangeDescription = value => {
+  onChangeDescription = (value) => {
     this.setState({
       formData: {
         ...this.state.formData,
@@ -293,7 +293,7 @@ class CreateApplicationModal extends React.Component {
         availableScenarios = JSON.parse(scenariosQuery.labelDefinition.schema)
           .items.enum;
         availableScenarios = availableScenarios.filter(
-          el => el !== DEFAULT_SCENARIO_LABEL,
+          (el) => el !== DEFAULT_SCENARIO_LABEL,
         );
       }
 

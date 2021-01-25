@@ -13,7 +13,7 @@ export const CollapsiblePanel = ({
 }) => {
   const [isOpen, setIsOpen] = useState(isOpenInitially);
 
-  const switchOpen = e => {
+  const switchOpen = (e) => {
     e.stopPropagation();
     // ensure event didn't come from DOM propagation
     if (e.target === e.currentTarget) {

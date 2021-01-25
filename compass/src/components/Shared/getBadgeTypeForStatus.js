@@ -1,4 +1,4 @@
-export const getBadgeTypeForStatus = status => {
+export const getBadgeTypeForStatus = (status) => {
   if (!status) return undefined;
 
   switch (status.condition) {

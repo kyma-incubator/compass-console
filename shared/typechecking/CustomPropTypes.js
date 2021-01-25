@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const ref = PropTypes.shape({ current: PropTypes.any });
 
-export const button = function(props, propName, componentName) {
+export const button = function (props, propName, componentName) {
   if (!props[propName]) return false;
 
   const buttonProps = new Map([
@@ -42,7 +42,7 @@ export const button = function(props, propName, componentName) {
   return null;
 };
 
-export const listActions = PropTypes.arrayOf(function(
+export const listActions = PropTypes.arrayOf(function (
   props,
   index,
   componentName,

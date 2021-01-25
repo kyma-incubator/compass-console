@@ -11,9 +11,7 @@ export const ResourceNotFound = ({
 }) => {
   const navigate = () => {
     if (fromClosestContext) {
-      LuigiClient.linkManager()
-        .fromClosestContext()
-        .navigate(path);
+      LuigiClient.linkManager().fromClosestContext().navigate(path);
     } else {
       LuigiClient.linkManager().navigate(path);
     }

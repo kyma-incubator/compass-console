@@ -66,11 +66,7 @@ describe('MetadataDefinitionDetails UI', () => {
       component.update();
 
       expect(
-        component
-          .find(Panel)
-          .find('Toggle')
-          .first()
-          .prop('checked'),
+        component.find(Panel).find('Toggle').first().prop('checked'),
       ).toEqual(true);
     });
 
@@ -121,11 +117,7 @@ describe('MetadataDefinitionDetails UI', () => {
       component.update();
 
       expect(
-        component
-          .find(Panel)
-          .find('Toggle')
-          .first()
-          .prop('checked'),
+        component.find(Panel).find('Toggle').first().prop('checked'),
       ).toBeUndefined();
     });
 

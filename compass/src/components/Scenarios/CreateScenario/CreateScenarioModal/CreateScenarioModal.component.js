@@ -15,7 +15,7 @@ export default class CreateScenarioModal extends React.Component {
     runtimesToAssign: [],
   };
 
-  checkScenarioAlreadyExists = scenarioName => {
+  checkScenarioAlreadyExists = (scenarioName) => {
     const scenariosQuery = this.props.scenariosQuery;
     return (
       !!scenariosQuery.error ||
@@ -26,7 +26,7 @@ export default class CreateScenarioModal extends React.Component {
     );
   };
 
-  updateScenarioName = e => {
+  updateScenarioName = (e) => {
     const nameRegex = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
     const scenarioName = e.target.value;
     this.setState({ name: scenarioName });
@@ -45,11 +45,11 @@ export default class CreateScenarioModal extends React.Component {
     }
   };
 
-  updateApplications = assignedApplications => {
+  updateApplications = (assignedApplications) => {
     this.setState({ applicationsToAssign: assignedApplications });
   };
 
-  updateRuntimes = assignedRuntimes => {
+  updateRuntimes = (assignedRuntimes) => {
     this.setState({ runtimesToAssign: assignedRuntimes });
   };
 
@@ -89,11 +89,11 @@ export default class CreateScenarioModal extends React.Component {
       applicationsToAssign,
       runtimesToAssign,
     } = this.state;
-    const applicationUpdates = applicationsToAssign.map(application => {
+    const applicationUpdates = applicationsToAssign.map((application) => {
       const labels = application.labels.scenarios || [];
       return setApplicationScenarios(application.id, [...labels, scenarioName]);
     });
-    const runtimeUpdates = runtimesToAssign.map(runtime => {
+    const runtimeUpdates = runtimesToAssign.map((runtime) => {
       const labels = runtime.labels.scenarios || [];
       return setRuntimeScenarios(runtime.id, [...labels, scenarioName]);
     });
@@ -103,7 +103,7 @@ export default class CreateScenarioModal extends React.Component {
       ...runtimeUpdates,
     ]);
 
-    const rejected = result.filter(r => r.status === 'rejected');
+    const rejected = result.filter((r) => r.status === 'rejected');
     if (rejected.length) {
       this.showWarningNotification(
         scenarioName,
@@ -123,7 +123,7 @@ export default class CreateScenarioModal extends React.Component {
     });
   }
 
-  showSuccessNotification = scenarioName => {
+  showSuccessNotification = (scenarioName) => {
     this.props.sendNotification({
       variables: {
         content: `Created scenario ${scenarioName}.`,

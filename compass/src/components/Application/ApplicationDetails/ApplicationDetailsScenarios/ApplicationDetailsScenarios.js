@@ -46,7 +46,7 @@ export default function ApplicationDetailsScenarios({
         try {
           await handleScenariosUnassign(
             applicationId,
-            scenarios.filter(scenario => scenario !== scenarioName),
+            scenarios.filter((scenario) => scenario !== scenarioName),
           );
           applicationQuery.refetch();
           sendNotification({
@@ -72,7 +72,7 @@ export default function ApplicationDetailsScenarios({
 
   const headerRenderer = () => ['Name'];
 
-  const rowRenderer = label => [label.scenario];
+  const rowRenderer = (label) => [label.scenario];
 
   const actions = [
     {
@@ -95,7 +95,7 @@ export default function ApplicationDetailsScenarios({
     </header>
   );
 
-  const entries = scenarios.map(scenario => ({ scenario })); // list requires a list of objects
+  const entries = scenarios.map((scenario) => ({ scenario })); // list requires a list of objects
 
   return (
     <GenericList

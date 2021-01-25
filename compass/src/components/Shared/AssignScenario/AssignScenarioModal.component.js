@@ -78,7 +78,7 @@ export default function AssignScenarioModal(props) {
   if (error) return `Error! ${error.message}`;
 
   const availableScenarios = JSON.parse(scenarios.schema).items.enum.filter(
-    scenario => !currentScenarios.includes(scenario),
+    (scenario) => !currentScenarios.includes(scenario),
   );
 
   return (

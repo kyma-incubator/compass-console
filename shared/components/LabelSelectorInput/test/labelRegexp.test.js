@@ -18,7 +18,7 @@ describe('labelRegexp', () => {
     'my_domain/label=value',
     'my.domain/label=value',
     'label=',
-  ].forEach(label => {
+  ].forEach((label) => {
     it(`matches: '${label}`, () => {
       expect(labelRegexp.test(label)).toBe(true);
     });
@@ -46,7 +46,7 @@ describe('labelRegexp', () => {
     'domain./label=value',
     'domain-.io/label=value',
     'dOmAiN/label=value',
-  ].forEach(label => {
+  ].forEach((label) => {
     it(`doesn't match: '${label}`, () => {
       expect(labelRegexp.test(label)).toBe(false);
     });

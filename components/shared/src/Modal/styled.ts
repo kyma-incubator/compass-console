@@ -46,10 +46,10 @@ export const FdModal = styled(Modal)<FdModalProps>`
     }
 
     .fd-modal__content {
-      min-width: ${props => props.minWidth || '320px'};
-      width: ${props => props.width || 'unset'};
-      max-width: ${props => props.maxWidth || 'unset'};
-      border-left: ${props => modalBorder(props.type)};
+      min-width: ${(props) => props.minWidth || '320px'};
+      width: ${(props) => props.width || 'unset'};
+      max-width: ${(props) => props.maxWidth || 'unset'};
+      border-left: ${(props) => modalBorder(props.type)};
     }
 
     .fd-modal__footer {
