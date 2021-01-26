@@ -1,5 +1,5 @@
-export function getRefsValues(objectWithRefs) {
-  return Object.fromEntries(
+export const getRefsValues = (objectWithRefs) =>
+  Object.fromEntries(
     Object.keys(objectWithRefs)
       .map((key) => {
         if (objectWithRefs[key].current) {
@@ -9,4 +9,3 @@ export function getRefsValues(objectWithRefs) {
       })
       .filter(Boolean),
   );
-}

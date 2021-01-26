@@ -29,9 +29,6 @@ export class WebSocketLink extends ApolloLink {
     }
   }
 
-  request(operation: Operation): Observable<FetchResult> | null {
-    return this.subscriptionClient.request(
-      operation,
-    ) as Observable<FetchResult>;
-  }
+  request = (operation: Operation): Observable<FetchResult> | null =>
+    this.subscriptionClient.request(operation) as Observable<FetchResult>;
 }

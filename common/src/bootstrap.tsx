@@ -24,14 +24,14 @@ interface BootstrapOptions {
   services?: React.FunctionComponent[];
 }
 
-export const bootstrap = async ({
+export const bootstrap = ({
   id = 'root',
   requiredBackendModules = [],
   enableNotifications = false,
   enableSubscriptions = false,
   app,
   services: svcs,
-}: BootstrapOptions) => {
+}: BootstrapOptions): void => {
   const init = async (): Promise<void> => {
     const { backendModules = [], ...context } = await appInitializer.init();
 
@@ -60,6 +60,7 @@ export const bootstrap = async ({
     if (svcs) {
       services.push(...svcs);
     }
+
     const Services = nestServices(...services);
 
     render(

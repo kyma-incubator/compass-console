@@ -28,9 +28,8 @@ export default function MultiChoiceList({
   noEntitiesAvailableMessage,
   displayPropertySelector,
 }) {
-  function getDisplayName(item) {
-    return displayPropertySelector ? item[displayPropertySelector] : item;
-  }
+  const getDisplayName = (item) =>
+    displayPropertySelector ? item[displayPropertySelector] : item;
 
   function selectItem(item) {
     const newSelectedItems = [...currentlySelectedItems, item];

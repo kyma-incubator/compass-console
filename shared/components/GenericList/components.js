@@ -98,7 +98,7 @@ const CollapsedRowRenderer = ({
           glyph={isOpen ? 'navigation-up-arrow' : 'navigation-down-arrow'}
           option="light"
           onClick={() => setOpen(!isOpen)}
-          compact={true}
+          compact
           typeAttr="button"
         />
       ) : (

@@ -131,8 +131,8 @@ function fireScrollEvent(isBottom) {
   });
 }
 
-function generateRuntimes(fromId, toId) {
-  return [...Array(toId - fromId + 1).keys()].map((id) => ({
+const generateRuntimes = (fromId, toId) =>
+  [...Array(toId - fromId + 1).keys()].map((id) => ({
     name: `runtime-${id + fromId}`,
     id: `${id + fromId}`,
     description: `blablabla-${id + fromId}`,
@@ -141,7 +141,6 @@ function generateRuntimes(fromId, toId) {
       condition: `status-${id + fromId}`,
     },
   }));
-}
 
 const mockCursor = 'cursor';
 

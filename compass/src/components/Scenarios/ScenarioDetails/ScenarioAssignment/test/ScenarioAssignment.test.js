@@ -6,9 +6,7 @@ import ScenarioAssignment from '../ScenarioAssignment.component';
 import { runtimeResponseMock } from './mock';
 import { assignmentResponseMock } from './mock';
 jest.mock('react-shared', () => ({
-  GenericList: function GenericListMocked(props) {
-    return 'generic-list-mocked-content';
-  },
+  GenericList: (props) => 'generic-list-mocked-content',
 }));
 
 describe('ScenarioAssignment', () => {

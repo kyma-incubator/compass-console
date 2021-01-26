@@ -14,7 +14,7 @@ import {
 } from './mocks';
 
 describe('CreateApplicationFromTemplateModal', () => {
-  //Warning: `NaN` is an invalid value for the `left` css style property.
+  // Warning: `NaN` is an invalid value for the `left` css style property.
   console.error = jest.fn();
 
   afterEach(() => {

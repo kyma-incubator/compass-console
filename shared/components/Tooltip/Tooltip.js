@@ -11,18 +11,16 @@ export const Tooltip = ({
   position,
   trigger,
   tippyProps,
-}) => {
-  return (
-    <TippyTooltip
-      html={content}
-      position={position}
-      trigger={trigger}
-      {...tippyProps}
-    >
-      {children}
-    </TippyTooltip>
-  );
-};
+}) => (
+  <TippyTooltip
+    html={content}
+    position={position}
+    trigger={trigger}
+    {...tippyProps}
+  >
+    {children}
+  </TippyTooltip>
+);
 
 Tooltip.propTypes = {
   content: PropTypes.node.isRequired,

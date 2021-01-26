@@ -12,7 +12,7 @@ import { SEND_NOTIFICATION } from '../../../../gql';
 
 import CreateScenarioModal from './CreateScenarioModal.component';
 
-//create input for both create and update
+// create input for both create and update
 function createLabelDefinitionInput(scenarios) {
   const schema = {
     type: 'array',
@@ -56,7 +56,7 @@ export default compose(
         await props.mutate({
           variables: {
             id: applicationId,
-            scenarios: scenarios,
+            scenarios,
           },
         });
       },
@@ -68,7 +68,7 @@ export default compose(
         await props.mutate({
           variables: {
             id: runtimeId,
-            scenarios: scenarios,
+            scenarios,
           },
         });
       },

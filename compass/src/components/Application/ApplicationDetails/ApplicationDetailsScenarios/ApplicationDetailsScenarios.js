@@ -26,7 +26,7 @@ export default function ApplicationDetailsScenarios({
   async function handleScenariosUnassign(applicationId, scenarios) {
     if (scenarios.length) {
       return await updateScenarios({
-        variables: { id: applicationId, scenarios: scenarios },
+        variables: { id: applicationId, scenarios },
       });
     }
     return await deleteScenarios({ variables: { id: applicationId } });

@@ -15,25 +15,23 @@ BasicCredentialsForm.propTypes = {
   defaultValues: PropTypes.object,
 };
 
-export function BasicCredentialsForm({ refs, defaultValues }) {
-  return (
-    <>
-      <TextFormItem
-        inputKey="username"
-        required
-        type="text"
-        label="Username"
-        inputRef={refs.username}
-        defaultValue={defaultValues && defaultValues.username}
-      />
-      <TextFormItem
-        inputKey="password"
-        required
-        type="password"
-        label="Password"
-        inputRef={refs.password}
-        defaultValue={defaultValues && defaultValues.password}
-      />
-    </>
-  );
-}
+export const BasicCredentialsForm = ({ refs, defaultValues }) => (
+  <>
+    <TextFormItem
+      inputKey="username"
+      required
+      type="text"
+      label="Username"
+      inputRef={refs.username}
+      defaultValue={defaultValues && defaultValues.username}
+    />
+    <TextFormItem
+      inputKey="password"
+      required
+      type="password"
+      label="Password"
+      inputRef={refs.password}
+      defaultValue={defaultValues && defaultValues.password}
+    />
+  </>
+);

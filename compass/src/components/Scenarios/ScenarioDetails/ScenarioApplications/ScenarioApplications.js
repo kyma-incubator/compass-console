@@ -18,7 +18,7 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
   const scenarioName = useContext(ScenarioNameContext);
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
 
-  let {
+  const {
     data: applicationsForScenario,
     error,
     loading,

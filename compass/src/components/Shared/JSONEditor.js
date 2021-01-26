@@ -63,12 +63,10 @@ export default class JSONEditorComponent extends Component {
     this.jsoneditor.updateText(nextProps.text);
   }
 
-  render() {
-    return (
-      <div
-        className="jsoneditor-react-container"
-        ref={(elem) => (this.container = elem)}
-      />
-    );
-  }
+  render = () => (
+    <div
+      className="jsoneditor-react-container"
+      ref={(elem) => (this.container = elem)}
+    />
+  );
 }

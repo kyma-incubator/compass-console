@@ -13,27 +13,25 @@ CopiableText.propTypes = {
   compact: PropTypes.bool,
 };
 
-export function CopiableText({
+export const CopiableText = ({
   textToCopy,
   buttonText,
   children,
   iconOnly,
   compact,
-}) {
-  return (
-    <div className="copiable-text">
-      {!iconOnly ? children || textToCopy : null}
-      <Tooltip content="Copy to clipboard" position="top">
-        <Button
-          compact={compact}
-          glyph="copy"
-          option="light"
-          className="fd-has-margin-left-tiny"
-          onClick={() => copyToCliboard(textToCopy)}
-        >
-          {buttonText ? buttonText : null}
-        </Button>
-      </Tooltip>
-    </div>
-  );
-}
+}) => (
+  <div className="copiable-text">
+    {!iconOnly ? children || textToCopy : null}
+    <Tooltip content="Copy to clipboard" position="top">
+      <Button
+        compact={compact}
+        glyph="copy"
+        option="light"
+        className="fd-has-margin-left-tiny"
+        onClick={() => copyToCliboard(textToCopy)}
+      >
+        {buttonText ? buttonText : null}
+      </Button>
+    </Tooltip>
+  </div>
+);

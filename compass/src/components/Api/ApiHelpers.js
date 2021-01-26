@@ -1,32 +1,24 @@
 import jsyaml from 'js-yaml';
 import xmlJS from 'xml-js';
 
-function isYAML(file) {
-  return file.name.endsWith('.yaml') || file.name.endsWith('.yml');
-}
+const isYAML = (file) =>
+  file.name.endsWith('.yaml') || file.name.endsWith('.yml');
 
-function isJSON(file) {
-  return file.name.endsWith('.json');
-}
+const isJSON = (file) => file.name.endsWith('.json');
 
-function isXML(file) {
-  return file.name.endsWith('.xml');
-}
+const isXML = (file) => file.name.endsWith('.xml');
 
-function isAsyncApi(spec) {
-  // according to https://www.asyncapi.com/docs/specifications/1.2.0/#a-name-a2sobject-a-asyncapi-object
-  return spec && !!spec.asyncapi;
-}
+const isAsyncApi = (
+  spec, // according to https://www.asyncapi.com/docs/specifications/1.2.0/#a-name-a2sobject-a-asyncapi-object
+) => spec && !!spec.asyncapi;
 
-function isOpenApi(spec) {
-  // according to https://swagger.io/specification/#fixed-fields
-  return spec && !!spec.openapi;
-}
+const isOpenApi = (
+  spec, // according to https://swagger.io/specification/#fixed-fields
+) => spec && !!spec.openapi;
 
-function isOData(spec) {
-  // OData should be in EDMX format
-  return spec && !!spec['edmx:Edmx'];
-}
+const isOData = (
+  spec, // OData should be in EDMX format
+) => spec && !!spec['edmx:Edmx'];
 
 function parseXML(textData) {
   const parsed = xmlJS.xml2js(textData, { compact: true });
@@ -37,12 +29,10 @@ function parseXML(textData) {
   return parsed;
 }
 
-export function createApiData(basicApiData, specData) {
-  return {
-    ...basicApiData,
-    spec: specData,
-  };
-}
+export const createApiData = (basicApiData, specData) => ({
+  ...basicApiData,
+  spec: specData,
+});
 
 export function createEventAPIData(basicApiData, specData) {
   const spec = specData
@@ -72,13 +62,12 @@ function parseForFormat(apiText, format) {
   }
 }
 
-export function readFile(file) {
-  return new Promise((resolve) => {
+export const readFile = (file) =>
+  new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = (e) => resolve(e.target.result);
     reader.readAsText(file);
   });
-}
 
 export function checkApiFormat(file) {
   switch (true) {

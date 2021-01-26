@@ -17,7 +17,7 @@ TextFormItem.defaultProps = {
   type: 'text',
 };
 
-export function TextFormItem({
+export const TextFormItem = ({
   inputKey,
   required,
   label,
@@ -25,22 +25,20 @@ export function TextFormItem({
   onChange,
   defaultValue,
   inputRef,
-}) {
-  return (
-    <FormItem key={inputKey}>
-      <FormLabel htmlFor={inputKey} required={required}>
-        {label}
-      </FormLabel>
-      <input
-        ref={inputRef}
-        required={required}
-        id={inputKey}
-        type={type}
-        placeholder={label}
-        onChange={onChange}
-        autoComplete="off"
-        defaultValue={defaultValue}
-      />
-    </FormItem>
-  );
-}
+}) => (
+  <FormItem key={inputKey}>
+    <FormLabel htmlFor={inputKey} required={required}>
+      {label}
+    </FormLabel>
+    <input
+      ref={inputRef}
+      required={required}
+      id={inputKey}
+      type={type}
+      placeholder={label}
+      onChange={onChange}
+      autoComplete="off"
+      defaultValue={defaultValue}
+    />
+  </FormItem>
+);

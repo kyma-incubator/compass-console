@@ -21,15 +21,13 @@ export default class CreateMDmodal extends React.Component {
   state = this.createInitialState();
   inputRef = React.createRef();
 
-  createInitialState() {
-    return {
-      name: '',
-      nameError: '',
+  createInitialState = () => ({
+    name: '',
+    nameError: '',
 
-      specError: '',
-      parsedSpec: null,
-    };
-  }
+    specError: '',
+    parsedSpec: null,
+  });
 
   updateLabelName = (e) => {
     const name = e.target.value;

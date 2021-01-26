@@ -35,6 +35,4 @@ export function useModuleEnabled(module) {
   return backendModules && backendModules.includes(module);
 }
 
-export function useMicrofrontendContext() {
-  return useContext(MicrofrontendContext);
-}
+export const useMicrofrontendContext = () => useContext(MicrofrontendContext);

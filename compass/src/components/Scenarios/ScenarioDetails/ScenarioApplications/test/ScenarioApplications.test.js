@@ -6,9 +6,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import ScenarioApplications from '../ScenarioApplications';
 import { responseMock } from './mock';
 jest.mock('react-shared', () => ({
-  GenericList: function GenericListMocked(props) {
-    return 'generic-list-mocked-content';
-  },
+  GenericList: (props) => 'generic-list-mocked-content',
 }));
 describe('ScenarioApplications', () => {
   it('Renders with minimal props', () => {

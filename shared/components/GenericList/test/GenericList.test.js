@@ -346,7 +346,7 @@ describe('GenericList', () => {
           entries={[]}
           headerRenderer={mockHeaderRenderer}
           rowRenderer={mockEntryRenderer}
-          serverDataError={true}
+          serverDataError
           serverErrorMessage={serverErrorMessage}
         />,
       );
@@ -361,7 +361,7 @@ describe('GenericList', () => {
           entries={[]}
           headerRenderer={mockHeaderRenderer}
           rowRenderer={mockEntryRenderer}
-          serverDataLoading={true}
+          serverDataLoading
         />,
       );
 

@@ -68,9 +68,8 @@ class CreateApplicationModal extends React.Component {
     });
   };
 
-  refetchApplicationExists = async () => {
-    return await this.props.existingApplications.refetch();
-  };
+  refetchApplicationExists = async () =>
+    await this.props.existingApplications.refetch();
 
   clearState = () => {
     this.setState(this.getInitialState());
@@ -130,9 +129,7 @@ class CreateApplicationModal extends React.Component {
     return wrongApplicationName;
   };
 
-  validateProviderName = (value) => {
-    return value && value.length > 256;
-  };
+  validateProviderName = (value) => value && value.length > 256;
 
   checkNameExists = async (name) => {
     const existingApplications =
@@ -145,9 +142,7 @@ class CreateApplicationModal extends React.Component {
       existingApplications && existingApplications.data
         ? existingApplications.data.map((app) => app.name)
         : [];
-    const exist = existingApplicationsArray.filter((str) => {
-      return str === name;
-    });
+    const exist = existingApplicationsArray.filter((str) => str === name);
     this.setState({
       applicationWithNameAlreadyExists: !error && exist && exist.length,
     });
@@ -307,7 +302,7 @@ class CreateApplicationModal extends React.Component {
             handleChange={this.onChangeName}
             isError={invalidApplicationName || applicationWithNameAlreadyExists}
             message={this.getApplicationNameErrorMessage()}
-            required={true}
+            required
             type="text"
           />
           <Input

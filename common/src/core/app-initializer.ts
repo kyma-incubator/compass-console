@@ -9,8 +9,7 @@ interface InitializerReturnType {
 class AppInitializer {
   private token: string | null = '';
 
-  init() {
-    return new Promise<InitializerReturnType>((resolve, ) => {
+  init = () => new Promise<InitializerReturnType>((resolve, ) => {
       const timeout = setTimeout(() => {
         resolve({
           currentNamespace: "",
@@ -29,7 +28,6 @@ class AppInitializer {
         });
       });
     });
-  }
 
   getBearerToken(): string | null {
     if (!this.token) {

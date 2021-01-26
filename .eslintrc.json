@@ -7,10 +7,9 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
     "plugin:jest/recommended",
-    "plugin:jest/style"
+    "prettier",
+    "prettier/@typescript-eslint"
   ],
   "ignorePatterns": [
     "node_modules",
@@ -23,7 +22,36 @@
     "scripts/**/*",
     "**/*/tests/**/*",
     "**/*/config.js",
-    "**/*/gulpfile.js"
+    "**/*/gulpfile.js",
+    "node_modules",
+    "dist",
+    "*/node_modules/**/*",
+    "*/compass/**/*",
+    "*/add-ons/**",
+    "*/components/react/**/*",
+    "*/content/**/*",
+    "*/core/**/*",
+    "*/core-ui/**/*",
+    "*/lambda/**/*",
+    "*/logging/**/*",
+    "*/scripts/**/*",
+    "*/service-catalog-ui/**/*",
+    "*/tests/**/*",
+    "node_modules",
+    "dist",
+    "*/node_modules/**/*",
+    "*/compass/**/*",
+    "*/add-ons/**",
+    "*/components/react/**/*",
+    "*/content/**/*",
+    "*/core/**/*",
+    "*/core-ui/**/*",
+    "*/lambda/**/*",
+    "*/logging/**/*",
+    "*/scripts/**/*",
+    "*/service-catalog-ui/**/*",
+    "*/tests/**/*",
+    "*/build/**/*"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -42,9 +70,11 @@
   },
   "plugins": [
     "eslint-plugin-import",
+    "eslint-plugin-react",
     "eslint-plugin-jsdoc",
     "eslint-plugin-prefer-arrow",
-    "eslint-plugin-react"
+    "@typescript-eslint",
+    "@typescript-eslint/tslint"
   ],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
@@ -277,7 +307,13 @@
           }
         ],
         "@typescript-eslint/member-ordering": "error",
-        "@typescript-eslint/naming-convention": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "enumMember",
+            "format": ["UPPER_CASE"]
+          }
+        ],
         "@typescript-eslint/no-array-constructor": "error",
         "@typescript-eslint/no-empty-function": "error",
         "@typescript-eslint/no-empty-interface": "error",

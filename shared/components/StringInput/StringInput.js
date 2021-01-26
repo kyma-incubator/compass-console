@@ -28,8 +28,9 @@ export const StringInput = ({
     inputRef.current.setCustomValidity(
       isValid ? '' : `Please match the requested format`,
     );
-    if (typeof inputRef.current.reportValidity === 'function')
+    if (typeof inputRef.current.reportValidity === 'function') {
       inputRef.current.reportValidity();
+    }
   }, [isValid]);
 
   function handleKeyDown(e) {

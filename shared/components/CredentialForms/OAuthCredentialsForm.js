@@ -16,33 +16,31 @@ OAuthCredentialsForm.propTypes = {
   defaultValues: PropTypes.object,
 };
 
-export function OAuthCredentialsForm({ refs, defaultValues }) {
-  return (
-    <>
-      <TextFormItem
-        inputKey="client-id"
-        required
-        type="password"
-        label="Client ID"
-        inputRef={refs.clientId}
-        defaultValue={defaultValues && defaultValues.clientId}
-      />
-      <TextFormItem
-        inputKey="client-secret"
-        required
-        type="password"
-        label="Client Secret"
-        inputRef={refs.clientSecret}
-        defaultValue={defaultValues && defaultValues.clientSecret}
-      />
-      <TextFormItem
-        inputKey="url"
-        required
-        type="url"
-        label="Url"
-        inputRef={refs.url}
-        defaultValue={defaultValues && defaultValues.url}
-      />
-    </>
-  );
-}
+export const OAuthCredentialsForm = ({ refs, defaultValues }) => (
+  <>
+    <TextFormItem
+      inputKey="client-id"
+      required
+      type="password"
+      label="Client ID"
+      inputRef={refs.clientId}
+      defaultValue={defaultValues && defaultValues.clientId}
+    />
+    <TextFormItem
+      inputKey="client-secret"
+      required
+      type="password"
+      label="Client Secret"
+      inputRef={refs.clientSecret}
+      defaultValue={defaultValues && defaultValues.clientSecret}
+    />
+    <TextFormItem
+      inputKey="url"
+      required
+      type="url"
+      label="Url"
+      inputRef={refs.url}
+      defaultValue={defaultValues && defaultValues.url}
+    />
+  </>
+);

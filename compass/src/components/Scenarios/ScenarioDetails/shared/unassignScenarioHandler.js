@@ -55,8 +55,8 @@ export default async function unassignScenarioHandler(
     scenarioAssignment &&
     currentEntityLabels[scenarioAssignment.selector.key]
   ) {
-    let asaLabelKey = scenarioAssignment.selector.key;
-    let asaLabelValue = scenarioAssignment.selector.value;
+    const asaLabelKey = scenarioAssignment.selector.key;
+    const asaLabelValue = scenarioAssignment.selector.value;
 
     canDelete =
       !currentEntityLabels[asaLabelKey] ||

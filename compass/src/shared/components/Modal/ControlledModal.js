@@ -21,7 +21,7 @@ ControlledModal.defaultProps = {
   type: 'default',
 };
 
-export function ControlledModal({
+export const ControlledModal = ({
   title,
   actions,
   modalOpeningComponent,
@@ -31,20 +31,18 @@ export function ControlledModal({
   modalClassName,
   onOpen,
   onClose,
-}) {
-  return (
-    <>
-      <div onClick={onOpen}>{modalOpeningComponent}</div>
-      <FdModal
-        modalClassName={modalClassName}
-        type={type}
-        title={title}
-        show={show}
-        actions={actions}
-        onClose={onClose}
-      >
-        {children}
-      </FdModal>
-    </>
-  );
-}
+}) => (
+  <>
+    <div onClick={onOpen}>{modalOpeningComponent}</div>
+    <FdModal
+      modalClassName={modalClassName}
+      type={type}
+      title={title}
+      show={show}
+      actions={actions}
+      onClose={onClose}
+    >
+      {children}
+    </FdModal>
+  </>
+);

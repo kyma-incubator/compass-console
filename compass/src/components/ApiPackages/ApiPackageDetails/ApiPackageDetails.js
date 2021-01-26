@@ -25,7 +25,7 @@ export default function ApiPackageDetails({ applicationId, apiPackageId }) {
   if (error) return <p>`Error! ${error.message}`</p>;
 
   const application = data.application;
-  if (!application)
+  if (!application) {
     return (
       <ResourceNotFound
         resource="Application"
@@ -34,6 +34,7 @@ export default function ApiPackageDetails({ applicationId, apiPackageId }) {
         navigationContext="applications"
       />
     );
+  }
 
   const apiPackage = application.package;
 

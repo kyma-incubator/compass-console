@@ -5,9 +5,7 @@ import toJson from 'enzyme-to-json';
 import ScenarioRuntimes from '../ScenarioRuntimes.component';
 import { responseMock } from './mock';
 jest.mock('react-shared', () => ({
-  GenericList: function GenericListMocked(props) {
-    return 'generic-list-mocked-content';
-  },
+  GenericList: (props) => 'generic-list-mocked-content',
 }));
 
 describe('ScenarioRuntimes', () => {

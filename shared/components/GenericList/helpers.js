@@ -46,12 +46,8 @@ const flattenProperties = (obj, prefix = '') =>
     return properties;
   }, {});
 
-const isPrimitive = (type) => {
-  return (
-    type === null || (typeof type !== 'function' && typeof type !== 'object')
-  );
-};
+const isPrimitive = (type) =>
+  type === null || (typeof type !== 'function' && typeof type !== 'object');
 
-export const filterEntries = (entries, query, searchProperties) => {
-  return entries.filter((entry) => filterEntry(entry, query, searchProperties));
-};
+export const filterEntries = (entries, query, searchProperties) =>
+  entries.filter((entry) => filterEntry(entry, query, searchProperties));

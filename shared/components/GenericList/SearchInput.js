@@ -70,12 +70,8 @@ export default function SearchInput({
     return Array.from(new Set(suggestions));
   };
 
-  const entryMatchesSearch = (entry) => {
-    return (
-      entry &&
-      entry.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  };
+  const entryMatchesSearch = (entry) =>
+    entry && entry.toString().toLowerCase().includes(searchQuery.toLowerCase());
 
   const openSearchList = () => {
     setSearchHidden(false);

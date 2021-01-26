@@ -27,7 +27,7 @@ describe('MetadataDefinitionDetails UI', () => {
     expect(component.find(ActionBar.Header).text()).toEqual('Loading name...');
   });
 
-  it(`Renders the name `, async () => {
+  it(`Renders the name`, async () => {
     const component = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MetadataDefinitionDetails definitionKey="noschemalabel" />
@@ -62,7 +62,7 @@ describe('MetadataDefinitionDetails UI', () => {
       }
     });
 
-    it(`Renders panel with toggle set to on `, () => {
+    it(`Renders panel with toggle set to on`, () => {
       component.update();
 
       expect(

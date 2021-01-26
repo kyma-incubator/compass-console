@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-//import { getApiDataFromQuery } from '../ApiDetails.component';
-//import ApiDetails from '../ApiDetails.component';
+// import { getApiDataFromQuery } from '../ApiDetails.component';
+// import ApiDetails from '../ApiDetails.component';
 
 // !!! importing anything from ApiDetails causes Jest error because of generic-documentation component. So, no tests for now :(
 

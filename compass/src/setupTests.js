@@ -6,20 +6,19 @@ import '@testing-library/jest-dom/extend-expect';
 
 global.INJECTED_CLUSTER_CONFIG = {};
 
-var nodeCrypto = require('crypto');
+const nodeCrypto = require('crypto');
 global.crypto = {
-  getRandomValues: function (buffer) {
-    return nodeCrypto.randomFillSync(Buffer.from(buffer));
-  },
+  getRandomValues: (buffer) => nodeCrypto.randomFillSync(Buffer.from(buffer)),
 };
 global.URL.createObjectURL = jest.fn();
 
 global.wait = async (ms = 0) => {
-  await act(() => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  });
+  await act(
+    () =>
+      new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      }),
+  );
 };
 
 window.postMessage = jest.fn();

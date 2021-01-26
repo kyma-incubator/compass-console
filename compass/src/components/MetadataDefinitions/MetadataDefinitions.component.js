@@ -35,9 +35,7 @@ class MetadataDefinitions extends React.Component {
           this.props.labelDefinitions.refetch,
         );
       },
-      skipAction: function (entry) {
-        return entry.key === 'scenarios';
-      },
+      skipAction: (entry) => entry.key === 'scenarios',
     },
   ];
 

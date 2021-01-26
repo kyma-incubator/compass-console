@@ -105,7 +105,7 @@ export default function EditApiPackageForm({
         <Tab key="package-data" id="package-data" title="Data">
           <TextFormItem
             inputKey="name"
-            required={true}
+            required
             label="Name"
             defaultValue={apiPackage.name}
             inputRef={name}

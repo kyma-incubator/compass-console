@@ -9,7 +9,7 @@ import { render, fireEvent } from '@testing-library/react';
 import UpdateApplicationForm from '../UpdateApplicationForm.container';
 
 describe('UpdateApplicationForm UI', () => {
-  //for "Warning: componentWillReceiveProps has been renamed"
+  // for "Warning: componentWillReceiveProps has been renamed"
   console.warn = jest.fn();
 
   afterEach(() => {

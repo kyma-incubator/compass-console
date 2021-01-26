@@ -121,65 +121,53 @@ class App extends React.Component {
   }
 }
 
-function RoutedApiPackageDetails({ match }) {
-  return (
-    <ApiPackageDetails
-      applicationId={match.params.applicationId}
-      apiPackageId={match.params.apiPackageId}
-    />
-  );
-}
+const RoutedApiPackageDetails = ({ match }) => (
+  <ApiPackageDetails
+    applicationId={match.params.applicationId}
+    apiPackageId={match.params.apiPackageId}
+  />
+);
 
-function RoutedApiDetails({ match }) {
-  return (
-    <ApiDetails
-      applicationId={match.params.applicationId}
-      apiPackageId={match.params.apiPackageId}
-      apiId={match.params.apiId}
-    />
-  );
-}
+const RoutedApiDetails = ({ match }) => (
+  <ApiDetails
+    applicationId={match.params.applicationId}
+    apiPackageId={match.params.apiPackageId}
+    apiId={match.params.apiId}
+  />
+);
 
-function RoutedEditApi({ match }) {
-  return (
-    <EditApi
-      apiId={match.params.apiId}
-      apiPackageId={match.params.apiPackageId}
-      applicationId={match.params.applicationId}
-    />
-  );
-}
+const RoutedEditApi = ({ match }) => (
+  <EditApi
+    apiId={match.params.apiId}
+    apiPackageId={match.params.apiPackageId}
+    applicationId={match.params.applicationId}
+  />
+);
 
-function RoutedEventApiDetails({ match }) {
-  return (
-    <ApiDetails
-      applicationId={match.params.applicationId}
-      apiPackageId={match.params.apiPackageId}
-      eventApiId={match.params.eventApiId}
-    />
-  );
-}
+const RoutedEventApiDetails = ({ match }) => (
+  <ApiDetails
+    applicationId={match.params.applicationId}
+    apiPackageId={match.params.apiPackageId}
+    eventApiId={match.params.eventApiId}
+  />
+);
 
-function RoutedEditEventApi({ match }) {
-  return (
-    <EditEventApi
-      eventApiId={match.params.eventApiId}
-      apiPackageId={match.params.apiPackageId}
-      applicationId={match.params.applicationId}
-    />
-  );
-}
+const RoutedEditEventApi = ({ match }) => (
+  <EditEventApi
+    eventApiId={match.params.eventApiId}
+    apiPackageId={match.params.apiPackageId}
+    applicationId={match.params.applicationId}
+  />
+);
 
-function RoutedMetadataDefinitionDetails({ match }) {
-  return (
-    <MetadataDefinitionDetails
-      definitionKey={decodeURIComponent(match.params.definitionKey)}
-    />
-  );
-}
+const RoutedMetadataDefinitionDetails = ({ match }) => (
+  <MetadataDefinitionDetails
+    definitionKey={decodeURIComponent(match.params.definitionKey)}
+  />
+);
 
-function RoutedScenarioDetails({ match }) {
-  return <ScenarioDetails scenarioName={match.params.scenarioName} />;
-}
+const RoutedScenarioDetails = ({ match }) => (
+  <ScenarioDetails scenarioName={match.params.scenarioName} />
+);
 
 export default App;

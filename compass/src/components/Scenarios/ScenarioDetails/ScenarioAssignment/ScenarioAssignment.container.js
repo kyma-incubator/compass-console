@@ -26,14 +26,12 @@ export default compose(
   }),
   graphql(GET_ASSIGNMENT_FOR_SCENARIO, {
     name: 'getScenarioAssignment',
-    options: ({ scenarioName }) => {
-      return {
-        errorPolicy: 'all',
-        variables: {
-          scenarioName: scenarioName,
-        },
-      };
-    },
+    options: ({ scenarioName }) => ({
+      errorPolicy: 'all',
+      variables: {
+        scenarioName,
+      },
+    }),
   }),
   graphql(GET_RUNTIMES_FOR_SCENARIO, {
     name: 'getRuntimesForScenario',

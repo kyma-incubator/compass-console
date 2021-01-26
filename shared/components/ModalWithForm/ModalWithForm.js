@@ -92,7 +92,7 @@ export const ModalWithForm = ({
   function handleFormError(title, message, isWarning) {
     notificationManager.notifyError({
       content: message,
-      title: title,
+      title,
       type: isWarning ? 'warning' : 'error',
     });
   }
@@ -203,7 +203,7 @@ export const ModalWithForm = ({
           onError: handleFormError,
           onCompleted: handleFormSuccess,
           performManualSubmit: handleFormSubmit,
-          item: item,
+          item,
         })}
       </Modal>
     </>

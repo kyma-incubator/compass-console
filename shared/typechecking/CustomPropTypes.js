@@ -12,13 +12,10 @@ export const button = function (props, propName, componentName) {
     ['label', 'string'],
     ['text', 'string'],
   ]);
-  function hasTextOrLabel() {
-    return (
-      !props[propName].hasOwnProperty('text') &&
-      !props[propName].hasOwnProperty('label') &&
-      new Error(`Either "text" or "label" is required`)
-    );
-  }
+  const hasTextOrLabel = () =>
+    !props[propName].hasOwnProperty('text') &&
+    !props[propName].hasOwnProperty('label') &&
+    new Error(`Either "text" or "label" is required`);
 
   function checkTypes() {
     for (const [key, type] of buttonProps.entries()) {

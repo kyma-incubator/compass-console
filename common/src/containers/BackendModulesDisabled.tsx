@@ -35,9 +35,11 @@ export const BackendModulesDisabled: React.FunctionComponent<Props> = ({
   const text =
     modulesLength === 1
       ? `${capitalize(modules[0])} backend module is disabled.`
-      : `${modules.map((mod, index) =>
-          index ? ` ${capitalize(mod)}` : capitalize(mod),
-        )} backend modules is disabled.`;
+      : `${modules
+          .map((mod, index) =>
+            index ? ` ${capitalize(mod)}` : capitalize(mod),
+          )
+          .join()} backend modules is disabled.`;
 
   return (
     <Wrapper>

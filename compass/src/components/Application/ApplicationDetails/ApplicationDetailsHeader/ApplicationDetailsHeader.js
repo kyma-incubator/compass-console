@@ -34,7 +34,7 @@ function ApplicationDetailsHeader({ application }) {
     },
   );
 
-  const isReadOnly = false; //todo
+  const isReadOnly = false; // todo
   const { id, name, status, description, providerName } = application;
 
   return (
@@ -60,7 +60,7 @@ function ApplicationDetailsHeader({ application }) {
                 title="Update Application"
                 button={{ text: 'Edit', option: 'light' }}
                 confirmText="Update"
-                initialIsValid={true}
+                initialIsValid
                 performRefetch={applicationQuery.refetch}
                 renderForm={(props) => (
                   <UpdateApplicationForm application={application} {...props} />
