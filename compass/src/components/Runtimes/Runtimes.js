@@ -17,7 +17,7 @@ const runtimeHeaderRenderer = () => [
   'Status',
 ];
 
-const runtimeRowRenderer = r => [
+const runtimeRowRenderer = (r) => [
   [
     'name',
     <span
@@ -44,7 +44,7 @@ const Runtimes = () => {
   const actions = [
     {
       name: 'Get Kubeconfig',
-      handler: e => downladKubeconfig(e.id),
+      handler: (e) => downladKubeconfig(e.id),
     },
   ];
 

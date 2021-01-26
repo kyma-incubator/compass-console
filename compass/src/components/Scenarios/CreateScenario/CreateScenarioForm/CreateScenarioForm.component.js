@@ -27,11 +27,12 @@ export default function CreateScenarioForm({
   }
 
   const nonSelectedRuntimes = runtimesQuery.entities.data.filter(
-    runtime => !runtimesToAssign.find(e => e.name === runtime.name),
+    (runtime) => !runtimesToAssign.find((e) => e.name === runtime.name),
   );
 
   const nonSelectedApplications = applicationsQuery.entities.data.filter(
-    application => !applicationsToAssign.find(e => e.name === application.name),
+    (application) =>
+      !applicationsToAssign.find((e) => e.name === application.name),
   );
 
   return (

@@ -11,7 +11,7 @@ const ListActions = ({ actions, entry }) => {
       body={
         <Menu>
           <Menu.List>
-            {actions.map(a => (
+            {actions.map((a) => (
               <Menu.Item onClick={() => a.handler(entry)} key={a.name}>
                 {a.name}
               </Menu.Item>
@@ -48,9 +48,9 @@ const InfiniteList = ({
       after: cursor,
       ...queryVariables,
     },
-    onCompleted: rsp => {
+    onCompleted: (rsp) => {
       const { data: newEntries } = rsp.runtimes;
-      setEntries(prev => [...prev, ...newEntries]);
+      setEntries((prev) => [...prev, ...newEntries]);
     },
   });
 
@@ -91,7 +91,7 @@ const InfiniteList = ({
           </tr>
         </thead>
         <tbody className="fd-table__body">
-          {entries.map(r => (
+          {entries.map((r) => (
             <tr className="fd-table__row" key={r.id}>
               {rowRenderer(r).map(([key, value]) => (
                 <td

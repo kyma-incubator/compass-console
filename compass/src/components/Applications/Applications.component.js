@@ -21,7 +21,7 @@ class Applications extends React.Component {
     applications: PropTypes.object.isRequired,
   };
 
-  headerRenderer = applications => [
+  headerRenderer = (applications) => [
     'Name',
     'Provider name',
     'Description',
@@ -30,7 +30,7 @@ class Applications extends React.Component {
     'Status',
   ];
 
-  rowRenderer = application => [
+  rowRenderer = (application) => [
     <span
       className="link"
       onClick={() =>
@@ -57,7 +57,7 @@ class Applications extends React.Component {
   actions = [
     {
       name: 'Delete',
-      handler: entry => {
+      handler: (entry) => {
         handleDelete(
           'Application',
           entry.id,

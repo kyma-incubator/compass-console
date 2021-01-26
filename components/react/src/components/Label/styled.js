@@ -4,7 +4,7 @@ import { Token } from 'fundamental-react';
 export const LabelWrapper = styled.div`
   && {
     .fd-token {
-      cursor: ${props => (props.cursorType ? props.cursorType : 'cursor')};
+      cursor: ${(props) => (props.cursorType ? props.cursorType : 'cursor')};
     }
   }
 `;

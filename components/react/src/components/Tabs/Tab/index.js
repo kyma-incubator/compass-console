@@ -16,7 +16,7 @@ const Tab = ({
   return (
     <TabWrapper key={tabIndex}>
       <TabLink
-        onClick={event => {
+        onClick={(event) => {
           event.preventDefault();
           onClick(tabIndex);
         }}

@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = function(env) {
+module.exports = function (env) {
   return {
     entry: './index.js',
     output: {

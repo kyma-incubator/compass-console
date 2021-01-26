@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Table from '../../Table';
 
 const prepareRowData = (entries, rowRenderer) =>
-  entries.map(entry => ({
+  entries.map((entry) => ({
     rowData: rowRenderer(entry),
   }));
 

@@ -12,15 +12,13 @@ import { GET_SCENARIOS_LABEL_SCHEMA, UPDATE_SCENARIOS } from '../../gql';
 import { nonDeletableScenarioNames } from './../../../../shared/constants';
 
 function navigateToList() {
-  LuigiClient.linkManager()
-    .fromClosestContext()
-    .navigate('');
+  LuigiClient.linkManager().fromClosestContext().navigate('');
 }
 
 function removeScenario(schema, scenarioName) {
   const schemaObject = JSON.parse(schema);
   schemaObject.items.enum = schemaObject.items.enum.filter(
-    s => s !== scenarioName,
+    (s) => s !== scenarioName,
   );
   return JSON.stringify(schemaObject);
 }
@@ -67,7 +65,7 @@ export default function ScenarioDetailsHeader({
       'Scenario',
       scenarioName,
       scenarioName,
-      name =>
+      (name) =>
         deleteScenarioMutation({
           variables: {
             in: createNewInputForDeleteScenarioMutation(

@@ -19,9 +19,7 @@ import { ApplicationQueryContext } from '../ApplicationDetails';
 import { UNREGISTER_APPLICATION_MUTATION } from '../../../Applications/gql';
 
 function navigateToApplications() {
-  LuigiClient.linkManager()
-    .fromContext('tenant')
-    .navigate(`/applications`);
+  LuigiClient.linkManager().fromContext('tenant').navigate(`/applications`);
 }
 
 ApplicationDetailsHeader.propTypes = {
@@ -57,14 +55,14 @@ function ApplicationDetailsHeader({ application }) {
           {/* todo can be readonly */}
           {!isReadOnly && <ConnectApplicationModal applicationId={id} />}
           <ApplicationQueryContext.Consumer>
-            {applicationQuery => (
+            {(applicationQuery) => (
               <ModalWithForm
                 title="Update Application"
                 button={{ text: 'Edit', option: 'light' }}
                 confirmText="Update"
                 initialIsValid={true}
                 performRefetch={applicationQuery.refetch}
-                renderForm={props => (
+                renderForm={(props) => (
                   <UpdateApplicationForm application={application} {...props} />
                 )}
               />

@@ -27,7 +27,7 @@ interface CodeWrapperProps {
 const CodeWrapper = styled.section<CodeWrapperProps>`
   && {
     border-radius: 4px;
-    border: ${props => (props.expanded ? 'solid 1px #89919a' : 'none')};
+    border: ${(props) => (props.expanded ? 'solid 1px #89919a' : 'none')};
     background-color: #fafafa;
     table.model {
       width: unset;

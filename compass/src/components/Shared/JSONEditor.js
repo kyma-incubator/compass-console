@@ -38,7 +38,7 @@ export default class JSONEditorComponent extends Component {
     }
   }
 
-  afterValidation = text => {
+  afterValidation = (text) => {
     try {
       const ajv = new Ajv();
       const valid = ajv.validate(this.props.schema, JSON.parse(text));
@@ -67,7 +67,7 @@ export default class JSONEditorComponent extends Component {
     return (
       <div
         className="jsoneditor-react-container"
-        ref={elem => (this.container = elem)}
+        ref={(elem) => (this.container = elem)}
       />
     );
   }

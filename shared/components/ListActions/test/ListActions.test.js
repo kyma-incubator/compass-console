@@ -18,7 +18,7 @@ describe('ListActions', () => {
     expect(queryByLabelText('more-actions')).toBeFalsy();
     expect(queryAllByRole('button')).toHaveLength(2);
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
       const actionButton = queryByLabelText(action.name);
       expect(actionButton).toBeTruthy();
 
@@ -41,13 +41,13 @@ describe('ListActions', () => {
     const moreActionsButton = queryByLabelText('more-actions');
     expect(moreActionsButton).toBeInTheDocument();
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
       expect(queryByText(action.name)).not.toBeInTheDocument();
     });
 
     moreActionsButton.click();
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
       const actionButton = queryByText(action.name);
       expect(actionButton).toBeTruthy();
 

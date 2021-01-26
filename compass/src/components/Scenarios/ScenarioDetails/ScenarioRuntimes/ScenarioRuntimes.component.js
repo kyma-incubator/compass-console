@@ -45,7 +45,7 @@ export default function ScenarioRuntimes({
     hasScenarioAssignment = false;
   }
 
-  const showSuccessNotification = runtimeName => {
+  const showSuccessNotification = (runtimeName) => {
     sendNotification({
       variables: {
         content: `Unassigned "${runtimeName}" from ${scenarioName}.`,
@@ -66,7 +66,7 @@ export default function ScenarioRuntimes({
   const actions = [
     {
       name: 'Unassign',
-      handler: async runtime => {
+      handler: async (runtime) => {
         await unassignScenarioHandler(
           runtime.name,
           runtime.id,
@@ -102,7 +102,7 @@ export default function ScenarioRuntimes({
       entries={assignedRuntimes}
       headerRenderer={() => ['Name']}
       actions={actions}
-      rowRenderer={runtime => [runtime.name]}
+      rowRenderer={(runtime) => [runtime.name]}
       showSearchField={false}
     />
   );

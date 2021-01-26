@@ -35,14 +35,14 @@ export default function MultiChoiceList({
   function selectItem(item) {
     const newSelectedItems = [...currentlySelectedItems, item];
     const newNonSelectedItems = currentlyNonSelectedItems.filter(
-      i => i !== item,
+      (i) => i !== item,
     );
 
     updateItems(newSelectedItems, newNonSelectedItems);
   }
 
   function unselectItem(item) {
-    const newSelectedItems = currentlySelectedItems.filter(i => i !== item);
+    const newSelectedItems = currentlySelectedItems.filter((i) => i !== item);
     const newNonSelectedItems = [...currentlyNonSelectedItems, item];
 
     updateItems(newSelectedItems, newNonSelectedItems);
@@ -55,7 +55,7 @@ export default function MultiChoiceList({
 
     return (
       <ul>
-        {currentlySelectedItems.map(item => (
+        {currentlySelectedItems.map((item) => (
           <li
             className="multi-choice-list__list-element"
             key={getDisplayName(item)}
@@ -84,7 +84,7 @@ export default function MultiChoiceList({
 
     const nonChoosenItemsList = (
       <Menu>
-        {currentlyNonSelectedItems.map(item => (
+        {currentlyNonSelectedItems.map((item) => (
           <Menu.Item
             key={getDisplayName(item)}
             onClick={() => selectItem(item)}

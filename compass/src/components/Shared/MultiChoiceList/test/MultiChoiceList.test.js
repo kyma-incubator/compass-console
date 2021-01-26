@@ -69,7 +69,7 @@ describe('MultiChoiceList', () => {
 
     // expand dropdown
     const dropdownControl = component.findWhere(
-      t => t.text() === 'Choose items...' && t.type() == 'button',
+      (t) => t.text() === 'Choose items...' && t.type() == 'button',
     );
 
     dropdownControl.simulate('click');
@@ -77,7 +77,7 @@ describe('MultiChoiceList', () => {
     const nonSelectedItemTexts = component
       .find(Menu)
       .find('li')
-      .map(node => node.text());
+      .map((node) => node.text());
     expect(nonSelectedItemTexts).toMatchSnapshot();
   });
 
@@ -98,14 +98,14 @@ describe('MultiChoiceList', () => {
 
     // expand dropdown
     const dropdownControl = component.findWhere(
-      t => t.text() === 'Choose items...' && t.type() == 'button',
+      (t) => t.text() === 'Choose items...' && t.type() == 'button',
     );
     dropdownControl.simulate('click');
 
     const nonSelectedItemTexts = component
       .find(Menu)
       .find('li')
-      .map(node => node.text());
+      .map((node) => node.text());
     expect(nonSelectedItemTexts).toMatchSnapshot();
   });
 
@@ -122,7 +122,7 @@ describe('MultiChoiceList', () => {
 
     const removeItemButton = component
       .find('.multi-choice-list__list-element')
-      .filterWhere(n => n.text() === 'a')
+      .filterWhere((n) => n.text() === 'a')
       .find('button[data-test-id="unselect-button"]');
 
     removeItemButton.simulate('click');
@@ -149,7 +149,7 @@ describe('MultiChoiceList', () => {
 
     const addItemButton = component
       .find('span[data-test-id="select-button"]')
-      .filterWhere(n => n.text() === 'a');
+      .filterWhere((n) => n.text() === 'a');
 
     addItemButton.simulate('click');
 

@@ -24,7 +24,7 @@ export default function ScenariosDisplay({
 
   return (
     <span className={className}>
-      {scenarios.map(scenario => (
+      {scenarios.map((scenario) => (
         <Badge
           key={scenario}
           className="fd-has-margin-right-tiny fd-has-background-color-background-1 fd-has-color-text-3"

@@ -14,17 +14,17 @@ import ScenarioRuntimes from './ScenarioRuntimes.component';
 import ScenarioNameContext from './../ScenarioNameContext';
 
 export default compose(
-  fromRenderProps(ScenarioNameContext.Consumer, scenarioName => ({
+  fromRenderProps(ScenarioNameContext.Consumer, (scenarioName) => ({
     scenarioName,
   })),
   graphql(SET_RUNTIME_SCENARIOS, {
     props: ({ mutate }) => ({
-      setRuntimeScenarios: async variables => await mutate(variables),
+      setRuntimeScenarios: async (variables) => await mutate(variables),
     }),
   }),
   graphql(DELETE_RUNTIME_SCENARIOS_LABEL, {
     props: ({ mutate }) => ({
-      deleteRuntimeScenarios: async id =>
+      deleteRuntimeScenarios: async (id) =>
         await mutate({
           variables: { id },
         }),

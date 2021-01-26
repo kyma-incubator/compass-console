@@ -17,7 +17,7 @@ const modifierConfig = {
 };
 
 const Paragraph = styled.p`
-  font-size: ${props => rem(props.theme.fontSizes.medium)};
+  font-size: ${(props) => rem(props.theme.fontSizes.medium)};
   margin: 0;
   ${applyStyleModifiers(modifierConfig)};
 `;

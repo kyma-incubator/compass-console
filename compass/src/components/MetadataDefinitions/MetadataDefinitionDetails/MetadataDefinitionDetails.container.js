@@ -13,7 +13,7 @@ import MetadataDefinitionDetails from './MetadataDefinitionDetails.component';
 export default compose(
   graphql(GET_LABEL_DEFINITION, {
     name: 'metadataDefinition',
-    options: props => {
+    options: (props) => {
       return {
         fetchPolicy: 'cache-and-network',
         errorPolicy: 'all',
@@ -25,7 +25,7 @@ export default compose(
   }),
   graphql(UPDATE_LABEL_DEFINITION, {
     props: ({ mutate, error }) => ({
-      updateLabelDefinition: data => {
+      updateLabelDefinition: (data) => {
         const input = {
           ...data,
           schema: data.schema ? JSON.stringify(data.schema) : null,
@@ -40,7 +40,7 @@ export default compose(
   }),
   graphql(DELETE_LABEL_DEFINITION, {
     props: ({ mutate }) => ({
-      deleteLabelDefinition: key =>
+      deleteLabelDefinition: (key) =>
         mutate({
           variables: {
             key,

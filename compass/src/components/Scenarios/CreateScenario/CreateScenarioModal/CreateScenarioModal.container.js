@@ -28,7 +28,7 @@ function createLabelDefinitionInput(scenarios) {
 
 export default compose(
   graphql(UPDATE_SCENARIOS, {
-    props: props => ({
+    props: (props) => ({
       addScenario: async (currentScenarios, newScenario) => {
         const input = createLabelDefinitionInput([
           ...currentScenarios,
@@ -39,8 +39,8 @@ export default compose(
     }),
   }),
   graphql(CREATE_SCENARIOS_LABEL, {
-    props: props => ({
-      createScenarios: async scenarios => {
+    props: (props) => ({
+      createScenarios: async (scenarios) => {
         // add reqquired scenario
         if (!scenarios.includes('DEFAULT')) {
           scenarios.push('DEFAULT');
@@ -51,7 +51,7 @@ export default compose(
     }),
   }),
   graphql(SET_APPLICATION_SCENARIOS, {
-    props: props => ({
+    props: (props) => ({
       setApplicationScenarios: async (applicationId, scenarios) => {
         await props.mutate({
           variables: {
@@ -63,7 +63,7 @@ export default compose(
     }),
   }),
   graphql(SET_RUNTIME_SCENARIOS, {
-    props: props => ({
+    props: (props) => ({
       setRuntimeScenarios: async (runtimeId, scenarios) => {
         await props.mutate({
           variables: {

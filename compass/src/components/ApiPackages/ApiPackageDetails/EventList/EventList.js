@@ -48,7 +48,7 @@ export default function EventList({
 
   const headerRenderer = () => ['Name', 'Description'];
 
-  const rowRenderer = api => [
+  const rowRenderer = (api) => [
     <Link
       className="link"
       onClick={() => LuigiClient.linkManager().navigate(`eventApi/${api.id}`)}
@@ -66,7 +66,7 @@ export default function EventList({
     },
     {
       name: 'Delete',
-      handler: entry =>
+      handler: (entry) =>
         handleDelete(
           'API',
           entry.id,
@@ -83,7 +83,7 @@ export default function EventList({
       button={{ glyph: 'add', label: 'Add Event Definition' }}
       confirmText="Create"
       modalClassName="create-event-api-modal"
-      renderForm={props => (
+      renderForm={(props) => (
         <CreateEventApiForm
           applicationId={applicationId}
           apiPackageId={apiPackageId}

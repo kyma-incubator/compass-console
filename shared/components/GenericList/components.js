@@ -24,7 +24,7 @@ export const HeaderRenderer = ({ actions, headerRenderer }) => {
 };
 
 export const RowRenderer = ({ entry, actions, rowRenderer, ...others }) => {
-  const filteredActions = actions.filter(a =>
+  const filteredActions = actions.filter((a) =>
     a.skipAction ? !a.skipAction(entry) : true,
   );
   const resolvedRowRenderer = rowRenderer(entry);

@@ -8,7 +8,7 @@ global.INJECTED_CLUSTER_CONFIG = {};
 
 var nodeCrypto = require('crypto');
 global.crypto = {
-  getRandomValues: function(buffer) {
+  getRandomValues: function (buffer) {
     return nodeCrypto.randomFillSync(Buffer.from(buffer));
   },
 };
@@ -16,7 +16,7 @@ global.URL.createObjectURL = jest.fn();
 
 global.wait = async (ms = 0) => {
   await act(() => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   });

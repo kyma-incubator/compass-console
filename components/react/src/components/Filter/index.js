@@ -13,10 +13,10 @@ class Filter extends React.Component {
   render() {
     const filters = [];
     if (this.props.data && this.props.data.length) {
-      this.props.data.forEach(app => {
+      this.props.data.forEach((app) => {
         for (const key in app.labels) {
           if (app.labels.hasOwnProperty(key) && app.labels[key].length > 0) {
-            app.labels[key].forEach(lab => {
+            app.labels[key].forEach((lab) => {
               if (lab === 'undefined') {
                 filters.push({
                   value: key,

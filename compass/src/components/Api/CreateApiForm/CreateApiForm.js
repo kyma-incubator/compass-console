@@ -56,7 +56,7 @@ export default function CreateApiForm({
     format: null,
   });
 
-  const verifyFile = async file => {
+  const verifyFile = async (file) => {
     const form = formElementRef.current;
     const input = fileRef.current;
     input.setCustomValidity('');
@@ -76,7 +76,7 @@ export default function CreateApiForm({
     }
   };
 
-  const handleFormSubmit = async e => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const basicApiData = getRefsValues(formValues);

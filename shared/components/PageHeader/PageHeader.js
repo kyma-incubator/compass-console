@@ -15,7 +15,7 @@ const Column = ({ title, children, columnSpan }) => {
     </div>
   );
 };
-const performOnClick = item => {
+const performOnClick = (item) => {
   if (!item.path) {
     return null;
   }
@@ -48,7 +48,7 @@ export const PageHeader = ({
         {breadcrumbItems.length ? (
           <section className="fd-has-margin-bottom-s">
             <Breadcrumb>
-              {breadcrumbItems.map(item => {
+              {breadcrumbItems.map((item) => {
                 return (
                   <Breadcrumb.Item
                     aria-label="breadcrumb-item"

@@ -6,7 +6,7 @@ const Header = styled.header`
   font-size-adjust: 0.5;
   font-weight: normal;
   color: #32363a;
-  margin: ${props => (props.margin ? props.margin : '0')};
+  margin: ${(props) => (props.margin ? props.margin : '0')};
 `;
 
 export default Header;

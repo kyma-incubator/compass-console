@@ -42,7 +42,7 @@ const ListActions = ({ actions, entry, standaloneItems = 2, compact }) => {
 
   return (
     <div className="list-actions">
-      {actions.slice(0, standaloneItems).map(a => (
+      {actions.slice(0, standaloneItems).map((a) => (
         <StandaloneAction
           key={a.name}
           action={a}
@@ -55,7 +55,7 @@ const ListActions = ({ actions, entry, standaloneItems = 2, compact }) => {
           body={
             <Menu>
               <Menu.List>
-                {listItems.map(a => (
+                {listItems.map((a) => (
                   <Menu.Item onClick={() => a.handler(entry)} key={a.name}>
                     {a.name}
                   </Menu.Item>

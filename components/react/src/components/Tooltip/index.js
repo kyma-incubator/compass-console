@@ -42,7 +42,7 @@ class Tooltip extends React.Component {
     };
   }
 
-  setVisibility = visible => {
+  setVisibility = (visible) => {
     this.setState({ visibleTooltip: visible });
   };
 

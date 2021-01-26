@@ -100,10 +100,7 @@ export const GroupRenderer: React.FunctionComponent<GroupRendererProps> = ({
 
   const handleTabChange = (id: string): void => {
     try {
-      luigiClient
-        .linkManager()
-        .withParams({ selectedTab: id })
-        .navigate('');
+      luigiClient.linkManager().withParams({ selectedTab: id }).navigate('');
     } catch (e) {
       console.error(e);
     }
@@ -112,13 +109,13 @@ export const GroupRenderer: React.FunctionComponent<GroupRendererProps> = ({
   const handleTabInit = (): string =>
     luigiClient.getNodeParams().selectedTab || '';
 
-  const markdownsExists = sortedSources.some(source =>
+  const markdownsExists = sortedSources.some((source) =>
     markdownDefinition.possibleTypes.includes(source.type),
   );
 
   const additionalTabsFragment =
     additionalTabs &&
-    additionalTabs.map(tab => (
+    additionalTabs.map((tab) => (
       <Tab label={tab.label} id={tab.id} key={tab.id}>
         {tab.children}
       </Tab>

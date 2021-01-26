@@ -13,12 +13,12 @@ import ScenarioAssignment from './ScenarioAssignment.component';
 import ScenarioNameContext from './../ScenarioNameContext';
 
 export default compose(
-  fromRenderProps(ScenarioNameContext.Consumer, scenarioName => ({
+  fromRenderProps(ScenarioNameContext.Consumer, (scenarioName) => ({
     scenarioName,
   })),
   graphql(DELETE_ASSIGNMENT_FOR_SCENARIO, {
     props: ({ mutate }) => ({
-      deleteScenarioAssignment: async scenarioName =>
+      deleteScenarioAssignment: async (scenarioName) =>
         await mutate({
           variables: { scenarioName },
         }),

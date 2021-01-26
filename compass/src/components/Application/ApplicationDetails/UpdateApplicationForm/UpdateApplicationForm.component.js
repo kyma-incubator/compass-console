@@ -37,7 +37,7 @@ export default function UpdateApplicationForm({
     description: React.useRef(null),
   };
 
-  const handleFormSubmit = async e => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const description = formValues.description.current.value;

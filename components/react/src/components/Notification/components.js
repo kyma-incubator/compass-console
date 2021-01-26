@@ -9,14 +9,15 @@ export const NotificationWrapper = styled.div`
   max-width: 450px;
   background: #fff;
   position: fixed;
-  ${props => (props.orientation === 'top' ? 'top: 25px;' : '')};
-  ${props => (props.orientation === 'bottom' ? 'bottom: 25px;' : '')};
-  right: ${props => (props.visible ? '30' : '-1000')}px;
+  ${(props) => (props.orientation === 'top' ? 'top: 25px;' : '')};
+  ${(props) => (props.orientation === 'bottom' ? 'bottom: 25px;' : '')};
+  right: ${(props) => (props.visible ? '30' : '-1000')}px;
   transition: all ease-in-out 0.4s;
   z-index: 1000;
   cursor: pointer;
   border-radius: 3px;
-  border-left: ${props => (props.color ? `6px solid ${props.color}` : 'none')};
+  border-left: ${(props) =>
+    props.color ? `6px solid ${props.color}` : 'none'};
 `;
 
 export const NotificationHeader = styled.div`

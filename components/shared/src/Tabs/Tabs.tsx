@@ -10,7 +10,7 @@ type Labels = {
 const serializeTabs = (
   children: Array<React.ReactElement<TabProps>>,
 ): Array<React.ReactElement<TabProps>> => {
-  return React.Children.map(children, child => {
+  return React.Children.map(children, (child) => {
     return (
       child &&
       React.cloneElement(child, {
@@ -53,7 +53,7 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
   const children: Array<React.ReactElement<TabProps>> = useMemo(
     () =>
       serializeTabs(c as Array<React.ReactElement<TabProps>>).filter(
-        child => child,
+        (child) => child,
       ),
     [],
   );

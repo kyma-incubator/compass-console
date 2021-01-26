@@ -31,12 +31,12 @@ export default class CreateMDmodal extends React.Component {
     };
   }
 
-  updateLabelName = e => {
+  updateLabelName = (e) => {
     const name = e.target.value;
     this.setState({ name });
 
     const labelAlreadyExists = this.props.labelNamesQuery.labelDefinitions.some(
-      l => l.key === name,
+      (l) => l.key === name,
     );
 
     if (labelAlreadyExists) {
@@ -85,7 +85,7 @@ export default class CreateMDmodal extends React.Component {
     return name.trim() !== '' && !nameError && spec !== null && !specError;
   };
 
-  fileInputChanged = async file => {
+  fileInputChanged = async (file) => {
     if (!file) {
       return;
     }

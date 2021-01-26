@@ -37,7 +37,7 @@ export class DocsLoader {
       await this.setSpecification(openApiDefinition.possibleTypes),
       await this.setSpecification(asyncApiDefinition.possibleTypes),
       await this.setSpecification(odataDefinition.possibleTypes),
-    ]).then(r => (this.sources = r.flat()));
+    ]).then((r) => (this.sources = r.flat()));
   }
 
   getSources(considerAsGroup: boolean = false): Sources {
@@ -58,8 +58,12 @@ export class DocsLoader {
 
     if (markdownFiles) {
       const sources = (
-        await Promise.all(markdownFiles.map(file => this.fetchFile(file, 'md')))
-      ).filter(source => source && source !== undefined) as SourceWithOptions[];
+        await Promise.all(
+          markdownFiles.map((file) => this.fetchFile(file, 'md')),
+        )
+      ).filter(
+        (source) => source && source !== undefined,
+      ) as SourceWithOptions[];
 
       if (sources && sources.length) {
         return sources;
@@ -78,8 +82,8 @@ export class DocsLoader {
     const specification = this.extractSpecification(types);
 
     const newSources = (await Promise.all(
-      specification.map(async file =>
-        this.fetchFile(file, types[0]).then(res => res),
+      specification.map(async (file) =>
+        this.fetchFile(file, types[0]).then((res) => res),
       ),
     )) as SourceWithOptions[];
 
@@ -87,7 +91,7 @@ export class DocsLoader {
       if (
         sourceToCheck.source.data &&
         newSources.findIndex(
-          otherSource =>
+          (otherSource) =>
             otherSource.source.data &&
             sourceToCheck.source.data &&
             otherSource.source.data.displayName ===
@@ -110,8 +114,8 @@ export class DocsLoader {
     }
 
     return await fetch(file.url)
-      .then(response => response.text())
-      .then(text => {
+      .then((response) => response.text())
+      .then((text) => {
         if (markdownDefinition.possibleTypes.includes(type)) {
           return this.serializeMarkdownFile(file, text);
         }
@@ -130,7 +134,7 @@ export class DocsLoader {
 
         return source;
       })
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   }
@@ -153,10 +157,7 @@ export class DocsLoader {
       },
     };
 
-    const fileName = file.url
-      .split('/')
-      .reverse()[0]
-      .replace('.md', '');
+    const fileName = file.url.split('/').reverse()[0].replace('.md', '');
     let frontmatter = source.source.data!.frontmatter;
 
     if (!frontmatter) {
@@ -179,12 +180,12 @@ export class DocsLoader {
 
     let data: File[] = [];
     if (markdownAssets) {
-      markdownAssets.map(asset => {
+      markdownAssets.map((asset) => {
         if (asset.files) {
           const files = asset.files
-            .filter(el => el.url.endsWith('.md'))
+            .filter((el) => el.url.endsWith('.md'))
             .map(
-              el =>
+              (el) =>
                 ({
                   ...el,
                   parameters: {
@@ -233,14 +234,14 @@ export class DocsLoader {
     const files =
       assets &&
       assets
-        .map(asset => {
+        .map((asset) => {
           const newFile = asset.files && asset.files[0];
           if (newFile) {
             newFile.displayName = asset.displayName || '';
           }
           return newFile;
         })
-        .filter(a => a)
+        .filter((a) => a)
         .sort(this.sortByURL);
 
     return files || [];
@@ -248,7 +249,7 @@ export class DocsLoader {
 
   private extractAssets(types: string[]): Asset[] | undefined {
     const assets = this.assetGroup && (this.assetGroup.assets as Asset[]);
-    return assets.filter(asset => types.includes(asset.type));
+    return assets.filter((asset) => types.includes(asset.type));
   }
 
   private clear(): void {

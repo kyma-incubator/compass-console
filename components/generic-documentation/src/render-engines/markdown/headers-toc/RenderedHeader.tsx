@@ -50,7 +50,7 @@ const HeaderItem: React.FunctionComponent<HeaderItemProps> = ({
           glyph="feeder-arrow"
           open={showNode || collapse}
           onClick={() => {
-            setCollapse(c => !c);
+            setCollapse((c) => !c);
           }}
         />
       ) : null}
@@ -94,7 +94,7 @@ export const RenderedHeader: React.FunctionComponent<RenderedHeaderProps> = ({
   }
 
   const collapseAlways: boolean = !(sumNumberOfHeaders(headers) > 15);
-  const anchorsList = headers.map(header => (
+  const anchorsList = headers.map((header) => (
     <HeaderItem
       header={header}
       className={className}

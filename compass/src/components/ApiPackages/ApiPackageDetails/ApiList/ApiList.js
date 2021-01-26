@@ -48,7 +48,7 @@ export default function ApiList({
 
   const headerRenderer = () => ['Name', 'Description', 'Target URL'];
 
-  const rowRenderer = api => [
+  const rowRenderer = (api) => [
     <Link
       className="link"
       onClick={() => LuigiClient.linkManager().navigate(`api/${api.id}`)}
@@ -66,7 +66,7 @@ export default function ApiList({
     },
     {
       name: 'Delete',
-      handler: entry =>
+      handler: (entry) =>
         handleDelete(
           'API',
           entry.id,
@@ -83,7 +83,7 @@ export default function ApiList({
       button={{ glyph: 'add', label: 'Add API Definition' }}
       confirmText="Create"
       modalClassName="create-api-modal"
-      renderForm={props => (
+      renderForm={(props) => (
         <CreateApiForm
           applicationId={applicationId}
           apiPackageId={apiPackageId}

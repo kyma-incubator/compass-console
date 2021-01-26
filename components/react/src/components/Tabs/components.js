@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TabsContent = styled.div`
-  margin: ${props => (props.noMargin ? '' : '20px')};
+  margin: ${(props) => (props.noMargin ? '' : '20px')};
   font-size: 14px;
   color: #515559;
   line-height: 1.57;
@@ -18,8 +18,8 @@ export const TabsHeader = styled.ul`
   ul {
     list-style-type: none;
   }
-  margin: ${props => (props.noMargin ? '0' : '0 5px')};
-  ${props =>
+  margin: ${(props) => (props.noMargin ? '0' : '0 5px')};
+  ${(props) =>
     props.customStyles &&
     `
     background-color: #fff;
@@ -35,7 +35,7 @@ export const TabsHeaderAdditionalContent = styled.li`
   padding: 16px 15px 0 16px;
   border: none;
   position: relative;
-  color: ${props => (props.active ? '#0a6ed1' : '#32363b')};
+  color: ${(props) => (props.active ? '#0a6ed1' : '#32363b')};
   font-size: 14px;
   outline: none;
   display: inline-block;
@@ -57,7 +57,7 @@ export const TabsWrapper = styled.div`
   margin: 0;
   font-family: '72';
   font-weight: normal;
-  ${props =>
+  ${(props) =>
     (props.border === true &&
       `
       border: solid 1px rgba(151,151,151,0.26);

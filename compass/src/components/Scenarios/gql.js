@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const createEqualityQuery = name => `$[*] ? (@ == "${name}" )`;
+export const createEqualityQuery = (name) => `$[*] ? (@ == "${name}" )`;
 
 export const GET_SCENARIOS_LABEL_SCHEMA = gql`
   query {

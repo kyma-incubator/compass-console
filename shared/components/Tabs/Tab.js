@@ -7,7 +7,7 @@ export const Tab = ({ status, title, onClick, tabIndex, id, isActive }) => {
     <div className="fd-tabs__item" key={tabIndex}>
       <div
         className="fd-tabs__link fd-tabs__link--flex"
-        onClick={event => {
+        onClick={(event) => {
           event.preventDefault();
           onClick(tabIndex);
         }}

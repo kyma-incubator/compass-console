@@ -48,9 +48,9 @@ interface GridContainerProps {
 }
 
 const GridContainer = styled.div<GridContainerProps>`
-  width: ${props => (props.width ? props.width : '1200px')};
+  width: ${(props) => (props.width ? props.width : '1200px')};
   max-width: 100%;
-  ${props => (props.padding ? props.padding : 'padding: 1em 1em 0 1em')};
+  ${(props) => (props.padding ? props.padding : 'padding: 1em 1em 0 1em')};
   margin: 0 auto;
 `;
 
@@ -71,13 +71,13 @@ const GridRow = styled.div`
     justify-content: space-between;
   `}
 
-  ${props =>
+  ${(props) =>
     props.direction &&
     `
     direction: ${props.direction}
     `}
 
-  ${props =>
+  ${(props) =>
     props.alignCenter &&
     `
     align-items: center;

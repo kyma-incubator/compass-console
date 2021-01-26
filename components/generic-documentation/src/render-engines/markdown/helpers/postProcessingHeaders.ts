@@ -15,7 +15,7 @@ function getTypes(sources: Source[]): [string[], { [key: string]: number }] {
   const types: Set<string> = new Set<string>();
   const numberOfTypes: { [key: string]: number } = {};
 
-  sources.map(s => {
+  sources.map((s) => {
     const data = s.data;
     if (data && data.frontmatter) {
       const { title, type } = data.frontmatter;
@@ -51,7 +51,7 @@ export const postProcessingHeaders = (
   const processedHeaders: Header[] = [];
 
   for (const type of types) {
-    if (numberOfTypes[type] === 1 && headers.find(h => h.title === type)) {
+    if (numberOfTypes[type] === 1 && headers.find((h) => h.title === type)) {
       continue;
     }
 
@@ -67,13 +67,13 @@ export const postProcessingHeaders = (
     return hoistParents(headers);
   }
 
-  headers.map(h => {
+  headers.map((h) => {
     const data = h.source && h.source.data;
     if (data && data.frontmatter) {
       const { title, type } = data.frontmatter;
       const t = type ? type : title;
 
-      const ph = processedHeaders.find(p => p.title === t);
+      const ph = processedHeaders.find((p) => p.title === t);
       if (ph && ph.children) {
         h.parent = ph;
         ph.children.push(h);
@@ -85,7 +85,7 @@ export const postProcessingHeaders = (
 
   const sortedProcessedHeaders: Header[] = [];
   for (const type of types) {
-    const newHeaders = processedHeaders.find(h => h.title === type);
+    const newHeaders = processedHeaders.find((h) => h.title === type);
     if (newHeaders) {
       sortedProcessedHeaders.push(newHeaders);
     }

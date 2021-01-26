@@ -29,7 +29,7 @@ export default function AssignEntityToScenarioModal({
   const scenarioName = React.useContext(ScenarioNameContext);
   const uppercaseEntityName = entityName;
 
-  const showSuccessNotification = scenarioName => {
+  const showSuccessNotification = (scenarioName) => {
     sendNotification({
       variables: {
         content: `Updated all ${entityName}`,
@@ -75,7 +75,7 @@ export default function AssignEntityToScenarioModal({
 
   const getUnassignedEntities = () => {
     return allEntitiesQuery.entities.data.filter(
-      app => !assignedEntities.filter(e => e.id === app.id).length,
+      (app) => !assignedEntities.filter((e) => e.id === app.id).length,
     );
   };
 
@@ -88,14 +88,14 @@ export default function AssignEntityToScenarioModal({
         getUnassignedEntities(),
       );
 
-      const assignUpdates = entitiesToAssign.map(entity => {
+      const assignUpdates = entitiesToAssign.map((entity) => {
         const scenarios = [scenarioName, ...(entity.labels.scenarios || [])];
         return updateEntitiesLabels(entity.id, scenarios);
       });
 
-      const unassignUpdates = entitiesToUnassign.map(entity => {
+      const unassignUpdates = entitiesToUnassign.map((entity) => {
         const scenarios = entity.labels.scenarios.filter(
-          scenario => scenario !== scenarioName,
+          (scenario) => scenario !== scenarioName,
         );
         return updateEntitiesLabels(entity.id, scenarios);
       });
@@ -111,7 +111,7 @@ export default function AssignEntityToScenarioModal({
       await entitiesForScenarioRefetchFn();
       await allEntitiesQuery.refetch();
 
-      const rejected = result.filter(r => r.status === 'rejected');
+      const rejected = result.filter((r) => r.status === 'rejected');
       if (rejected.length) {
         showWarningNotification(scenarioName, rejected.length, result.length);
       } else {
@@ -144,7 +144,7 @@ export default function AssignEntityToScenarioModal({
         currentlySelectedItems={assignedEntities}
         currentlyNonSelectedItems={getUnassignedEntities()}
         notSelectedMessage={`No ${entityName} selected`}
-        updateItems={assigned => setAssignedEntities(assigned)}
+        updateItems={(assigned) => setAssignedEntities(assigned)}
         placeholder={`Choose ${entityName}`}
         displayPropertySelector="name"
       />
