@@ -91,7 +91,7 @@ function EditApi({
     }
   };
 
-  const updateSpecText = text => {
+  const updateSpecText = (text) => {
     setSpecText(text);
     revalidateForm();
   };

@@ -17,7 +17,7 @@ const isFormValid = (formRef, reportValidity = false) => {
   return formRef.current.checkValidity();
 };
 
-const isJsonSchemaFormValid = formRef => {
+const isJsonSchemaFormValid = (formRef) => {
   if (!formRef || !formRef.current) return true;
 
   return formRef.current.state && formRef.current.state.errors
@@ -194,7 +194,7 @@ export const ModalWithForm = ({
           formElementRef,
           jsonSchemaFormRef,
           isValid,
-          setCustomValid: isValid => {
+          setCustomValid: (isValid) => {
             // revalidate rest of the form
             setValid(formElementRef.current.checkValidity());
             setCustomValid(isValid);

@@ -37,7 +37,7 @@ export const bootstrap = async ({
 
     if (
       requiredBackendModules &&
-      !requiredBackendModules.every(mod => backendModules.includes(mod))
+      !requiredBackendModules.every((mod) => backendModules.includes(mod))
     ) {
       render(
         <BackendModulesDisabled

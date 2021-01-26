@@ -5,7 +5,7 @@ import './StatusBadge.scss';
 import classNames from 'classnames';
 import { Tooltip } from '../Tooltip/Tooltip';
 
-const resolveType = status => {
+const resolveType = (status) => {
   if (typeof status !== 'string') {
     console.warn(
       `'autoResolveType' prop requires 'children' prop to be a string.`,

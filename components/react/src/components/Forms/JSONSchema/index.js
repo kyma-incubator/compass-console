@@ -37,9 +37,10 @@ const StyledForm = styled(Form)`
       font-size: 14px;
       border-radius: 4px;
       background-color: #ffffff;
-      padding: ${props => (props.isError ? '0 0 0 10px' : '1px 1px 1px 11px')};
+      padding: ${(props) =>
+        props.isError ? '0 0 0 10px' : '1px 1px 1px 11px'};
       border: solid
-        ${props =>
+        ${(props) =>
           props.isError ? '2px #ee0000' : '1px var(--fd-forms-border-color)'};
       transition: border-color ease-out 0.2s;
       width: 100%;

@@ -6,7 +6,7 @@ const Overview = () => {
   const compassInitialRotation = 46;
   const rotatingCompass = useRef(null);
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e) => {
     const compassRect = rotatingCompass.current.getBoundingClientRect();
     const compassCenter = {
       x: compassRect.x + compassRect.width / 2,
@@ -16,8 +16,9 @@ const Overview = () => {
       Math.atan2(e.clientX - compassCenter.x, -(e.clientY - compassCenter.y)) *
       (180 / Math.PI);
 
-    rotatingCompass.current.style = `transform: rotate(${angle -
-      compassInitialRotation}deg);`;
+    rotatingCompass.current.style = `transform: rotate(${
+      angle - compassInitialRotation
+    }deg);`;
   };
 
   return (

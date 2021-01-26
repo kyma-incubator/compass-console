@@ -12,7 +12,7 @@ export const useLocation = (): HookReturnVal => {
 
   const [state, setState] = useState(initialState);
   useEffect(() => {
-    const removeListener = globalHistory.listen(params => {
+    const removeListener = globalHistory.listen((params) => {
       setState({
         location: params.location,
       });

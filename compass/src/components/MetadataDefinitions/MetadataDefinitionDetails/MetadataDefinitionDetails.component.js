@@ -48,7 +48,7 @@ const MetadataDefinitionDetails = ({
     }
   }
 
-  const handleSchemaChange = currentSchema => {
+  const handleSchemaChange = (currentSchema) => {
     LuigiClient.uxManager().setDirtyStatus(
       currentSchema !== metadataDefinition.schema,
     );

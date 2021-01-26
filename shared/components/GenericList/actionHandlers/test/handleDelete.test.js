@@ -12,7 +12,7 @@ jest.mock('@luigi-project/client', () => ({
 
 describe('simpleDelete', () => {
   it('Calls delete function and custom callback with valid parameters', async () => {
-    mockModal.mockImplementation(() => new Promise(resolve => resolve()));
+    mockModal.mockImplementation(() => new Promise((resolve) => resolve()));
     const deleteFunction = jest.fn();
     const customCallback = jest.fn();
 
@@ -54,7 +54,7 @@ describe('simpleDelete', () => {
   });
 
   it('Does not call custom callback and shows alert on delete function error', async () => {
-    mockModal.mockImplementation(() => new Promise(resolve => resolve()));
+    mockModal.mockImplementation(() => new Promise((resolve) => resolve()));
     const deleteFunction = () => {
       throw Error('DANGER');
     };

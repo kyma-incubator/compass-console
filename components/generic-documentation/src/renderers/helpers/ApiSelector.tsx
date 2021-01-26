@@ -72,7 +72,7 @@ const ApiSelector: React.FunctionComponent<{
             <a
               aria-label="api-"
               href="#"
-              onClick={e => onApiSelect(s)}
+              onClick={(e) => onApiSelect(s)}
               className="fd-menu__item"
               key={(s.data && s.data.displayName) || s.rawContent}
             >

@@ -55,7 +55,7 @@ export function FileInput({
         ref={inputRef}
         type="file"
         id="file-upload"
-        onChange={e => fileChanged(e.target.files[0])}
+        onChange={(e) => fileChanged(e.target.files[0])}
         className="fd-asset-upload__input"
         accept={acceptedFileFormats}
         required={required}

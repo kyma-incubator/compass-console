@@ -11,8 +11,8 @@ export default compose(
     name: 'labelNamesQuery',
   }),
   graphql(CREATE_LABEL_DEFINITION, {
-    props: props => ({
-      createLabel: async labelInput => {
+    props: (props) => ({
+      createLabel: async (labelInput) => {
         const input = {
           ...labelInput,
           schema: labelInput.schema ? JSON.stringify(labelInput.schema) : null,

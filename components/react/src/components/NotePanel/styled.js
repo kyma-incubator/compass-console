@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const getColorFromType = props => {
+const getColorFromType = (props) => {
   switch (props.type) {
     case 'note':
       return '#0073e6';
@@ -17,7 +17,7 @@ export const NotePanelWrapper = styled.blockquote`
   margin-left: 0;
   margin-right: 0;
   padding: 16px;
-  border-left: 3px solid ${props => getColorFromType(props)};
+  border-left: 3px solid ${(props) => getColorFromType(props)};
 `;
 
 export const NotePanelContent = styled.div`

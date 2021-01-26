@@ -28,7 +28,7 @@ export default async function unassignScenarioHandler(
   const tryDeleteScenario = async () => {
     try {
       const scenarios = currentEntityLabels.scenarios.filter(
-        scenario => scenario !== scenarioName,
+        (scenario) => scenario !== scenarioName,
       );
 
       if (scenarios.length) {

@@ -48,7 +48,7 @@ export default function ApplicationApiPackages({ applicationId, apiPackages }) {
     'Event Definitions',
   ];
 
-  const rowRenderer = apiPackage => [
+  const rowRenderer = (apiPackage) => [
     <Link className="link" onClick={() => navigateToDetails(apiPackage)}>
       {apiPackage.name}
     </Link>,
@@ -60,12 +60,12 @@ export default function ApplicationApiPackages({ applicationId, apiPackages }) {
   const actions = [
     {
       name: 'Delete',
-      handler: entry =>
+      handler: (entry) =>
         handleDelete(
           'Package',
           entry.id,
           entry.name,
-          id => deleteApiPackage({ variables: { id } }),
+          (id) => deleteApiPackage({ variables: { id } }),
           () => showDeleteSuccessNotification(entry.name),
         ),
     },
@@ -76,7 +76,7 @@ export default function ApplicationApiPackages({ applicationId, apiPackages }) {
       title="Create Package"
       button={{ glyph: 'add', text: 'Create Package' }}
       confirmText="Create"
-      renderForm={props => (
+      renderForm={(props) => (
         <CreateApiPackageForm applicationId={applicationId} {...props} />
       )}
     />

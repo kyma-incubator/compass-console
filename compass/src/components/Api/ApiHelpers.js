@@ -73,9 +73,9 @@ function parseForFormat(apiText, format) {
 }
 
 export function readFile(file) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const reader = new FileReader();
-    reader.onload = e => resolve(e.target.result);
+    reader.onload = (e) => resolve(e.target.result);
     reader.readAsText(file);
   });
 }

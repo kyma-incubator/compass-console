@@ -26,7 +26,7 @@ export const Combobox = styled(ComboboxInput)`
    {
     flex-shrink: 0;
     min-width: calc(
-      ${props => props['data-max-list-chars'] + 'ch'} + ${typeColumnWidth} +
+      ${(props) => props['data-max-list-chars'] + 'ch'} + ${typeColumnWidth} +
         ${listItemColumnGap} + ${listItemPadding}
     );
   }

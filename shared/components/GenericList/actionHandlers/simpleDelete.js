@@ -1,7 +1,7 @@
 import LuigiClient from '@luigi-project/client';
 
 function displayConfirmationMessage(entityType, entityName) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     LuigiClient.uxManager()
       .showConfirmationModal({
         header: `Remove ${entityType}`,
@@ -10,7 +10,7 @@ function displayConfirmationMessage(entityType, entityName) {
         buttonDismiss: 'Cancel',
       })
       .then(() => resolve(true))
-      .catch(_e => resolve(false));
+      .catch((_e) => resolve(false));
   });
 }
 
@@ -45,7 +45,7 @@ export function easyHandleDelete(
   callback = () => {},
 ) {
   return displayConfirmationMessage(entityType, entityName)
-    .then(async shouldDelete => {
+    .then(async (shouldDelete) => {
       if (shouldDelete) {
         try {
           const result = await deleteRequestFn(deleteRequestParam);
@@ -65,7 +65,7 @@ export function easyHandleDelete(
         }
       }
     })
-    .catch(err => {
+    .catch((err) => {
       notificationManager.notifyError({
         content: `An error occurred while deleting ${entityType} ${entityName}: ${err.message}`,
       });

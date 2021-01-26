@@ -14,20 +14,20 @@ export const TooltipContainer = styled.div<TooltipContainerProps>`
   position: absolute;
   box-sizing: border-box;
   z-index: 99;
-  min-width: ${props => (props.minWidth ? props.minWidth : '120px')};
-  max-width: ${props => (props.maxWidth ? props.maxWidth : '420px')};
-  background: ${props =>
+  min-width: ${(props) => (props.minWidth ? props.minWidth : '120px')};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : '420px')};
+  background: ${(props) =>
     props.type === TooltipType.STANDARD && !props.light ? '#32363a' : '#fff'};
-  font-size: ${props =>
+  font-size: ${(props) =>
     props.type === TooltipType.STANDARD ? '11px' : '12px'};
-  line-height: ${props =>
+  line-height: ${(props) =>
     props.type === TooltipType.STANDARD ? '11px' : '12px'};
-  color: ${props =>
+  color: ${(props) =>
     props.type === TooltipType.STANDARD && !props.light ? '#fff' : '#32363b'};
   filter: drop-shadow(rgba(0, 0, 0, 0.12) 0 0px 2px);
   box-shadow: 0 0 4px 0 #00000026, 0 12px 20px 0 #00000019;
   border-radius: 3px;
-  border-left: ${props => {
+  border-left: ${(props) => {
     let color = '';
     switch (props.type) {
       case TooltipType.INFO:
@@ -47,19 +47,20 @@ export const TooltipContainer = styled.div<TooltipContainerProps>`
     }
     return `6px solid ${color}`;
   }};
-  ${props => (props.orientation === 'top' ? 'bottom: 100%;' : 'top: 100%')};
+  ${(props) => (props.orientation === 'top' ? 'bottom: 100%;' : 'top: 100%')};
   right: 50%;
 
-  ${props => (props.type === TooltipType.LIGHT && 'left: 0;') || 'right: 50%'};
+  ${(props) =>
+    (props.type === TooltipType.LIGHT && 'left: 0;') || 'right: 50%'};
   transform: translateX(
-    ${props =>
+    ${(props) =>
       (props.type === TooltipType.STANDARD && '50%') ||
       (props.type === TooltipType.LIGHT && '-40px') ||
       '40px'}
   );
-  visibility: ${props => (props.show ? 'visibility' : 'hidden')};
-  opacity: ${props => (props.show ? '1' : '0')};
-  ${props => {
+  visibility: ${(props) => (props.show ? 'visibility' : 'hidden')};
+  opacity: ${(props) => (props.show ? '1' : '0')};
+  ${(props) => {
     switch (props.orientation) {
       case 'bottom':
         return `margin-top: ${
@@ -73,9 +74,9 @@ export const TooltipContainer = styled.div<TooltipContainerProps>`
   }};
 
   &:after {
-    border: ${props => (props.type === TooltipType.STANDARD ? '6px' : '10px')}
+    border: ${(props) => (props.type === TooltipType.STANDARD ? '6px' : '10px')}
       solid;
-    border-color: ${props => {
+    border-color: ${(props) => {
       switch (props.orientation) {
         case 'bottom':
           return `transparent transparent ${
@@ -88,15 +89,15 @@ export const TooltipContainer = styled.div<TooltipContainerProps>`
       }
     }};
     content: '';
-    ${props =>
+    ${(props) =>
       (props.type === TooltipType.STANDARD && 'right: 50%;') ||
       (props.type === TooltipType.LIGHT && 'left: 48px;') ||
       'right: 25px'};
-    ${props =>
+    ${(props) =>
       props.type === TooltipType.STANDARD ? 'transform: translateX(6px)' : ''};
     margin-left: -10px;
     position: absolute;
-    ${props =>
+    ${(props) =>
       props.orientation === TooltipOrientation.TOP
         ? 'top: 100%; margin-top: -1px;'
         : 'bottom: 100%; margin-bottom: -1px;'};
@@ -113,7 +114,7 @@ export const TooltipWrapper = styled.div<TooltipWrapperProps>`
   position: relative;
   display: inline-block;
 
-  ${props => (props.wrapperStyles ? props.wrapperStyles : '')}
+  ${(props) => (props.wrapperStyles ? props.wrapperStyles : '')}
 
   &:hover ${TooltipContainer} {
     visibility: visible;
@@ -132,9 +133,9 @@ export const TooltipContent = styled.div<TooltipContentProps>`
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: ${props =>
+  text-align: ${(props) =>
     props.type === TooltipType.STANDARD ? 'center' : 'left'};
-  padding: ${props =>
+  padding: ${(props) =>
     props.type === TooltipType.STANDARD ? '6px 10px' : '12px 14px'};
 `;
 
@@ -151,7 +152,7 @@ export const TooltipHeader = styled.div<TooltipHeaderProps>`
   box-sizing: border-box;
 
   &:after {
-    ${props => {
+    ${(props) => {
       switch (props.type) {
         case TooltipType.INFO:
           return "content: '\uE1C3'; color: #0b74de;";

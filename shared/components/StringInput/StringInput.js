@@ -54,13 +54,13 @@ export const StringInput = ({
     sourceEvent.target.value = '';
 
     const stringListWithoutDuplicates = stringList.filter(
-      s => s !== inputValue,
+      (s) => s !== inputValue,
     );
     onChange([...stringListWithoutDuplicates, inputValue]);
   }
 
   function deleteString(string) {
-    onChange(stringList.filter(s => s !== string));
+    onChange(stringList.filter((s) => s !== string));
   }
 
   return (
@@ -69,7 +69,7 @@ export const StringInput = ({
         className={classNames(['label-selector', { 'is-invalid': !isValid }])}
       >
         {!!stringList.length &&
-          stringList.map(s => (
+          stringList.map((s) => (
             <SingleString key={s} text={s} onClick={() => deleteString(s)} />
           ))}
         <input

@@ -22,9 +22,7 @@ ApiPackageDetailsHeader.propTypes = {
 };
 
 function navigateToApplication() {
-  LuigiClient.linkManager()
-    .fromContext('application')
-    .navigate('');
+  LuigiClient.linkManager().fromContext('application').navigate('');
 }
 
 export default function ApiPackageDetailsHeader({ apiPackage, application }) {
@@ -65,7 +63,7 @@ export default function ApiPackageDetailsHeader({ apiPackage, application }) {
       'Package',
       apiPackage.id,
       apiPackage.name,
-      id => deleteApiPackageMutation({ variables: { id } }),
+      (id) => deleteApiPackageMutation({ variables: { id } }),
       () => {
         navigateToApplication();
         showDeleteSuccessNotification();
@@ -79,7 +77,7 @@ export default function ApiPackageDetailsHeader({ apiPackage, application }) {
         title="Edit Package"
         button={{ text: 'Edit', option: 'light' }}
         confirmText="Edit"
-        renderForm={props => (
+        renderForm={(props) => (
           <EditApiPackageForm
             applicationId={application.id}
             apiPackage={apiPackage}

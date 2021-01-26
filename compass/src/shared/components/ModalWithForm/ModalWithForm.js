@@ -22,7 +22,7 @@ const ModalWithForm = ({
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
   const formElementRef = useRef(null);
 
-  const handleFormChanged = e => {
+  const handleFormChanged = (e) => {
     setValid(formElementRef.current.checkValidity());
     if (typeof e.target.reportValidity === 'function') {
       // for IE
@@ -36,7 +36,7 @@ const ModalWithForm = ({
     }
   });
 
-  const setOpenStatus = status => {
+  const setOpenStatus = (status) => {
     if (status) {
       LuigiClient.uxManager().addBackdrop();
     } else {
@@ -122,7 +122,7 @@ const ModalWithForm = ({
       {renderForm({
         formElementRef,
         isValid,
-        setCustomValid: isValid => {
+        setCustomValid: (isValid) => {
           // revalidate rest of the form
           setValid(formElementRef.current.checkValidity());
           setCustomValid(isValid);

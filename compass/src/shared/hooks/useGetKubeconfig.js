@@ -12,7 +12,7 @@ export function useGetKubeconfig() {
   const domain = fromConfig('domain');
   const authHeader = { Authorization: `Bearer ${idToken}` };
 
-  const showError = error => {
+  const showError = (error) => {
     console.log(error);
     sendNotification({
       variables: {
@@ -25,13 +25,13 @@ export function useGetKubeconfig() {
     });
   };
 
-  return runtimeId => {
+  return (runtimeId) => {
     const url = `https://kubeconfig-service.${domain}/kubeconfig/${tenantId}/${runtimeId}`;
     const name = `kubeconfig-${tenantId}-${runtimeId}.yml`;
 
     fetch(url, { headers: authHeader })
-      .then(res => res.blob())
-      .then(config => saveAs(config, name))
+      .then((res) => res.blob())
+      .then((config) => saveAs(config, name))
       .catch(showError);
   };
 }

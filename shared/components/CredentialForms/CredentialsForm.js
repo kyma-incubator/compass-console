@@ -41,7 +41,7 @@ export function CredentialsForm({
     [CREDENTIAL_TYPE_EMPTY]: CREDENTIAL_TYPE_EMPTY,
   };
 
-  const credentialsMessage = type => {
+  const credentialsMessage = (type) => {
     if (type === CREDENTIAL_TYPE_NONE) {
       return 'AuthData request from runtime will be blocked until credentials are provided.';
     } else {

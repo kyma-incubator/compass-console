@@ -10,9 +10,7 @@ import '../../../../shared/styles/header.scss';
 import { getApiDisplayName } from './../../ApiHelpers';
 
 function navigateToApplication() {
-  LuigiClient.linkManager()
-    .fromContext('application')
-    .navigate('');
+  LuigiClient.linkManager().fromContext('application').navigate('');
 }
 
 class ApiDetailsHeader extends React.Component {

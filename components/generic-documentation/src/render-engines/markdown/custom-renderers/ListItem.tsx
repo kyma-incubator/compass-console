@@ -19,7 +19,7 @@ export const ListItem: React.FunctionComponent<ListItemProps> = ({
 
   let doesStarAppear = false;
   if (newChildren && Array.isArray(newChildren)) {
-    newChildren = React.Children.map(newChildren, child => {
+    newChildren = React.Children.map(newChildren, (child) => {
       if (
         typeof child === 'string' &&
         (child.trim() === '*' || child.trim() === '-')

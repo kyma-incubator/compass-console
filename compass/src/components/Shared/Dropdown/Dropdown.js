@@ -25,7 +25,7 @@ export const Dropdown = ({
   const optionsList = (
     <Menu>
       <Menu.List>
-        {Object.keys(options).map(key => (
+        {Object.keys(options).map((key) => (
           <Menu.Item onClick={() => onSelect(key)} key={key}>
             {options[key]}
           </Menu.Item>

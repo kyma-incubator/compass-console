@@ -6,10 +6,7 @@ const filterEntry = (entry, query, searchProperties) => {
   if (typeof entry === 'string') {
     return (
       entry &&
-      entry
-        .toString()
-        .toLowerCase()
-        .indexOf(query.toLowerCase()) !== -1
+      entry.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1
     );
   }
 
@@ -24,10 +21,7 @@ const filterEntry = (entry, query, searchProperties) => {
       // apply to string to include numbers
       if (
         value &&
-        value
-          .toString()
-          .toLowerCase()
-          .indexOf(query.toLowerCase()) !== -1
+        value.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1
       ) {
         return true;
       }
@@ -52,12 +46,12 @@ const flattenProperties = (obj, prefix = '') =>
     return properties;
   }, {});
 
-const isPrimitive = type => {
+const isPrimitive = (type) => {
   return (
     type === null || (typeof type !== 'function' && typeof type !== 'object')
   );
 };
 
 export const filterEntries = (entries, query, searchProperties) => {
-  return entries.filter(entry => filterEntry(entry, query, searchProperties));
+  return entries.filter((entry) => filterEntry(entry, query, searchProperties));
 };

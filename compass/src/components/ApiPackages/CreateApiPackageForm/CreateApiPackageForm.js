@@ -55,8 +55,8 @@ export default function CreateApiPackageForm({
     CREDENTIAL_TYPE_NONE,
   );
 
-  const handleSchemaChange = schema => {
-    const isNonNullObject = o => typeof o === 'object' && !!o;
+  const handleSchemaChange = (schema) => {
+    const isNonNullObject = (o) => typeof o === 'object' && !!o;
     try {
       const parsedSchema = JSON.parse(schema);
       setRequestInputSchema(parsedSchema);

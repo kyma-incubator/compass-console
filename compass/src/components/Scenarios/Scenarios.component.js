@@ -14,7 +14,7 @@ class Scenarios extends React.Component {
 
   headerRenderer = () => ['Name', 'Runtimes', 'Applications'];
 
-  rowRenderer = scenario => [
+  rowRenderer = (scenario) => [
     <span
       className="link"
       onClick={() => this.navigateToScenario(scenario.name)}
@@ -45,7 +45,7 @@ class Scenarios extends React.Component {
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
 
-    const scenariosObjects = scenarios.map(scenario => ({ name: scenario }));
+    const scenariosObjects = scenarios.map((scenario) => ({ name: scenario }));
 
     return (
       <>

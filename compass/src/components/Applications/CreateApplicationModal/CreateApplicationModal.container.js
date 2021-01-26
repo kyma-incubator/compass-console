@@ -13,7 +13,7 @@ import CreateApplicationModal from './CreateApplicationModal.component';
 export default compose(
   graphql(CHECK_APPLICATION_EXISTS, {
     name: 'existingApplications',
-    options: props => {
+    options: (props) => {
       return {
         fetchPolicy: 'network-only',
         errorPolicy: 'all',
@@ -22,7 +22,7 @@ export default compose(
   }),
   graphql(REGISTER_APPLICATION_MUTATION, {
     props: ({ mutate }) => ({
-      registerApplication: data =>
+      registerApplication: (data) =>
         mutate({
           variables: {
             in: data,

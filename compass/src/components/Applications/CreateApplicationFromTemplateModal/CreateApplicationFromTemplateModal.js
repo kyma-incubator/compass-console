@@ -55,7 +55,7 @@ export default function CreateApplicationFromTemplateModal({
 
   React.useEffect(() => {
     if (template) {
-      const placeholders = template.placeholders.map(placeholder => ({
+      const placeholders = template.placeholders.map((placeholder) => ({
         ...placeholder,
         value: '',
       }));
@@ -74,7 +74,7 @@ export default function CreateApplicationFromTemplateModal({
     return (
       <Menu>
         {templates.length ? (
-          templates.map(template => (
+          templates.map((template) => (
             <Menu.Item key={template.id} onClick={() => setTemplate(template)}>
               {template.name}
             </Menu.Item>
@@ -117,13 +117,13 @@ export default function CreateApplicationFromTemplateModal({
         />
       </Dropdown>
       <section className="placeholders-form">
-        {placeholders.map(placeholder => (
+        {placeholders.map((placeholder) => (
           <PlaceholderInput
             key={placeholder.name}
             placeholder={placeholder}
-            onChange={e =>
+            onChange={(e) =>
               setPlaceholders(
-                placeholders.map(p =>
+                placeholders.map((p) =>
                   p.name === placeholder.name
                     ? { ...p, value: e.target.value }
                     : p,
@@ -138,7 +138,7 @@ export default function CreateApplicationFromTemplateModal({
 
   const addApplication = async () => {
     const placeholdersValues = Array.from(
-      Object.values(placeholders).map(placeholder => ({
+      Object.values(placeholders).map((placeholder) => ({
         placeholder: placeholder.name,
         value: placeholder.value,
       })),
@@ -184,7 +184,7 @@ export default function CreateApplicationFromTemplateModal({
   };
 
   const arePlaceholdersFilled = Object.values(placeholders).every(
-    placeholder => placeholder.value,
+    (placeholder) => placeholder.value,
   );
 
   return (

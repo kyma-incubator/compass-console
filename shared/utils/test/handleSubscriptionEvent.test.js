@@ -2,11 +2,11 @@ import { handleSubscriptionEvent } from '../handleSubscriptionEvent';
 
 describe('handleSubscriptionEvent', () => {
   const setResource = jest.fn();
-  const filter = name => r => r.name === name;
+  const filter = (name) => (r) => r.name === name;
 
   beforeEach(setResource.mockReset);
 
-  test.each([['ADD'], ['UPDATE']])('handles %p', type => {
+  test.each([['ADD'], ['UPDATE']])('handles %p', (type) => {
     const changedResource = { name: 'a' };
     handleSubscriptionEvent(type, setResource, changedResource, filter('a'));
 

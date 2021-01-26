@@ -6,10 +6,10 @@ export const TabLink = styled.div`
   display: flex;
   align-items: center;
   margin: 0 15px;
-  padding: ${props => (props.smallPadding ? '16px 0 10px' : '21px 0 20px')};
+  padding: ${(props) => (props.smallPadding ? '16px 0 10px' : '21px 0 20px')};
   border: none;
   position: relative;
-  color: ${props => (props.active ? '#0a6ed1' : '#32363b')};
+  color: ${(props) => (props.active ? '#0a6ed1' : '#32363b')};
   font-size: 14px;
   outline: none;
   transition: 0.2s color linear;
@@ -24,7 +24,7 @@ export const TabLink = styled.div`
     bottom: 0;
     display: block;
     position: absolute;
-    height: ${props => (props.active ? '3px' : '0px')};
+    height: ${(props) => (props.active ? '3px' : '0px')};
     width: 100%;
     border-radius: 2px;
     background-color: #0b74de;

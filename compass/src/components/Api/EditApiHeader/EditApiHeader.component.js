@@ -17,9 +17,7 @@ EditApiHeader.propTypes = {
 };
 
 function navigateToApplication() {
-  LuigiClient.linkManager()
-    .fromContext('application')
-    .navigate('');
+  LuigiClient.linkManager().fromContext('application').navigate('');
 }
 
 export default function EditApiHeader({

@@ -9,7 +9,7 @@ import { PageHeader } from 'react-shared';
 class MetadataDefinitions extends React.Component {
   headerRenderer = () => ['Name', 'Schema Provided'];
 
-  rowRenderer = labelDef => [
+  rowRenderer = (labelDef) => [
     <span
       onClick={() =>
         LuigiClient.linkManager().navigate(
@@ -26,7 +26,7 @@ class MetadataDefinitions extends React.Component {
   actions = [
     {
       name: 'Delete',
-      handler: entry => {
+      handler: (entry) => {
         handleDelete(
           'Metadata Definition',
           entry.key,
@@ -35,7 +35,7 @@ class MetadataDefinitions extends React.Component {
           this.props.labelDefinitions.refetch,
         );
       },
-      skipAction: function(entry) {
+      skipAction: function (entry) {
         return entry.key === 'scenarios';
       },
     },

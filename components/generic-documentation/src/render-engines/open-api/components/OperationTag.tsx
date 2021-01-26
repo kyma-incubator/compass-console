@@ -82,7 +82,7 @@ export const OperationTagExtended = (Orig: typeof React.Component, _: any) =>
           <h4
             onClick={() => layoutActions.show(isShownKey, !showTag)}
             className={!tagDescription ? 'opblock-tag no-desc' : 'opblock-tag'}
-            id={isShownKey.map(v => escapeDeepLinkPath(v)).join('-')}
+            id={isShownKey.map((v) => escapeDeepLinkPath(v)).join('-')}
             data-tag={tag}
             data-is-open={showTag}
           >

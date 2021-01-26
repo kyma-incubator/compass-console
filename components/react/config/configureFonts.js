@@ -13,7 +13,7 @@ function configureFonts() {
     document.body.classList.remove('fonts-loaded');
   }
 
-  Promise.all([fontObserver].map(o => o.load())).then(
+  Promise.all([fontObserver].map((o) => o.load())).then(
     fontLoadSuccess,
     fontLoadFailure,
   );

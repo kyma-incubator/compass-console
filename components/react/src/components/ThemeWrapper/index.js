@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { ThemeProvider, injectGlobal } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 import buildGlobalStyles from '../../../config/buildGlobalStyles';
 import configureFonts from '../../../config/configureFonts';
 import theme from '../../../config/theme';
 
-injectGlobal([buildGlobalStyles()]);
+createGlobalStyle([buildGlobalStyles()]);
 configureFonts();
 
 export default class ThemeWrapper extends Component {

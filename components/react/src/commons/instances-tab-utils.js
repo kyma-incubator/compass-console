@@ -12,7 +12,7 @@ export function convertIndexToTabName(tabIndex = DEFAULT_TAB_INDEX) {
 
 export function convertTabNameToIndex(tabName = DEFAULT_TAB_NAME) {
   return indexTabNamePairs.find(
-    indexTabNamePair => indexTabNamePair[1] === tabName,
+    (indexTabNamePair) => indexTabNamePair[1] === tabName,
   )[0];
 }
 
