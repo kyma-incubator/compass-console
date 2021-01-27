@@ -51,13 +51,13 @@ export function createApolloClient(apiUrl, tenant, token) {
     if (process.env.REACT_APP_ENV !== 'production') {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) =>
-          console.log(
+          console.error(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
       }
 
-      if (networkError) console.log(`[Network error]: ${networkError}`);
+      if (networkError) console.error(`[Network error]: ${networkError}`);
     }
   });
 

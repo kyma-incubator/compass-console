@@ -13,7 +13,7 @@ export function useGetKubeconfig() {
   const authHeader = { Authorization: `Bearer ${idToken}` };
 
   const showError = (error) => {
-    console.log(error);
+    console.error(error);
     sendNotification({
       variables: {
         content: `Could not download kubeconfig: ${error}`,

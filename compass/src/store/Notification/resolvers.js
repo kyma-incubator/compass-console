@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 const resolvers = {
   Query: {
     notification: (_, args, { cache }) => {
-      console.log('notification lo');
+      console.warn('notification lo');
     },
   },
   Mutation: {
