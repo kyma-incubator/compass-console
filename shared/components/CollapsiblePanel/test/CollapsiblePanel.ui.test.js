@@ -14,43 +14,36 @@ describe('Collapsible Panel', () => {
 
   it('Renders with minimal props (opened state)', () => {
     const component = renderer.create(
-      <CollapsiblePanel
-        children={<p>test</p>}
-        title="Collapsible panel test"
-      />,
+      <CollapsiblePanel title="Collapsible panel test">
+        <p>test</p>
+      </CollapsiblePanel>,
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('Renders in closed state', () => {
     const component = renderer.create(
-      <CollapsiblePanel
-        children={<p>test</p>}
-        title="Collapsible panel test"
-        isOpenInitially={false}
-      />,
+      <CollapsiblePanel title="Collapsible panel test" isOpenInitially={false}>
+        <p>test</p>
+      </CollapsiblePanel>,
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('Applies custom class names to Panel', () => {
     const component = shallow(
-      <CollapsiblePanel
-        children={<p>test</p>}
-        title="Collapsible panel"
-        className="test-class-name"
-      />,
+      <CollapsiblePanel title="Collapsible panel" className="test-class-name">
+        <p>test</p>
+      </CollapsiblePanel>,
     );
     expect(component.find(Panel).hasClass('test-class-name')).toBe(true);
   });
 
   it('Is initially closed when isOpenInitially is false', () => {
     const component = shallow(
-      <CollapsiblePanel
-        children={<p>test</p>}
-        title="Collapsible panel"
-        isOpenInitially={false}
-      />,
+      <CollapsiblePanel title="Collapsible panel" isOpenInitially={false}>
+        <p>test</p>
+      </CollapsiblePanel>,
     );
 
     expect(component.find(Panel.Body).hasClass('body body--closed')).toBe(true);
@@ -60,7 +53,9 @@ describe('Collapsible Panel', () => {
   // eslint-disable-next-line jest/expect-expect
   it('Opens and closes (chevron)', async () => {
     const component = mount(
-      <CollapsiblePanel children={<p>test</p>} title="Collapsible panel" />,
+      <CollapsiblePanel title="Collapsible panel">
+        <p>test</p>
+      </CollapsiblePanel>,
     );
     const button = component.find(Button);
 
@@ -81,7 +76,9 @@ describe('Collapsible Panel', () => {
   // eslint-disable-next-line jest/expect-expect
   it('Opens and closes (header)', async () => {
     const component = mount(
-      <CollapsiblePanel children={<p>test</p>} title="Collapsible panel" />,
+      <CollapsiblePanel title="Collapsible panel">
+        <p>test</p>
+      </CollapsiblePanel>,
     );
     const header = component.find(Panel.Header);
 
@@ -101,17 +98,17 @@ describe('Collapsible Panel', () => {
 
   // eslint-disable-next-line jest/expect-expect
   it('Does not open modal when clicking on custom actions', async () => {
-    const child = <p>test</p>;
     const component = mount(
       <CollapsiblePanel
-        children={child}
         title="Collapsible panel"
         actions={
           <button id="action-button" onClick={() => {}}>
             test
           </button>
         }
-      />,
+      >
+        <p>test</p>
+      </CollapsiblePanel>,
     );
 
     const button = component.find('#action-button');

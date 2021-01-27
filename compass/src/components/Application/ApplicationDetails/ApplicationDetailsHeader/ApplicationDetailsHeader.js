@@ -86,12 +86,15 @@ function ApplicationDetailsHeader({ application }) {
         </ActionBar.Actions>
       </section>
       <PanelGrid nogap cols={4}>
-        <PanelEntry title="Provider Name" children={<p>{providerName}</p>} />
-        <PanelEntry title="Description" children={<p>{description}</p>} />
-        <PanelEntry
-          title="Status"
-          children={<Badge>{status.condition}</Badge>}
-        />
+        <PanelEntry title="Provider Name">
+          <p>{providerName}</p>
+        </PanelEntry>
+        <PanelEntry title="Description">
+          <p>{description}</p>
+        </PanelEntry>
+        <PanelEntry title="Status">
+          <Badge>{status.condition}</Badge>
+        </PanelEntry>
       </PanelGrid>
     </header>
   );
