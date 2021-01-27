@@ -74,9 +74,11 @@ export const LabelSelectorInput = ({
   function createLabelsToDisplay(labelsToDiplay) {
     const labelsArray = [];
     for (const key in labelsToDiplay) {
-      const value = labelsToDiplay[key];
-      const labelToDisplay = `${key}=${value}`;
-      labelsArray.push(labelToDisplay);
+      if ({}.hasOwnProperty.call(labelsToDiplay, key)) {
+        const value = labelsToDiplay[key];
+        const labelToDisplay = `${key}=${value}`;
+        labelsArray.push(labelToDisplay);
+      }
     }
     return labelsArray;
   }
