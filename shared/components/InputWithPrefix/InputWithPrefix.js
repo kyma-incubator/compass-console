@@ -14,14 +14,14 @@ export const InputWithPrefix = ({
     value = value.substring(prefix.length);
   }
 
-  const onValueChange = (e) => {
+  const onValueChange = (event) => {
     if (replacePrefix) {
-      const value = e.target.value;
-      if (value.startsWith(prefix)) {
-        e.target.value = value.substring(prefix.length);
+      const targetValue = event.target.value;
+      if (targetValue.startsWith(prefix)) {
+        event.target.value = targetValue.substring(prefix.length);
       }
     }
-    onChange && onChange(e);
+    onChange && onChange(event);
   };
 
   return (

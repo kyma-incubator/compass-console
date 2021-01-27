@@ -87,10 +87,10 @@ export default function RuntimeScenarios({
               instanceName: scenarioName,
             },
           });
-        } catch (error) {
-          console.warn(error);
+        } catch (err) {
+          console.warn(err);
           LuigiClient.uxManager().showAlert({
-            text: error.message,
+            text: err.message,
             type: 'error',
             closeAfter: 10000,
           });

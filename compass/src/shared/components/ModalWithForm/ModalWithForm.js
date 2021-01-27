@@ -45,22 +45,22 @@ const ModalWithForm = ({
     setOpen(status);
   };
 
-  const handleFormError = (title, message) => {
+  const handleFormError = (notificationTitle, notificationMessage) => {
     sendNotification({
       variables: {
-        content: message,
-        title,
+        content: notificationMessage,
+        title: notificationTitle,
         color: '#BB0000',
         icon: 'decline',
       },
     });
   };
 
-  const handleFormSuccess = (title, message) => {
+  const handleFormSuccess = (notificationTitle, notificationMessage) => {
     sendNotification({
       variables: {
-        content: message,
-        title,
+        content: notificationMessage,
+        title: notificationTitle,
         color: '#107E3E',
         icon: 'accept',
       },
@@ -122,10 +122,10 @@ const ModalWithForm = ({
       {renderForm({
         formElementRef,
         isValid,
-        setCustomValid: (isValid) => {
+        setCustomValid: (isFormValid) => {
           // revalidate rest of the form
           setValid(formElementRef.current.checkValidity());
-          setCustomValid(isValid);
+          setCustomValid(isFormValid);
         },
         onChange: handleFormChanged,
         onError: handleFormError,

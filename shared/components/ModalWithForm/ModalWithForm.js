@@ -89,18 +89,18 @@ export const ModalWithForm = ({
     }
   }
 
-  function handleFormError(title, message, isWarning) {
+  function handleFormError(notificationTitle, message, isWarning) {
     notificationManager.notifyError({
       content: message,
-      title,
+      title: notificationTitle,
       type: isWarning ? 'warning' : 'error',
     });
   }
 
-  function handleFormSuccess(title, message) {
+  function handleFormSuccess(notificationTitle, message) {
     // notificationManager.notify({
     //   content: message,
-    //   title: title,
+    //   title: notificationTitle,
     //   color: '#107E3E',
     //   icon: 'accept',
     //   autoClose: true,
@@ -120,7 +120,7 @@ export const ModalWithForm = ({
 
   function renderConfirmButton() {
     const disabled = !isValid || !customValid;
-    const button = (
+    const buttonElement = (
       <Button
         disabled={disabled}
         aria-disabled={disabled}
@@ -141,11 +141,11 @@ export const ModalWithForm = ({
             distance: 16,
           }}
         >
-          {button}
+          {buttonElement}
         </Tooltip>
       );
     }
-    return button;
+    return buttonElement;
   }
 
   return (
@@ -194,10 +194,10 @@ export const ModalWithForm = ({
           formElementRef,
           jsonSchemaFormRef,
           isValid,
-          setCustomValid: (isValid) => {
+          setCustomValid: (isRenderedFormValid) => {
             // revalidate rest of the form
             setValid(formElementRef.current.checkValidity());
-            setCustomValid(isValid);
+            setCustomValid(isRenderedFormValid);
           },
           onChange: handleFormChanged,
           onError: handleFormError,

@@ -139,7 +139,7 @@ describe('GenericList', () => {
   it('Renders custom data using custom entryRenderer', async () => {
     const customEntryRenderer = (entry) => [entry.name, 'maskopatol'];
 
-    const { queryByText } = render(
+    const { queryByTextList } = render(
       <GenericList
         entries={[mockEntries[0]]}
         headerRenderer={mockHeaderRenderer}
@@ -147,7 +147,7 @@ describe('GenericList', () => {
       />,
     );
 
-    expect(await queryByText(mockEntries[0].name)).toBeInTheDocument();
+    expect(await queryByTextList(mockEntries[0].name)).toBeInTheDocument();
   });
 
   it('Renders collapse entries with collapse control', async () => {

@@ -71,10 +71,10 @@ export const LabelSelectorInput = ({
     onChange(newLabels);
   }
 
-  function createLabelsToDisplay(labels) {
+  function createLabelsToDisplay(labelsToDiplay) {
     const labelsArray = [];
-    for (const key in labels) {
-      const value = labels[key];
+    for (const key in labelsToDiplay) {
+      const value = labelsToDiplay[key];
       const labelToDisplay = `${key}=${value}`;
       labelsArray.push(labelToDisplay);
     }

@@ -56,11 +56,11 @@ export default function CreateApplicationFromTemplateModal({
 
   React.useEffect(() => {
     if (template) {
-      const placeholders = template.placeholders.map((placeholder) => ({
+      const templatePlaceholders = template.placeholders.map((placeholder) => ({
         ...placeholder,
         value: '',
       }));
-      setPlaceholders(placeholders);
+      setPlaceholders(templatePlaceholders);
     }
   }, [template]);
 
@@ -75,9 +75,12 @@ export default function CreateApplicationFromTemplateModal({
     return (
       <Menu>
         {templates.length ? (
-          templates.map((template) => (
-            <Menu.Item key={template.id} onClick={() => setTemplate(template)}>
-              {template.name}
+          templates.map((applicationTemplate) => (
+            <Menu.Item
+              key={applicationTemplate.id}
+              onClick={() => setTemplate(applicationTemplate)}
+            >
+              {applicationTemplate.name}
             </Menu.Item>
           ))
         ) : (
