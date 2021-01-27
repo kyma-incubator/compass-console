@@ -22,7 +22,6 @@
     "**/*/tests/**/*",
     "**/*/config.js",
     "gulpfile.js",
-    "node_modules",
     "dist",
     "*/node_modules/**/*",
     "*/compass/**/*",
@@ -36,19 +35,6 @@
     "*/scripts/**/*",
     "*/service-catalog-ui/**/*",
     "*/tests/**/*",
-    "node_modules",
-    "dist",
-    "*/node_modules/**/*",
-    "*/compass/**/*",
-    "*/add-ons/**",
-    "*/components/react/**/*",
-    "*/content/**/*",
-    "*/core/**/*",
-    "*/core-ui/**/*",
-    "*/lambda/**/*",
-    "*/logging/**/*",
-    "*/scripts/**/*",
-    "*/service-catalog-ui/**/*",
     "*/tests/**/*",
     "*/build/**/*",
     "**/*/react-shared",
@@ -74,9 +60,9 @@
     "eslint-plugin-import",
     "eslint-plugin-react",
     "eslint-plugin-jsdoc",
-    "eslint-plugin-prefer-arrow",
     "@typescript-eslint",
-    "@typescript-eslint/tslint"
+    "@typescript-eslint/tslint",
+    "react-hooks"
   ],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
@@ -86,11 +72,6 @@
     "constructor-super": "error",
     "curly": ["error", "multi-line"],
     "eqeqeq": ["error", "always"],
-    // "func-style": [
-    //   "error",
-    //   "expression",
-    //   { "allowArrowFunctions": true }
-    // ],
     "guard-for-in": "error",
     "id-blacklist": [
       "error",
@@ -101,14 +82,25 @@
       "string",
       "Boolean",
       "boolean",
-      "Undefined",
-      "undefined"
+      "Undefined"
     ],
     "id-match": "error",
     "import/order": "off",
+    "jest/no-standalone-expect": [
+      "error",
+      {
+        "additionalTestBlockFunctions": [
+          "beforeEach",
+          "beforeAll",
+          "afterEach",
+          "afterAll"
+        ]
+      }
+    ],
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "error",
     "jsdoc/newline-after-description": "error",
+
     "max-classes-per-file": ["error", 1],
     "no-array-constructor": "off",
     "no-bitwise": "error",
@@ -170,22 +162,13 @@
     "no-var": "error",
     "object-shorthand": "error",
     "one-var": ["error", "never"],
-    "prefer-arrow/prefer-arrow-functions": [
-      "error",
-      {
-        "classPropertiesAllowed": true,
-        "disallowPrototype": true,
-        "returnStyle": "implicit",
-        "singleReturnOnly": false
-      }
-    ],
     "prefer-const": "error",
     "radix": "error",
     "react/display-name": "error",
     "react/jsx-boolean-value": "error",
     "react/jsx-curly-spacing": "off",
     "react/jsx-equals-spacing": "off",
-    "react/jsx-key": "error",
+    "react/jsx-key": "off",
     "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
     "react/jsx-no-comment-textnodes": "error",
     "react/jsx-no-duplicate-props": "error",
@@ -202,7 +185,7 @@
     "react/no-is-mounted": "error",
     "react/no-render-return-value": "error",
     "react/no-string-refs": "error",
-    "react/no-unescaped-entities": "error",
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
     "react/no-unknown-property": "error",
     "react/no-unsafe": "off",
     "react/prop-types": ["error", { "skipUndeclared": true }],
@@ -219,16 +202,6 @@
     ],
     "use-isnan": "error",
     "valid-typeof": "off"
-    // "@typescript-eslint/tslint/config": [
-    //   "error",
-    //   {
-    //     "rules": {
-    //       "jsx-no-string-ref": true,
-    //       "jsx-self-close": true,
-    //       "react-hooks-nesting": true
-    //     }
-    //   }
-    // ]
   },
   "overrides": [
     {
@@ -369,5 +342,10 @@
         "@typescript-eslint/unified-signatures": "off"
       }
     }
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "16.12.0"
+    }
+  }
 }

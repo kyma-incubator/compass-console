@@ -139,7 +139,7 @@ describe('GenericList', () => {
   it('Renders custom data using custom entryRenderer', async () => {
     const customEntryRenderer = (entry) => [entry.name, 'maskopatol'];
 
-    const { queryByTextList } = render(
+    const { queryByText: queryByTextList } = render(
       <GenericList
         entries={[mockEntries[0]]}
         headerRenderer={mockHeaderRenderer}

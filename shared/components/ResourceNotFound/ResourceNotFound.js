@@ -33,9 +33,7 @@ export const ResourceNotFound = ({
       </header>
       <Panel className="fd-has-margin-large">
         <Panel.Body className="fd-has-text-align-center">
-          <span className="fd-has-type-4">
-            Such {resource} doesn&rsquo;t exists.
-          </span>
+          <span className="fd-has-type-4">Such {resource} doesn't exist.</span>
         </Panel.Body>
       </Panel>
     </>
