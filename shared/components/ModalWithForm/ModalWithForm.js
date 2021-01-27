@@ -7,7 +7,9 @@ import { Tooltip } from '../Tooltip/Tooltip';
 import CustomPropTypes from '../../typechecking/CustomPropTypes';
 
 const isFormValid = (formRef, reportValidity = false) => {
-  if (!formRef || !formRef.current) return true;
+  if (!formRef || !formRef.current) {
+    return true;
+  }
 
   if (reportValidity && typeof formRef.current.reportValidity === 'function') {
     // for IE
@@ -18,7 +20,9 @@ const isFormValid = (formRef, reportValidity = false) => {
 };
 
 const isJsonSchemaFormValid = (formRef) => {
-  if (!formRef || !formRef.current) return true;
+  if (!formRef || !formRef.current) {
+    return true;
+  }
 
   return formRef.current.state && formRef.current.state.errors
     ? !formRef.current.state.errors.length

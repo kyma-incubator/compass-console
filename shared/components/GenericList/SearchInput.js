@@ -60,11 +60,15 @@ export default function SearchInput({
     const suggestions = entries
       .flatMap((entry) => {
         if (typeof entry === 'string') {
-          if (entryMatchesSearch(entry)) return entry;
+          if (entryMatchesSearch(entry)) {
+            return entry;
+          }
         }
         return suggestionProperties.map((property) => {
           const entryValue = entry[property];
-          if (entryMatchesSearch(entryValue)) return entryValue;
+          if (entryMatchesSearch(entryValue)) {
+            return entryValue;
+          }
         });
       })
       .filter((suggestion) => suggestion);

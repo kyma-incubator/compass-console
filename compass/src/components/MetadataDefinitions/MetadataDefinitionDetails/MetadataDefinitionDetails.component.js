@@ -109,7 +109,9 @@ const MetadataDefinitionDetails = ({
   const { loading, error } = metadataDefinitionQuery;
 
   if (!metadataDefinitionQuery) {
-    if (loading) return 'Loading...';
+    if (loading) {
+      return 'Loading...';
+    }
     if (error) {
       return (
         <ResourceNotFound

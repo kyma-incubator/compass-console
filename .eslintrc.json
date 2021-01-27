@@ -70,7 +70,7 @@
     "brace-style": ["off", "off"],
     "complexity": "off",
     "constructor-super": "error",
-    "curly": ["error", "multi-line"],
+    "curly": ["error", "all"],
     "eqeqeq": ["error", "always"],
     "guard-for-in": "error",
     "id-blacklist": [

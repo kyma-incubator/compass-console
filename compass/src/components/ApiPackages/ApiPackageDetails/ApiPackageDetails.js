@@ -21,8 +21,12 @@ export default function ApiPackageDetails({ applicationId, apiPackageId }) {
     fetchPolicy: 'cache-and-network',
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>`Error! ${error.message}`</p>;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>`Error! ${error.message}`</p>;
+  }
 
   const application = data.application;
   if (!application) {

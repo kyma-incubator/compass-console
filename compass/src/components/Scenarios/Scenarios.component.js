@@ -41,8 +41,12 @@ class Scenarios extends React.Component {
     const loading = scenarioLabelSchema.loading;
     const error = scenarioLabelSchema.error;
 
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
+    if (loading) {
+      return 'Loading...';
+    }
+    if (error) {
+      return `Error! ${error.message}`;
+    }
 
     const scenariosObjects = scenarios.map((scenario) => ({ name: scenario }));
 

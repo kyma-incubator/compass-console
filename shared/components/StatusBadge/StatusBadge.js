@@ -45,7 +45,9 @@ export const StatusBadge = ({
   tooltipProps = {},
   className,
 }) => {
-  if (autoResolveType) type = resolveType(value);
+  if (autoResolveType) {
+    type = resolveType(value);
+  }
 
   const classes = classNames(
     'status-badge',

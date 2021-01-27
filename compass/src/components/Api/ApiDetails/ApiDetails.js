@@ -67,7 +67,9 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
 
   const { loading, error, data } = query;
 
-  if (loading) return 'Loading...';
+  if (loading) {
+    return 'Loading...';
+  }
 
   if (!(data && data.application)) {
     if (error) {

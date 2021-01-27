@@ -34,7 +34,9 @@ export const LabelSelectorInput = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (!inputRef.current) return;
+    if (!inputRef.current) {
+      return;
+    }
     inputRef.current.setCustomValidity(
       isValid ? '' : `Please match the requested format`,
     );
@@ -47,7 +49,9 @@ export const LabelSelectorInput = ({
     if (!isValid) {
       setValid(true);
     }
-    if (e.key !== 'Enter' && e.key !== ',') return;
+    if (e.key !== 'Enter' && e.key !== ',') {
+      return;
+    }
     handleLabelEntered(e);
   }
 
@@ -58,7 +62,9 @@ export const LabelSelectorInput = ({
   function handleLabelEntered(sourceEvent) {
     const inputValue = sourceEvent.target.value;
     if (!labelRegexp.test(inputValue)) {
-      if (inputValue) setValid(false);
+      if (inputValue) {
+        setValid(false);
+      }
       return;
     }
     sourceEvent.preventDefault();

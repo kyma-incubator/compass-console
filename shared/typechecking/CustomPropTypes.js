@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 export const ref = PropTypes.shape({ current: PropTypes.any });
 
 export const button = function (props, propName, componentName) {
-  if (!props[propName]) return false;
+  if (!props[propName]) {
+    return false;
+  }
 
   const buttonProps = new Map([
     ['compact', 'boolean'],
@@ -34,10 +36,14 @@ export const button = function (props, propName, componentName) {
   }
 
   const hasRequiredProps = hasTextOrLabel();
-  if (hasRequiredProps) return hasRequiredProps || null;
+  if (hasRequiredProps) {
+    return hasRequiredProps || null;
+  }
 
   const hasPropsOfValidTypes = checkTypes();
-  if (hasPropsOfValidTypes) return hasPropsOfValidTypes || null;
+  if (hasPropsOfValidTypes) {
+    return hasPropsOfValidTypes || null;
+  }
 
   return null;
 };

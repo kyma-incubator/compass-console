@@ -57,7 +57,9 @@ export function createApolloClient(apiUrl, tenant, token) {
         );
       }
 
-      if (networkError) console.error(`[Network error]: ${networkError}`);
+      if (networkError) {
+        console.error(`[Network error]: ${networkError}`);
+      }
     }
   });
 

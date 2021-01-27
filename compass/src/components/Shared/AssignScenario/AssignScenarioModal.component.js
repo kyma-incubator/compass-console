@@ -74,8 +74,12 @@ export default function AssignScenarioModal(props) {
 
   const { loading, error, scenarios } = props.availableScenariosQuery;
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (loading) {
+    return 'Loading...';
+  }
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   const availableScenarios = JSON.parse(scenarios.schema).items.enum.filter(
     (scenario) => !currentScenarios.includes(scenario),

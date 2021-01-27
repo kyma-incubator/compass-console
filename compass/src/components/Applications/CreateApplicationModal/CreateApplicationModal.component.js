@@ -92,7 +92,9 @@ class CreateApplicationModal extends React.Component {
       nameFilled,
     } = this.state;
 
-    if (equal(this.state, prevState)) return;
+    if (equal(this.state, prevState)) {
+      return;
+    }
 
     const requiredFieldsFilled = nameFilled;
 
