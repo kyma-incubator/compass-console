@@ -49,7 +49,7 @@ const ModalWithForm = ({
     sendNotification({
       variables: {
         content: message,
-        title: title,
+        title,
         color: '#BB0000',
         icon: 'decline',
       },
@@ -60,7 +60,7 @@ const ModalWithForm = ({
     sendNotification({
       variables: {
         content: message,
-        title: title,
+        title,
         color: '#107E3E',
         icon: 'accept',
       },

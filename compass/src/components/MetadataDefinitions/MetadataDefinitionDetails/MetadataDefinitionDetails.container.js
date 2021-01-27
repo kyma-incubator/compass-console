@@ -13,15 +13,13 @@ import MetadataDefinitionDetails from './MetadataDefinitionDetails.component';
 export default compose(
   graphql(GET_LABEL_DEFINITION, {
     name: 'metadataDefinition',
-    options: (props) => {
-      return {
-        fetchPolicy: 'cache-and-network',
-        errorPolicy: 'all',
-        variables: {
-          key: props.definitionKey,
-        },
-      };
-    },
+    options: (props) => ({
+      fetchPolicy: 'cache-and-network',
+      errorPolicy: 'all',
+      variables: {
+        key: props.definitionKey,
+      },
+    }),
   }),
   graphql(UPDATE_LABEL_DEFINITION, {
     props: ({ mutate, error }) => ({

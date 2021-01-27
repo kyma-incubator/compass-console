@@ -58,8 +58,9 @@ const MetadataDefinitionDetails = ({
           ? JSON.parse(currentSchema)
           : currentSchema;
 
-      if (!ajv.validateSchema(parsedSchema))
+      if (!ajv.validateSchema(parsedSchema)) {
         throw new Error('Provided JSON is not a valid schema');
+      }
 
       setEditedSchema(parsedSchema);
       setSchemaError(null);
@@ -109,13 +110,14 @@ const MetadataDefinitionDetails = ({
 
   if (!metadataDefinitionQuery) {
     if (loading) return 'Loading...';
-    if (error)
+    if (error) {
       return (
         <ResourceNotFound
           resource="Metadata definition"
           breadcrumb="MetadataDefinitions"
         />
       );
+    }
     return null;
   }
   if (error) {

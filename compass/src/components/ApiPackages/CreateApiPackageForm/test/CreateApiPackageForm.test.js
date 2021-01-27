@@ -80,7 +80,7 @@ describe('CreateApiPackageForm', () => {
       target: { value: 'api-package-description' },
     });
 
-    //change auth to oAuth
+    // change auth to oAuth
     fireEvent.click(getByText('None'));
     fireEvent.click(getByText('OAuth'));
     fireEvent.change(getByLabelText(/Client ID/), {
@@ -127,7 +127,7 @@ describe('CreateApiPackageForm', () => {
       target: { value: 'api-package-description' },
     });
 
-    //change auth to basic
+    // change auth to basic
     fireEvent.click(getByText('None'));
     fireEvent.click(getByText('Basic'));
     fireEvent.change(getByLabelText(/Username/), {

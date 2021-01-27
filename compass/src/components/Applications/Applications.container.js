@@ -17,7 +17,7 @@ export default compose(
       deleteApplication: (id) =>
         mutate({
           variables: {
-            id: id,
+            id,
           },
         }),
     }),

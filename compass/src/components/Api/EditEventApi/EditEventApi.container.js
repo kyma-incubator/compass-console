@@ -12,26 +12,23 @@ export default compose(
   }),
   graphql(GET_EVENT_DEFINITION, {
     name: 'eventApiDataQuery',
-    options: ({ applicationId, apiPackageId, eventApiId }) => {
-      return {
-        variables: {
-          applicationId,
-          apiPackageId,
-          eventDefinitionId: eventApiId,
-        },
-      };
-    },
+    options: ({ applicationId, apiPackageId, eventApiId }) => ({
+      variables: {
+        applicationId,
+        apiPackageId,
+        eventDefinitionId: eventApiId,
+      },
+    }),
   }),
   graphql(UPDATE_EVENT_DEFINITION, {
     props: ({ mutate }) => ({
-      updateEventDefinition: async (id, input) => {
-        return mutate({
+      updateEventDefinition: async (id, input) =>
+        mutate({
           variables: {
             id,
             in: input,
           },
-        });
-      },
+        }),
     }),
   }),
 )(EditApi);

@@ -29,7 +29,7 @@ export default function RuntimeScenarioDecorator(ComponentToDecorate) {
           await props.mutate({
             variables: {
               id: runtimeId,
-              scenarios: scenarios,
+              scenarios,
             },
           });
         },

@@ -37,7 +37,7 @@ export default function ScenarioRuntimes({
       return `Error! ${getRuntimesForScenario.error.message}`;
     }
 
-    let assignmentErrorType =
+    const assignmentErrorType =
       getScenarioAssignment.error.graphQLErrors[0].extensions.error;
     if (!assignmentErrorType.includes(NOT_FOUND_MSG)) {
       return `Error! ${getScenarioAssignment.error.message}`;
@@ -57,7 +57,7 @@ export default function ScenarioRuntimes({
     });
   };
 
-  let scenarioAssignment = undefined;
+  let scenarioAssignment;
   if (hasScenarioAssignment) {
     scenarioAssignment =
       getScenarioAssignment.automaticScenarioAssignmentForScenario;

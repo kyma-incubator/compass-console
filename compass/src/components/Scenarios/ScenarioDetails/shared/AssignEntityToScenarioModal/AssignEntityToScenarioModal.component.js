@@ -73,11 +73,10 @@ export default function AssignEntityToScenarioModal({
     return `Error! ${allEntitiesQuery.error.message}`;
   }
 
-  const getUnassignedEntities = () => {
-    return allEntitiesQuery.entities.data.filter(
+  const getUnassignedEntities = () =>
+    allEntitiesQuery.entities.data.filter(
       (app) => !assignedEntities.filter((e) => e.id === app.id).length,
     );
-  };
 
   const updateEntities = async () => {
     try {

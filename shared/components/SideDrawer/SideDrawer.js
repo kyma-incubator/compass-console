@@ -55,11 +55,7 @@ export const SideDrawer = ({
         <div className="bottom">
           {bottomContent}
           {textToCopy && (
-            <CopiableText
-              textToCopy={textToCopy}
-              iconOnly={true}
-              buttonText="Copy"
-            />
+            <CopiableText textToCopy={textToCopy} iconOnly buttonText="Copy" />
           )}
           {!buttonText && (
             <Button option="emphasized" onClick={() => setOpen(!isOpen)}>

@@ -28,7 +28,7 @@ export default function ScenarioAssignment({
     return <p>Loading...</p>;
   }
   if (getScenarioAssignment.error) {
-    let errorType =
+    const errorType =
       getScenarioAssignment.error.graphQLErrors[0].extensions.error;
     if (!errorType.includes(NOT_FOUND_MSG)) {
       return `Error! ${getScenarioAssignment.error.message}`;

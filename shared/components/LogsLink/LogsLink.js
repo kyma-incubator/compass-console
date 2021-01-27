@@ -17,7 +17,7 @@ export const LogsLink = ({
     dataSource,
     queryParameters,
     {
-      mode: mode,
+      mode,
     },
     {
       ui: [true, true, true, 'none'],

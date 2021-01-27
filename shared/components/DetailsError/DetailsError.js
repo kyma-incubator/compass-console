@@ -4,16 +4,14 @@ import { Panel } from 'fundamental-react';
 
 import { PageHeader } from '../PageHeader/PageHeader';
 
-export const DetailsError = ({ breadcrumbs, message }) => {
-  return (
-    <>
-      <PageHeader title="" breadcrumbItems={breadcrumbs} />
-      <Panel className="fd-has-padding-regular fd-has-margin-regular">
-        {message}
-      </Panel>
-    </>
-  );
-};
+export const DetailsError = ({ breadcrumbs, message }) => (
+  <>
+    <PageHeader title="" breadcrumbItems={breadcrumbs} />
+    <Panel className="fd-has-padding-regular fd-has-margin-regular">
+      {message}
+    </Panel>
+  </>
+);
 
 DetailsError.propTypes = {
   breadcrumbs: PropTypes.arrayOf(PropTypes.object).isRequired,

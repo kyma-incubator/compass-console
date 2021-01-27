@@ -13,26 +13,23 @@ export default compose(
   }),
   graphql(GET_API_DEFININTION, {
     name: 'apiDataQuery',
-    options: ({ applicationId, apiPackageId, apiId }) => {
-      return {
-        variables: {
-          applicationId,
-          apiPackageId,
-          apiDefinitionId: apiId,
-        },
-      };
-    },
+    options: ({ applicationId, apiPackageId, apiId }) => ({
+      variables: {
+        applicationId,
+        apiPackageId,
+        apiDefinitionId: apiId,
+      },
+    }),
   }),
   graphql(UPDATE_API_DEFINITION, {
     props: ({ mutate }) => ({
-      updateApiDefinition: async (id, input) => {
-        return mutate({
+      updateApiDefinition: async (id, input) =>
+        mutate({
           variables: {
             id,
             in: input,
           },
-        });
-      },
+        }),
     }),
   }),
 )(EditApi);

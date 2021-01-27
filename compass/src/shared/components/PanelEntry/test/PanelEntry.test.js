@@ -7,7 +7,7 @@ describe('PanelEntry', () => {
     const component = renderer.create(
       <PanelEntry title="testtitle" children="testcontent" />,
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

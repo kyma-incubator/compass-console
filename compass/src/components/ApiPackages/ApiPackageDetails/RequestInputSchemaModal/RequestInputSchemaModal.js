@@ -17,7 +17,7 @@ export default function RequestInputSchemaModal({ schema }) {
       modalOpeningComponent={<span className="link">Show</span>}
       confirmText="Ok"
     >
-      <JSONEditor readonly={true} text={formatJson(schema || '{}')} />
+      <JSONEditor readonly text={formatJson(schema || '{}')} />
     </Modal>
   );
 }

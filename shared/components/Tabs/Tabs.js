@@ -32,8 +32,8 @@ export class Tabs extends React.Component {
     this.props.callback(tabIndex);
   };
 
-  renderHeader = (children) => {
-    return React.Children.map(children, (child, index) =>
+  renderHeader = (children) =>
+    React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
         key: child.props.title,
         title: child.props.title,
@@ -42,7 +42,6 @@ export class Tabs extends React.Component {
         isActive: index === this.state.activeTabIndex,
       }),
     );
-  };
 
   renderAdditionalHeaderContent = (children) => {
     if (

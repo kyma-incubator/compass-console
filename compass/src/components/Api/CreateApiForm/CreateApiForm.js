@@ -32,8 +32,8 @@ export default function CreateApiForm({
       {
         query: GET_API_PACKAGE,
         variables: {
-          applicationId: applicationId,
-          apiPackageId: apiPackageId,
+          applicationId,
+          apiPackageId,
         },
       },
     ],
