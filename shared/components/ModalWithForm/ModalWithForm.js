@@ -221,6 +221,7 @@ ModalWithForm.propTypes = {
   confirmText: PropTypes.string,
   invalidPopupMessage: PropTypes.string,
   button: CustomPropTypes.button,
+  sendNotification: PropTypes.func,
 };
 
 ModalWithForm.defaultProps = {

@@ -27,6 +27,7 @@ Tooltip.propTypes = {
   position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
   trigger: PropTypes.oneOf(['mouseenter', 'focus', 'click', 'manual']),
   children: PropTypes.node.isRequired,
+  tippyProps: PropTypes.object,
 };
 
 Tooltip.defaultProps = {

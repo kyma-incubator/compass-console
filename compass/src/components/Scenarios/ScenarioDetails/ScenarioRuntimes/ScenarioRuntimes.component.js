@@ -13,6 +13,7 @@ ScenarioRuntimes.propTypes = {
   getRuntimesForScenario: PropTypes.object.isRequired,
   setRuntimeScenarios: PropTypes.func.isRequired,
   deleteRuntimeScenarios: PropTypes.func.isRequired,
+  updateRuntimesCount: PropTypes.func.isRequired,
   getScenarioAssignment: PropTypes.func.isRequired,
 };
 

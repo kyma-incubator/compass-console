@@ -19,6 +19,7 @@ import './CreateApplicationFromTemplateModal.scss';
 CreateApplicationFromTemplateModal.propTypes = {
   applicationsQuery: PropTypes.object.isRequired,
   modalOpeningComponent: PropTypes.node.isRequired,
+  data: PropTypes.object,
 };
 
 const PlaceholderInput = ({

@@ -12,6 +12,7 @@ import { ADD_EVENT_DEFINITION } from '../gql';
 import { GET_API_PACKAGE } from 'components/ApiPackages/gql';
 
 CreateEventApiForm.propTypes = {
+  applicationId: PropTypes.string.isRequired,
   apiPackageId: PropTypes.string.isRequired,
   formElementRef: CustomPropTypes.ref,
   onChange: PropTypes.func.isRequired,

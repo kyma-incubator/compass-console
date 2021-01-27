@@ -15,6 +15,7 @@ SearchInput.propTypes = {
   showSuggestion: PropTypes.bool,
   showSearchControl: PropTypes.bool,
   disabled: PropTypes.bool,
+  filteredEntries: PropTypes.array,
 };
 
 export default function SearchInput({

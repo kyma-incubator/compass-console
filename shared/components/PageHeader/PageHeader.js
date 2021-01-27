@@ -92,6 +92,9 @@ PageHeader.propTypes = {
       fromAbsolutePath: PropTypes.bool,
     }),
   ),
+  actions: PropTypes.element,
+  children: PropTypes.any,
+  columnWrapperClassName: PropTypes.string,
 };
 
 PageHeader.defaultProps = {

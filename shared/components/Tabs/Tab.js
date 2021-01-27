@@ -26,4 +26,5 @@ Tab.propTypes = {
   tabIndex: PropTypes.number,
   isActive: PropTypes.bool,
   status: PropTypes.node,
+  id: PropTypes.string,
 };

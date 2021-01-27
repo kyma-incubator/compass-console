@@ -52,4 +52,5 @@ K8sNameInput.propTypes = {
   kind: PropTypes.string.isRequired,
   showHelp: PropTypes.bool,
   required: PropTypes.bool,
+  label: PropTypes.string,
 };

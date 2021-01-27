@@ -19,6 +19,7 @@ import { getBadgeTypeForStatus } from './../Shared/getBadgeTypeForStatus';
 class Applications extends React.Component {
   static propTypes = {
     applications: PropTypes.object.isRequired,
+    deleteApplication: PropTypes.func.isRequired,
   };
 
   headerRenderer = (applications) => [
