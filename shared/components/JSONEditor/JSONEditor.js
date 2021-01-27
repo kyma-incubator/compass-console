@@ -53,7 +53,7 @@ export class JSONEditor extends Component {
     }
   };
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.text === this.props.text) {
       return;
     }

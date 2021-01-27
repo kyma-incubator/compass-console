@@ -12,6 +12,7 @@ export function useWindowTitle(title) {
 }
 
 export function withTitle(title, Component) {
+  // eslint-disable-next-line react/display-name
   return (props) => {
     setWindowTitle(title);
     return <Component {...props} />;
