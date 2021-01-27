@@ -52,11 +52,11 @@ export const ModalWithForm = ({
   }, [opened]);
 
   function checkAllForms(reportValidity = false) {
-    const _isEveryFormValid =
+    const isEveryFormValid =
       isFormValid(formElementRef, reportValidity) &&
       isJsonSchemaFormValid(jsonSchemaFormRef);
-    if (isValid !== _isEveryFormValid) {
-      setValid(_isEveryFormValid);
+    if (isValid !== isEveryFormValid) {
+      setValid(isEveryFormValid);
     }
   }
 
@@ -110,9 +110,9 @@ export const ModalWithForm = ({
   }
 
   function handleFormSubmit() {
-    const _isEveryFormValid =
+    const isEveryFormValid =
       isFormValid(formElementRef) && isJsonSchemaFormValid(jsonSchemaFormRef);
-    if (_isEveryFormValid) {
+    if (isEveryFormValid) {
       formElementRef.current.dispatchEvent(new Event('submit'));
       setTimeout(() => setOpenStatus(false));
     }

@@ -11,9 +11,12 @@ export const inferCredentialType = (instanceAuth) => {
     return CREDENTIAL_TYPE_NONE;
   }
   const credentials = instanceAuth.credential;
+  // eslint-disable-next-line no-underscore-dangle
   if (credentials && credentials.__typename) {
+    // eslint-disable-next-line no-underscore-dangle
     if (credentials.__typename === 'OAuthCredentialData') {
       return CREDENTIAL_TYPE_OAUTH;
+      // eslint-disable-next-line no-underscore-dangle
     } else if (credentials.__typename === 'BasicCredentialData') {
       return CREDENTIAL_TYPE_BASIC;
     }
