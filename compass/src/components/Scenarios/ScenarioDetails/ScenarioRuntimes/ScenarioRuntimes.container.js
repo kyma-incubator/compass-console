@@ -1,6 +1,5 @@
 import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
-import { fromRenderProps } from 'recompose';
+import { compose, fromRenderProps } from 'recompose';
 import {
   GET_RUNTIMES_FOR_SCENARIO,
   SET_RUNTIME_SCENARIOS,

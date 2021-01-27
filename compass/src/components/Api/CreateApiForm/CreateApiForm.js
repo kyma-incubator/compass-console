@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CustomPropTypes } from 'react-shared';
+import { getRefsValues, FileInput, CustomPropTypes } from 'react-shared';
 import { FormSet, FormItem, FormLabel, FormSelect } from 'fundamental-react';
 import { createApiData, verifyApiFile } from '../ApiHelpers';
 
 import ApiForm from './../Forms/ApiForm';
-import { getRefsValues, FileInput } from 'react-shared';
 
 import { useMutation } from 'react-apollo';
 import { ADD_API_DEFINITION } from '../gql';

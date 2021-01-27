@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CustomPropTypes } from 'react-shared';
+import { getRefsValues, FileInput, CustomPropTypes } from 'react-shared';
 
 import { FormSet } from 'fundamental-react';
 
 import { createEventAPIData, verifyEventApiFile } from '../ApiHelpers';
 import EventApiForm from '../Forms/EventApiForm';
-import { getRefsValues, FileInput } from 'react-shared';
 
 import { useMutation } from 'react-apollo';
 import { ADD_EVENT_DEFINITION } from '../gql';

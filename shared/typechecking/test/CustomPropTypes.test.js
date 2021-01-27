@@ -1,10 +1,8 @@
 import CustomPropTypes from '../CustomPropTypes';
-import React from 'react';
+import React, { createRef } from 'react';
 
 // secret is required to call validators directly
 import secret from 'prop-types/lib/ReactPropTypesSecret';
-
-import { createRef } from 'react';
 
 function assertPasses(validator, props) {
   expect(
