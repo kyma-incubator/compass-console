@@ -20,12 +20,14 @@ function assertFails(validator, props) {
 
 describe('CustomPropTypes', () => {
   describe('ref', () => {
+    // eslint-disable-next-line jest/expect-expect
     it('Passes on empty ref', () => {
       assertPasses(CustomPropTypes.ref, {
         testprop: createRef(),
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('Passes on element ref', () => {
       const ref = createRef();
       ref.current = <div />;
@@ -34,12 +36,14 @@ describe('CustomPropTypes', () => {
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('Fails on string', () => {
       assertFails(CustomPropTypes.ref, {
         testprop: 'somestring',
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('Fails on null if required', () => {
       assertFails(CustomPropTypes.ref.isRequired, {
         testprop: 'somestring',

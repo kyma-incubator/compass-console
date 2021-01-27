@@ -29,6 +29,7 @@ describe('AplicationDetailsScenario', () => {
 
 describe('AplicationDetailsScenario', () => {
   let component;
+
   beforeEach(async () => {
     component = render(
       <MockedProvider addTypename={false} mocks={[]}>

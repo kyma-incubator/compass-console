@@ -59,6 +59,7 @@ describe('Runtimes', () => {
     expect(test.queryByText('No more runtimes to show')).toBeInTheDocument();
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Do nothing when scrolled not to bottom', async () => {
     const test = render(
       <MockedProvider

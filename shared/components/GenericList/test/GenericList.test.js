@@ -121,6 +121,7 @@ describe('GenericList', () => {
     });
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Renders entries', async () => {
     const { getByText } = render(
       <GenericList
@@ -206,6 +207,7 @@ describe('GenericList', () => {
     expect(foundCollapseContents).toHaveLength(3);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Renders headers', async () => {
     const { getByText } = render(
       <GenericList

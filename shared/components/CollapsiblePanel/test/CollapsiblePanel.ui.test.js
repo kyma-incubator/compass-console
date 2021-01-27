@@ -57,6 +57,7 @@ describe('Collapsible Panel', () => {
     expect(component.find(Panel.Body).hasClass('body body--open')).toBe(false);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Opens and closes (chevron)', async () => {
     const component = mount(
       <CollapsiblePanel children={<p>test</p>} title="Collapsible panel" />,
@@ -77,6 +78,7 @@ describe('Collapsible Panel', () => {
     exceptPanelVisible(component, true);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Opens and closes (header)', async () => {
     const component = mount(
       <CollapsiblePanel children={<p>test</p>} title="Collapsible panel" />,
@@ -97,6 +99,7 @@ describe('Collapsible Panel', () => {
     exceptPanelVisible(component, true);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Does not open modal when clicking on custom actions', async () => {
     const child = <p>test</p>;
     const component = mount(
