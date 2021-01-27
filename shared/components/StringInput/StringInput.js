@@ -60,8 +60,8 @@ export const StringInput = ({
     onChange([...stringListWithoutDuplicates, inputValue]);
   }
 
-  function deleteString(string) {
-    onChange(stringList.filter((s) => s !== string));
+  function deleteString(input) {
+    onChange(stringList.filter((s) => s !== input));
   }
 
   return (
