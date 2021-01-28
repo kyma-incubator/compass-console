@@ -18,7 +18,7 @@ export const button = function (props, propName, componentName) {
     return (
       !props[propName].hasOwnProperty('text') &&
       !props[propName].hasOwnProperty('label') &&
-      new Error(`Either "text" or "label" is required`)
+      new Error('Either "text" or "label" is required')
     );
   }
 

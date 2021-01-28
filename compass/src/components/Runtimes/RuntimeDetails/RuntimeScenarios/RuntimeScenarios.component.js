@@ -57,7 +57,7 @@ export default function RuntimeScenarios({
 
     if (!canDeactivate) {
       await LuigiClient.uxManager().showAlert({
-        text: `Please remove the associated automatic scenario assignment.`,
+        text: 'Please remove the associated automatic scenario assignment.',
         type: 'error',
         closeAfter: 5000,
       });

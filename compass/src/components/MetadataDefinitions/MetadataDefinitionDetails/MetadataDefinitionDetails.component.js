@@ -103,7 +103,7 @@ const MetadataDefinitionDetails = ({
   const navigateToList = () => {
     LuigiClient.linkManager()
       .fromClosestContext()
-      .navigate(`/metadata-definitions`);
+      .navigate('/metadata-definitions');
   };
 
   const { loading, error } = metadataDefinitionQuery;
@@ -138,7 +138,7 @@ const MetadataDefinitionDetails = ({
                 onClick={() =>
                   LuigiClient.linkManager()
                     .fromClosestContext()
-                    .navigate(`/metadata-definitions`)
+                    .navigate('/metadata-definitions')
                 }
               />
               <Breadcrumb.Item />

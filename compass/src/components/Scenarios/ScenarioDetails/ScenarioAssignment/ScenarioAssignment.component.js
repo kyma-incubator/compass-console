@@ -41,7 +41,7 @@ export default function ScenarioAssignment({
     sendNotification({
       variables: {
         content: `Removed automatic scenario assignment from "${scenarioName}".`,
-        title: `Successfully removed`,
+        title: 'Successfully removed',
         color: '#359c46',
         icon: 'accept',
         instanceName: scenarioName,

@@ -59,7 +59,7 @@ export default function UpdateApplicationForm({
       onCompleted(application.name, 'Application updated successfully');
     } catch (err) {
       console.warn(err);
-      onError(`Error occurred while updating Application`, err.message || ``);
+      onError('Error occurred while updating Application', err.message || '');
     }
   };
 

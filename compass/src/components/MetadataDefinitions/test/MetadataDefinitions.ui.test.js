@@ -21,7 +21,7 @@ describe('MetadataDefinitions UI', () => {
     expect(console.warn).not.toHaveBeenCalled();
   });
 
-  it(`Renders "loading" when there's no GQL response`, async () => {
+  it('Renders "loading" when there\'s no GQL response', async () => {
     const component = mount(
       <MockedProvider addTypename={false}>
         <MetadataDefinitions />
@@ -34,7 +34,7 @@ describe('MetadataDefinitions UI', () => {
     expect(component.exists(GenericList)).not.toBeTruthy(); // there's no list displayed
   });
 
-  it(`Renders the table`, async () => {
+  it('Renders the table', async () => {
     const component = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MetadataDefinitions />

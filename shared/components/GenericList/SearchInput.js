@@ -140,7 +140,7 @@ export default function SearchInput({
             disabled ? 'is-disabled' : ''
           }`}
           onClick={openSearchList}
-          aria-label={`open-search`}
+          aria-label={'open-search'}
         />
       )}
     </section>

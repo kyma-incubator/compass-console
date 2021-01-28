@@ -19,7 +19,7 @@ import { ApplicationQueryContext } from '../ApplicationDetails';
 import { UNREGISTER_APPLICATION_MUTATION } from '../../../Applications/gql';
 
 function navigateToApplications() {
-  LuigiClient.linkManager().fromContext('tenant').navigate(`/applications`);
+  LuigiClient.linkManager().fromContext('tenant').navigate('/applications');
 }
 
 ApplicationDetailsHeader.propTypes = {

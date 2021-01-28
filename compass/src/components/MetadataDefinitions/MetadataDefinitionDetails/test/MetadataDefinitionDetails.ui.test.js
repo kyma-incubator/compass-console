@@ -15,7 +15,7 @@ describe('MetadataDefinitionDetails UI', () => {
     console.error.mockReset();
     console.warn.mockReset();
   });
-  it(`Renders "Loading name..." when there's no GQL response`, async () => {
+  it('Renders "Loading name..." when there\'s no GQL response', async () => {
     const component = mount(
       <MockedProvider addTypename={false}>
         <MetadataDefinitionDetails definitionKey="noschemalabel" />
@@ -27,7 +27,7 @@ describe('MetadataDefinitionDetails UI', () => {
     expect(component.find(ActionBar.Header).text()).toEqual('Loading name...');
   });
 
-  it(`Renders the name`, async () => {
+  it('Renders the name', async () => {
     const component = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MetadataDefinitionDetails definitionKey="noschemalabel" />
@@ -62,7 +62,7 @@ describe('MetadataDefinitionDetails UI', () => {
       }
     });
 
-    it(`Renders panel with toggle set to on`, () => {
+    it('Renders panel with toggle set to on', () => {
       component.update();
 
       expect(
@@ -70,12 +70,12 @@ describe('MetadataDefinitionDetails UI', () => {
       ).toEqual(true);
     });
 
-    it(`Renders JSON editor`, () => {
+    it('Renders JSON editor', () => {
       component.update();
       expect(component.find(Panel).exists(JSONEditorComponent)).toBeTruthy();
     });
 
-    it(`Clicking "Save" triggers the mutation`, async () => {
+    it('Clicking "Save" triggers the mutation', async () => {
       component.update();
       expect(mocks[4].result.mock.calls.length).toEqual(0);
 
@@ -85,7 +85,7 @@ describe('MetadataDefinitionDetails UI', () => {
       expect(mocks[4].result.mock.calls.length).toEqual(1);
     });
 
-    it(`"Save" button is enabled by default`, () => {
+    it('"Save" button is enabled by default', () => {
       component.update();
 
       expect(
@@ -113,7 +113,7 @@ describe('MetadataDefinitionDetails UI', () => {
       }
     });
 
-    it(`Renders panel with toggle set to off`, () => {
+    it('Renders panel with toggle set to off', () => {
       component.update();
 
       expect(
@@ -121,14 +121,14 @@ describe('MetadataDefinitionDetails UI', () => {
       ).toBeUndefined();
     });
 
-    it(`Doesn't render JSON editor`, () => {
+    it("Doesn't render JSON editor", () => {
       component.update();
       expect(
         component.find(Panel).exists(JSONEditorComponent),
       ).not.toBeTruthy();
     });
 
-    it(`Clicking "Save" triggers the mutation`, async () => {
+    it('Clicking "Save" triggers the mutation', async () => {
       expect(mocks[3].result.mock.calls.length).toEqual(0);
 
       component.find('button[data-test-id="save"]').simulate('click');
@@ -137,7 +137,7 @@ describe('MetadataDefinitionDetails UI', () => {
       expect(mocks[3].result.mock.calls.length).toEqual(1);
     });
 
-    it(`JSONeditor is invisible after toggle is clicked`, async () => {
+    it('JSONeditor is invisible after toggle is clicked', async () => {
       component.update();
 
       expect(component.exists(JSONEditorComponent)).not.toBeTruthy();
