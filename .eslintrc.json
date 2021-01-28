@@ -21,30 +21,15 @@
     "scripts/**/*",
     "**/*/tests/**/*",
     "**/*/config.js",
+    "**/*.config.*,",
     "gulpfile.js",
-    "dist",
-    "*/node_modules/**/*",
-    "*/compass/**/*",
-    "*/add-ons/**",
-    "*/components/react/**/*",
-    "*/content/**/*",
-    "*/core/**/*",
-    "*/core-ui/**/*",
-    "*/lambda/**/*",
-    "*/logging/**/*",
-    "*/scripts/**/*",
-    "*/service-catalog-ui/**/*",
-    "*/tests/**/*",
-    "*/tests/**/*",
     "*/build/**/*",
     "**/*/react-shared",
-    "**/public-luigi/**/*",
-    "**/*.config.*"
+    "**/public-luigi/**/*"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": [
-      //   "tsconfig.base.json",
       "./common/tsconfig.json",
       "./compass/jsconfig.json",
       "components/generic-documentation/tsconfig.json",
@@ -61,7 +46,6 @@
     "eslint-plugin-react",
     "eslint-plugin-jsdoc",
     "@typescript-eslint",
-    "@typescript-eslint/tslint",
     "react-hooks"
   ],
   "rules": {
@@ -163,6 +147,7 @@
     "object-shorthand": "error",
     "one-var": ["error", "never"],
     "prefer-const": "error",
+    "quotes": ["error", "single"],
     "radix": "error",
     "react/display-name": "error",
     "react/jsx-boolean-value": "error",
@@ -224,7 +209,7 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
-      "plugins": ["react", "@typescript-eslint", "@typescript-eslint/tslint"],
+      "plugins": ["react", "@typescript-eslint"],
       "rules": {
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": [
