@@ -23,7 +23,7 @@ export default function RuntimeScenarios({
 }) {
   const runtimeQuery = React.useContext(RuntimeQueryContext);
 
-  let { data: fetchedScenarioAssignments, error, loading } = useQuery(
+  const { data: fetchedScenarioAssignments, error, loading } = useQuery(
     GET_SCENARIO_ASSIGNMENTS,
   );
 
@@ -48,7 +48,7 @@ export default function RuntimeScenarios({
       fetchedScenarioAssignments.automaticScenarioAssignments.data;
     const scenarioName = entry.scenario;
 
-    let canDeactivate = scenarioAssignments.some((asa) => {
+    const canDeactivate = scenarioAssignments.some((asa) => {
       if (asa.scenarioName === scenarioName) {
         return true;
       }
@@ -57,7 +57,7 @@ export default function RuntimeScenarios({
 
     if (!canDeactivate) {
       await LuigiClient.uxManager().showAlert({
-        text: `Please remove the associated automatic scenario assignment.`,
+        text: 'Please remove the associated automatic scenario assignment.',
         type: 'error',
         closeAfter: 5000,
       });
@@ -87,10 +87,10 @@ export default function RuntimeScenarios({
               instanceName: scenarioName,
             },
           });
-        } catch (error) {
-          console.warn(error);
+        } catch (err) {
+          console.warn(err);
           LuigiClient.uxManager().showAlert({
-            text: error.message,
+            text: err.message,
             type: 'error',
             closeAfter: 10000,
           });
@@ -111,9 +111,7 @@ export default function RuntimeScenarios({
     </header>
   );
 
-  const entries = scenarios.map((scenario) => {
-    return { scenario };
-  }); // list requires a list of objects
+  const entries = scenarios.map((scenario) => ({ scenario })); // list requires a list of objects
 
   return (
     <GenericList

@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GenericList } from 'react-shared';
+import { GenericList, PageHeader } from 'react-shared';
 import LuigiClient from '@luigi-project/client';
 
 import CreateScenarios from './CreateScenario/CreateScenarioModal/CreateScenarioModal.container';
 import EnititesForScenarioCounter from './EntitiesForScenarioCounter/EnititesForScenarioCounter';
-import { PageHeader } from 'react-shared';
 
 class Scenarios extends React.Component {
   navigateToScenario(scenarioName) {
@@ -42,8 +41,12 @@ class Scenarios extends React.Component {
     const loading = scenarioLabelSchema.loading;
     const error = scenarioLabelSchema.error;
 
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
+    if (loading) {
+      return 'Loading...';
+    }
+    if (error) {
+      return `Error! ${error.message}`;
+    }
 
     const scenariosObjects = scenarios.map((scenario) => ({ name: scenario }));
 

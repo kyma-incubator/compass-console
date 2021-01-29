@@ -7,7 +7,6 @@ resolve:
 
 .PHONY: validate
 validate:
-	npm run conflict-check
 	npm run lint-check
 	npm run test-shared-lib
 	# npm run markdownlint

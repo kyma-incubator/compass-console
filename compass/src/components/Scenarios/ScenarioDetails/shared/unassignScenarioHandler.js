@@ -20,7 +20,7 @@ export default async function unassignScenarioHandler(
 
   const showAlert = () =>
     LuigiClient.uxManager().showAlert({
-      text: `Please remove the associated automatic scenario assignment.`,
+      text: 'Please remove the associated automatic scenario assignment.',
       type: 'error',
       closeAfter: 5000,
     });
@@ -55,8 +55,8 @@ export default async function unassignScenarioHandler(
     scenarioAssignment &&
     currentEntityLabels[scenarioAssignment.selector.key]
   ) {
-    let asaLabelKey = scenarioAssignment.selector.key;
-    let asaLabelValue = scenarioAssignment.selector.value;
+    const asaLabelKey = scenarioAssignment.selector.key;
+    const asaLabelValue = scenarioAssignment.selector.value;
 
     canDelete =
       !currentEntityLabels[asaLabelKey] ||

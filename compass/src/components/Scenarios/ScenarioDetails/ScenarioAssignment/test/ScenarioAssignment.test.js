@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import ScenarioAssignment from '../ScenarioAssignment.component';
-import { runtimeResponseMock } from './mock';
-import { assignmentResponseMock } from './mock';
+import { assignmentResponseMock, runtimeResponseMock } from './mock';
+
 jest.mock('react-shared', () => ({
   GenericList: function GenericListMocked(props) {
     return 'generic-list-mocked-content';

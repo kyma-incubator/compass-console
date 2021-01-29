@@ -25,7 +25,7 @@ describe('ResourceNotFound', () => {
       />,
     );
 
-    expect(queryByText("Such Resource doesn't exists.")).toBeInTheDocument();
+    expect(queryByText("Such Resource doesn't exist.")).toBeInTheDocument();
     expect(queryByText('Breadcrumb value')).toBeInTheDocument();
   });
 

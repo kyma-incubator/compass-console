@@ -58,8 +58,9 @@ const MetadataDefinitionDetails = ({
           ? JSON.parse(currentSchema)
           : currentSchema;
 
-      if (!ajv.validateSchema(parsedSchema))
+      if (!ajv.validateSchema(parsedSchema)) {
         throw new Error('Provided JSON is not a valid schema');
+      }
 
       setEditedSchema(parsedSchema);
       setSchemaError(null);
@@ -102,20 +103,23 @@ const MetadataDefinitionDetails = ({
   const navigateToList = () => {
     LuigiClient.linkManager()
       .fromClosestContext()
-      .navigate(`/metadata-definitions`);
+      .navigate('/metadata-definitions');
   };
 
   const { loading, error } = metadataDefinitionQuery;
 
   if (!metadataDefinitionQuery) {
-    if (loading) return 'Loading...';
-    if (error)
+    if (loading) {
+      return 'Loading...';
+    }
+    if (error) {
       return (
         <ResourceNotFound
           resource="Metadata definition"
           breadcrumb="MetadataDefinitions"
         />
       );
+    }
     return null;
   }
   if (error) {
@@ -134,7 +138,7 @@ const MetadataDefinitionDetails = ({
                 onClick={() =>
                   LuigiClient.linkManager()
                     .fromClosestContext()
-                    .navigate(`/metadata-definitions`)
+                    .navigate('/metadata-definitions')
                 }
               />
               <Breadcrumb.Item />

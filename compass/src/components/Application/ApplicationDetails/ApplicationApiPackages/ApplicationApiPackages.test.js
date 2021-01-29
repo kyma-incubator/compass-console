@@ -30,8 +30,8 @@ describe('ApplicationApiPackages', () => {
   });
 
   it('shows the package name', () => {
-    const { queryByText } = component;
-    expect(queryByText(mockApiPackages[0].name)).toBeInTheDocument();
+    const { queryByText: queryByTextComponent } = component;
+    expect(queryByTextComponent(mockApiPackages[0].name)).toBeInTheDocument();
   });
 
   it('shows the APIDefinition number', () => {

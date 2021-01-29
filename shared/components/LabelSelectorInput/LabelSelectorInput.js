@@ -34,19 +34,24 @@ export const LabelSelectorInput = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (!inputRef.current) return;
+    if (!inputRef.current) {
+      return;
+    }
     inputRef.current.setCustomValidity(
-      isValid ? '' : `Please match the requested format`,
+      isValid ? '' : 'Please match the requested format',
     );
-    if (typeof inputRef.current.reportValidity === 'function')
+    if (typeof inputRef.current.reportValidity === 'function') {
       inputRef.current.reportValidity();
+    }
   }, [isValid]);
 
   function handleKeyDown(e) {
     if (!isValid) {
       setValid(true);
     }
-    if (e.key !== 'Enter' && e.key !== ',') return;
+    if (e.key !== 'Enter' && e.key !== ',') {
+      return;
+    }
     handleLabelEntered(e);
   }
 
@@ -57,7 +62,9 @@ export const LabelSelectorInput = ({
   function handleLabelEntered(sourceEvent) {
     const inputValue = sourceEvent.target.value;
     if (!labelRegexp.test(inputValue)) {
-      if (inputValue) setValid(false);
+      if (inputValue) {
+        setValid(false);
+      }
       return;
     }
     sourceEvent.preventDefault();
@@ -70,12 +77,14 @@ export const LabelSelectorInput = ({
     onChange(newLabels);
   }
 
-  function createLabelsToDisplay(labels) {
+  function createLabelsToDisplay(labelsToDiplay) {
     const labelsArray = [];
-    for (const key in labels) {
-      const value = labels[key];
-      const labelToDisplay = `${key}=${value}`;
-      labelsArray.push(labelToDisplay);
+    for (const key in labelsToDiplay) {
+      if ({}.hasOwnProperty.call(labelsToDiplay, key)) {
+        const value = labelsToDiplay[key];
+        const labelToDisplay = `${key}=${value}`;
+        labelsArray.push(labelToDisplay);
+      }
     }
     return labelsArray;
   }

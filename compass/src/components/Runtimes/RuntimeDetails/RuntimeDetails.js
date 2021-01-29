@@ -26,7 +26,9 @@ const RuntimeDetails = ({ runtimeId }) => {
     error,
   } = runtimeQuery;
 
-  if (loading) return 'Loading...';
+  if (loading) {
+    return 'Loading...';
+  }
 
   if (!runtime && !error) {
     return (
@@ -37,7 +39,9 @@ const RuntimeDetails = ({ runtimeId }) => {
       />
     );
   }
-  if (error) return `Error! ${error.message}`;
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   const labels = runtime.labels;
   const scenarios = labels && labels.scenarios ? labels.scenarios : [];

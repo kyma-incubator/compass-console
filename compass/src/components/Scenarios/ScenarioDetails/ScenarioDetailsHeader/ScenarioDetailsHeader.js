@@ -52,13 +52,10 @@ export default function ScenarioDetailsHeader({
     return <p>`Error! ${error.message}`</p>;
   }
 
-  const canDelete = () => {
-    return (
-      nonDeletableScenarioNames.includes(scenarioName) ||
-      applicationsCount !== 0 ||
-      runtimesCount !== 0
-    );
-  };
+  const canDelete = () =>
+    nonDeletableScenarioNames.includes(scenarioName) ||
+    applicationsCount !== 0 ||
+    runtimesCount !== 0;
 
   const deleteScenario = () => {
     handleDelete(

@@ -8,6 +8,7 @@ FileInput.propTypes = {
   availableFormatsMessage: PropTypes.string,
   acceptedFileFormats: PropTypes.string.isRequired,
   required: PropTypes.bool,
+  inputRef: PropTypes.any,
 };
 
 export function FileInput({

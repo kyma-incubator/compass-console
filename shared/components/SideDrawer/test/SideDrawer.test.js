@@ -11,7 +11,7 @@ describe('SideDrawer', () => {
 
   it('Renders content', () => {
     const { queryByText } = render(
-      <SideDrawer isOpenInitially={true}>{testContent1}</SideDrawer>,
+      <SideDrawer isOpenInitially>{testContent1}</SideDrawer>,
     );
 
     expect(queryByText(testText1)).toBeInTheDocument();

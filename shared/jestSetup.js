@@ -14,18 +14,19 @@ global.document.createRange = () => ({
   },
 });
 
-var nodeCrypto = require('crypto');
+const nodeCrypto = require('crypto');
 global.crypto = {
-  getRandomValues: function (buffer) {
+  getRandomValues(buffer) {
     return nodeCrypto.randomFillSync(Buffer.from(buffer));
   },
 };
 global.URL.createObjectURL = jest.fn();
 
 global.wait = async (ms = 0) => {
-  await act(() => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  });
+  await act(
+    () =>
+      new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      }),
+  );
 };

@@ -24,19 +24,24 @@ export const StringInput = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (!inputRef.current) return;
+    if (!inputRef.current) {
+      return;
+    }
     inputRef.current.setCustomValidity(
-      isValid ? '' : `Please match the requested format`,
+      isValid ? '' : 'Please match the requested format',
     );
-    if (typeof inputRef.current.reportValidity === 'function')
+    if (typeof inputRef.current.reportValidity === 'function') {
       inputRef.current.reportValidity();
+    }
   }, [isValid]);
 
   function handleKeyDown(e) {
     if (!isValid) {
       setValid(true);
     }
-    if (e.key !== 'Enter' && e.key !== ',') return;
+    if (e.key !== 'Enter' && e.key !== ',') {
+      return;
+    }
     handleStringEntered(e);
   }
 
@@ -47,7 +52,9 @@ export const StringInput = ({
   function handleStringEntered(sourceEvent) {
     const inputValue = sourceEvent.target.value;
     if (!regexp.test(inputValue)) {
-      if (inputValue) setValid(false);
+      if (inputValue) {
+        setValid(false);
+      }
       return;
     }
     sourceEvent.preventDefault();
@@ -59,8 +66,8 @@ export const StringInput = ({
     onChange([...stringListWithoutDuplicates, inputValue]);
   }
 
-  function deleteString(string) {
-    onChange(stringList.filter((s) => s !== string));
+  function deleteString(input) {
+    onChange(stringList.filter((s) => s !== input));
   }
 
   return (

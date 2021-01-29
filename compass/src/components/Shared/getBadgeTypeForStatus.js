@@ -1,5 +1,7 @@
 export const getBadgeTypeForStatus = (status) => {
-  if (!status) return undefined;
+  if (!status) {
+    return undefined;
+  }
 
   switch (status.condition) {
     case 'INITIAL':

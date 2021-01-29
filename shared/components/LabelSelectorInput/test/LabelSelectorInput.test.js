@@ -25,7 +25,7 @@ describe('LabelSelectorInput', () => {
     expect(queryByText('b=b')).toBeInTheDocument();
   });
 
-  it(`Doesn't fire onChange with invalid label`, () => {
+  it("Doesn't fire onChange with invalid label", () => {
     const { queryByPlaceholderText } = render(
       <LabelSelectorInput onChange={mockChange} />,
     );
@@ -37,7 +37,7 @@ describe('LabelSelectorInput', () => {
     expect(mockChange.mock.calls.length).toBe(0);
   });
 
-  it(`Fires onChange when valid label is entered`, () => {
+  it('Fires onChange when valid label is entered', () => {
     const { queryByPlaceholderText } = render(
       <LabelSelectorInput onChange={mockChange} />,
     );
@@ -50,7 +50,7 @@ describe('LabelSelectorInput', () => {
     expect(mockChange.mock.calls[0]).toEqual([{ abc: 'def' }]);
   });
 
-  it(`Allows to remove labels`, () => {
+  it('Allows to remove labels', () => {
     const { getByText } = render(
       <LabelSelectorInput labels={{ a: 'a', b: 'b' }} onChange={mockChange} />,
     );
@@ -61,7 +61,7 @@ describe('LabelSelectorInput', () => {
     expect(mockChange.mock.calls[0]).toEqual([{ b: 'b' }]);
   });
 
-  it(`Doesn' allow to remove readonly labels`, () => {
+  it("Doesn' allow to remove readonly labels", () => {
     const { getByText } = render(
       <LabelSelectorInput
         readonlyLabels={{ a: 'a', b: 'b' }}

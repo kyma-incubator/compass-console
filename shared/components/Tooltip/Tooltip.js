@@ -11,24 +11,23 @@ export const Tooltip = ({
   position,
   trigger,
   tippyProps,
-}) => {
-  return (
-    <TippyTooltip
-      html={content}
-      position={position}
-      trigger={trigger}
-      {...tippyProps}
-    >
-      {children}
-    </TippyTooltip>
-  );
-};
+}) => (
+  <TippyTooltip
+    html={content}
+    position={position}
+    trigger={trigger}
+    {...tippyProps}
+  >
+    {children}
+  </TippyTooltip>
+);
 
 Tooltip.propTypes = {
   content: PropTypes.node.isRequired,
   position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
   trigger: PropTypes.oneOf(['mouseenter', 'focus', 'click', 'manual']),
   children: PropTypes.node.isRequired,
+  tippyProps: PropTypes.object,
 };
 
 Tooltip.defaultProps = {

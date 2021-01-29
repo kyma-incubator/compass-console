@@ -37,14 +37,12 @@ export function createApolloClient({ enableSubscriptions = false }: Options) {
     if (process.env.REACT_APP_ENV !== 'production') {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) =>
-          // tslint:disable-next-line
           console.error(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
       }
 
-      // tslint:disable-next-line
       if (networkError) {
         console.error(`[Network error]: ${networkError}`);
       }

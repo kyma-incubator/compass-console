@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LuigiClient from '@luigi-project/client';
-import { useEffect } from 'react';
 
 export function setWindowTitle(title) {
   setImmediate(() =>
@@ -13,6 +12,7 @@ export function useWindowTitle(title) {
 }
 
 export function withTitle(title, Component) {
+  // eslint-disable-next-line react/display-name
   return (props) => {
     setWindowTitle(title);
     return <Component {...props} />;

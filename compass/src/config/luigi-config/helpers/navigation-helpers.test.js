@@ -37,9 +37,7 @@ describe('getPreviousLocation', () => {
   beforeAll(() => {
     delete window.localStorage;
     window.localStorage = {
-      getItem: jest.fn(() => {
-        return address;
-      }),
+      getItem: jest.fn(() => address),
       removeItem: jest.fn(),
     };
   });

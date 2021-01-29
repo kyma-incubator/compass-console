@@ -26,7 +26,7 @@ export default function AssignEntityToScenarioModal({
   updateEntitiesLabels,
   sendNotification,
 }) {
-  const scenarioName = React.useContext(ScenarioNameContext);
+  const scenarioNameFromContext = React.useContext(ScenarioNameContext);
   const uppercaseEntityName = entityName;
 
   const showSuccessNotification = (scenarioName) => {
@@ -73,11 +73,10 @@ export default function AssignEntityToScenarioModal({
     return `Error! ${allEntitiesQuery.error.message}`;
   }
 
-  const getUnassignedEntities = () => {
-    return allEntitiesQuery.entities.data.filter(
+  const getUnassignedEntities = () =>
+    allEntitiesQuery.entities.data.filter(
       (app) => !assignedEntities.filter((e) => e.id === app.id).length,
     );
-  };
 
   const updateEntities = async () => {
     try {
@@ -89,13 +88,16 @@ export default function AssignEntityToScenarioModal({
       );
 
       const assignUpdates = entitiesToAssign.map((entity) => {
-        const scenarios = [scenarioName, ...(entity.labels.scenarios || [])];
+        const scenarios = [
+          scenarioNameFromContext,
+          ...(entity.labels.scenarios || []),
+        ];
         return updateEntitiesLabels(entity.id, scenarios);
       });
 
       const unassignUpdates = entitiesToUnassign.map((entity) => {
         const scenarios = entity.labels.scenarios.filter(
-          (scenario) => scenario !== scenarioName,
+          (scenario) => scenario !== scenarioNameFromContext,
         );
         return updateEntitiesLabels(entity.id, scenarios);
       });
@@ -113,9 +115,13 @@ export default function AssignEntityToScenarioModal({
 
       const rejected = result.filter((r) => r.status === 'rejected');
       if (rejected.length) {
-        showWarningNotification(scenarioName, rejected.length, result.length);
+        showWarningNotification(
+          scenarioNameFromContext,
+          rejected.length,
+          result.length,
+        );
       } else {
-        showSuccessNotification(scenarioName);
+        showSuccessNotification(scenarioNameFromContext);
       }
     } catch (error) {
       console.warn(error);

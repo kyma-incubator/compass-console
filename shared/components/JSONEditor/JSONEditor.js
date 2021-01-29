@@ -8,6 +8,11 @@ export class JSONEditor extends Component {
   static propTypes = {
     readonly: PropTypes.bool,
     mode: PropTypes.oneOf(['tree', 'view', 'form', 'code']),
+    onChangeText: PropTypes.func,
+    onSuccess: PropTypes.func,
+    onError: PropTypes.func,
+    schema: PropTypes.object,
+    text: PropTypes.string,
   };
 
   static defaultProps = {
@@ -48,7 +53,7 @@ export class JSONEditor extends Component {
     }
   };
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.text === this.props.text) {
       return;
     }

@@ -30,7 +30,9 @@ function ApplicationDetails({ applicationId }) {
     error,
   } = applicationQuery;
 
-  if (loading) return 'Loading...';
+  if (loading) {
+    return 'Loading...';
+  }
 
   if (!application && !error) {
     return (
@@ -42,7 +44,9 @@ function ApplicationDetails({ applicationId }) {
       />
     );
   }
-  if (error) return `Error! ${error.message}`;
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   const labels = application.labels;
   const scenarios = labels && labels.scenarios ? labels.scenarios : [];

@@ -37,14 +37,14 @@ export default function AssignScenarioModal(props) {
   async function updateLabels() {
     const {
       title,
-      scenarios,
+      scenarios: appScenarios,
       entityId,
       updateScenarios,
       sendNotification,
       entityQuery,
     } = props;
 
-    if (_.isEqual(scenarios, currentScenarios)) {
+    if (_.isEqual(appScenarios, currentScenarios)) {
       return;
     }
 
@@ -60,10 +60,10 @@ export default function AssignScenarioModal(props) {
           instanceName: entityId,
         },
       });
-    } catch (error) {
-      console.warn(error);
+    } catch (err) {
+      console.warn(err);
       LuigiClient.uxManager().showAlert({
-        text: error.message,
+        text: err.message,
         type: 'error',
         closeAfter: 10000,
       });
@@ -74,8 +74,12 @@ export default function AssignScenarioModal(props) {
 
   const { loading, error, scenarios } = props.availableScenariosQuery;
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (loading) {
+    return 'Loading...';
+  }
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   const availableScenarios = JSON.parse(scenarios.schema).items.enum.filter(
     (scenario) => !currentScenarios.includes(scenario),

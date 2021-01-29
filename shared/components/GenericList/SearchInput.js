@@ -15,6 +15,7 @@ SearchInput.propTypes = {
   showSuggestion: PropTypes.bool,
   showSearchControl: PropTypes.bool,
   disabled: PropTypes.bool,
+  filteredEntries: PropTypes.array,
 };
 
 export default function SearchInput({
@@ -59,23 +60,23 @@ export default function SearchInput({
     const suggestions = entries
       .flatMap((entry) => {
         if (typeof entry === 'string') {
-          if (entryMatchesSearch(entry)) return entry;
+          if (entryMatchesSearch(entry)) {
+            return entry;
+          }
         }
         return suggestionProperties.map((property) => {
           const entryValue = entry[property];
-          if (entryMatchesSearch(entryValue)) return entryValue;
+          if (entryMatchesSearch(entryValue)) {
+            return entryValue;
+          }
         });
       })
       .filter((suggestion) => suggestion);
     return Array.from(new Set(suggestions));
   };
 
-  const entryMatchesSearch = (entry) => {
-    return (
-      entry &&
-      entry.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  };
+  const entryMatchesSearch = (entry) =>
+    entry && entry.toString().toLowerCase().includes(searchQuery.toLowerCase());
 
   const openSearchList = () => {
     setSearchHidden(false);
@@ -139,7 +140,7 @@ export default function SearchInput({
             disabled ? 'is-disabled' : ''
           }`}
           onClick={openSearchList}
-          aria-label={`open-search`}
+          aria-label={'open-search'}
         />
       )}
     </section>

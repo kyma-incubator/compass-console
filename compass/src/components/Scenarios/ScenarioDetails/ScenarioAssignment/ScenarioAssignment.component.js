@@ -28,7 +28,7 @@ export default function ScenarioAssignment({
     return <p>Loading...</p>;
   }
   if (getScenarioAssignment.error) {
-    let errorType =
+    const errorType =
       getScenarioAssignment.error.graphQLErrors[0].extensions.error;
     if (!errorType.includes(NOT_FOUND_MSG)) {
       return `Error! ${getScenarioAssignment.error.message}`;
@@ -41,7 +41,7 @@ export default function ScenarioAssignment({
     sendNotification({
       variables: {
         content: `Removed automatic scenario assignment from "${scenarioName}".`,
-        title: `Successfully removed`,
+        title: 'Successfully removed',
         color: '#359c46',
         icon: 'accept',
         instanceName: scenarioName,

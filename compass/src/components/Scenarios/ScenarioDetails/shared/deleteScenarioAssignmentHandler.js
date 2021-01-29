@@ -7,7 +7,7 @@ export default async function deleteScenarioAssignmentHandler(
 ) {
   const showConfirmation = () =>
     LuigiClient.uxManager().showConfirmationModal({
-      header: `Delete scenario assignment`,
+      header: 'Delete scenario assignment',
       body: `Are you sure you want to delete the automatic scenario assignment for "${scenarioName}"?`,
       buttonConfirm: 'Confirm',
       buttonDismiss: 'Cancel',

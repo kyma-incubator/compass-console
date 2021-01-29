@@ -1,6 +1,5 @@
 import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
-import { fromRenderProps } from 'recompose';
+import { compose, fromRenderProps } from 'recompose';
 import {
   GET_RUNTIMES_FOR_SCENARIO,
   SET_RUNTIME_SCENARIOS,
@@ -46,14 +45,12 @@ export default compose(
   }),
   graphql(GET_ASSIGNMENT_FOR_SCENARIO, {
     name: 'getScenarioAssignment',
-    options: ({ scenarioName }) => {
-      return {
-        errorPolicy: 'all',
-        variables: {
-          scenarioName: scenarioName,
-        },
-      };
-    },
+    options: ({ scenarioName }) => ({
+      errorPolicy: 'all',
+      variables: {
+        scenarioName,
+      },
+    }),
   }),
   graphql(SEND_NOTIFICATION, {
     name: 'sendNotification',

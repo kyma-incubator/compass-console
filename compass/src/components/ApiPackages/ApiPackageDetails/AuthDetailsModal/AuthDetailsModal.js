@@ -26,11 +26,11 @@ export default function AuthDetailsModal({ auth }) {
       confirmText="Ok"
     >
       <FormLabel>Context</FormLabel>
-      <JSONEditor readonly={true} text={formatJson(auth.context || '{}')} />
+      <JSONEditor readonly text={formatJson(auth.context || '{}')} />
       <FormLabel className="fd-has-margin-top-medium">
         Input parameters
       </FormLabel>
-      <JSONEditor readonly={true} text={formatJson(auth.inputParams || '{}')} />
+      <JSONEditor readonly text={formatJson(auth.inputParams || '{}')} />
     </Modal>
   );
 }

@@ -96,12 +96,7 @@ export default function CreateApiPackageForm({
     <form ref={formElementRef} onChange={onChange} onSubmit={handleFormSubmit}>
       <TabGroup>
         <Tab key="package-data" id="package-data" title="Data">
-          <TextFormItem
-            inputKey="name"
-            required={true}
-            label="Name"
-            inputRef={name}
-          />
+          <TextFormItem inputKey="name" required label="Name" inputRef={name} />
           <TextFormItem
             inputKey="description"
             label="Description"

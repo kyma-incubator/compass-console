@@ -48,17 +48,15 @@ export const PageHeader = ({
         {breadcrumbItems.length ? (
           <section className="fd-has-margin-bottom-s">
             <Breadcrumb>
-              {breadcrumbItems.map((item) => {
-                return (
-                  <Breadcrumb.Item
-                    aria-label="breadcrumb-item"
-                    key={item.name}
-                    name={item.name}
-                    url="#"
-                    onClick={() => performOnClick(item)}
-                  />
-                );
-              })}
+              {breadcrumbItems.map((item) => (
+                <Breadcrumb.Item
+                  aria-label="breadcrumb-item"
+                  key={item.name}
+                  name={item.name}
+                  url="#"
+                  onClick={() => performOnClick(item)}
+                />
+              ))}
             </Breadcrumb>
           </section>
         ) : null}
@@ -94,6 +92,9 @@ PageHeader.propTypes = {
       fromAbsolutePath: PropTypes.bool,
     }),
   ),
+  actions: PropTypes.element,
+  children: PropTypes.any,
+  columnWrapperClassName: PropTypes.string,
 };
 
 PageHeader.defaultProps = {

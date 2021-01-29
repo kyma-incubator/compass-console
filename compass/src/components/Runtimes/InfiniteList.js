@@ -5,31 +5,25 @@ import PropTypes from 'prop-types';
 
 const SCROLL_MARGIN = 20;
 
-const ListActions = ({ actions, entry }) => {
-  return (
-    <Popover
-      body={
-        <Menu>
-          <Menu.List>
-            {actions.map((a) => (
-              <Menu.Item onClick={() => a.handler(entry)} key={a.name}>
-                {a.name}
-              </Menu.Item>
-            ))}
-          </Menu.List>
-        </Menu>
-      }
-      control={
-        <Button
-          glyph="vertical-grip"
-          option="light"
-          aria-label="more-actions"
-        />
-      }
-      placement="bottom-end"
-    />
-  );
-};
+const ListActions = ({ actions, entry }) => (
+  <Popover
+    body={
+      <Menu>
+        <Menu.List>
+          {actions.map((a) => (
+            <Menu.Item onClick={() => a.handler(entry)} key={a.name}>
+              {a.name}
+            </Menu.Item>
+          ))}
+        </Menu.List>
+      </Menu>
+    }
+    control={
+      <Button glyph="vertical-grip" option="light" aria-label="more-actions" />
+    }
+    placement="bottom-end"
+  />
+);
 
 const InfiniteList = ({
   query,
@@ -75,7 +69,9 @@ const InfiniteList = ({
     }
   }
 
-  if (error) return `Error! ${error.message}`;
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   return (
     <>
@@ -119,13 +115,11 @@ const InfiniteList = ({
   );
 };
 
-const Spinner = () => {
-  return (
-    <div className="fd-spinner" aria-hidden="false" aria-label="Loading">
-      <div className="fd-spinner__body"></div>
-    </div>
-  );
-};
+const Spinner = () => (
+  <div className="fd-spinner" aria-hidden="false" aria-label="Loading">
+    <div className="fd-spinner__body"></div>
+  </div>
+);
 
 export default InfiniteList;
 

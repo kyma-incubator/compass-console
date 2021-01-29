@@ -19,7 +19,7 @@ import { ApplicationQueryContext } from '../ApplicationDetails';
 import { UNREGISTER_APPLICATION_MUTATION } from '../../../Applications/gql';
 
 function navigateToApplications() {
-  LuigiClient.linkManager().fromContext('tenant').navigate(`/applications`);
+  LuigiClient.linkManager().fromContext('tenant').navigate('/applications');
 }
 
 ApplicationDetailsHeader.propTypes = {
@@ -34,7 +34,7 @@ function ApplicationDetailsHeader({ application }) {
     },
   );
 
-  const isReadOnly = false; //todo
+  const isReadOnly = false; // todo
   const { id, name, status, description, providerName } = application;
 
   return (
@@ -60,7 +60,7 @@ function ApplicationDetailsHeader({ application }) {
                 title="Update Application"
                 button={{ text: 'Edit', option: 'light' }}
                 confirmText="Update"
-                initialIsValid={true}
+                initialIsValid
                 performRefetch={applicationQuery.refetch}
                 renderForm={(props) => (
                   <UpdateApplicationForm application={application} {...props} />
@@ -86,12 +86,15 @@ function ApplicationDetailsHeader({ application }) {
         </ActionBar.Actions>
       </section>
       <PanelGrid nogap cols={4}>
-        <PanelEntry title="Provider Name" children={<p>{providerName}</p>} />
-        <PanelEntry title="Description" children={<p>{description}</p>} />
-        <PanelEntry
-          title="Status"
-          children={<Badge>{status.condition}</Badge>}
-        />
+        <PanelEntry title="Provider Name">
+          <p>{providerName}</p>
+        </PanelEntry>
+        <PanelEntry title="Description">
+          <p>{description}</p>
+        </PanelEntry>
+        <PanelEntry title="Status">
+          <Badge>{status.condition}</Badge>
+        </PanelEntry>
       </PanelGrid>
     </header>
   );

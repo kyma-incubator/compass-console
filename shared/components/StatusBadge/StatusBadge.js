@@ -8,7 +8,7 @@ import { Tooltip } from '../Tooltip/Tooltip';
 const resolveType = (status) => {
   if (typeof status !== 'string') {
     console.warn(
-      `'autoResolveType' prop requires 'children' prop to be a string.`,
+      "'autoResolveType' prop requires 'children' prop to be a string.",
     );
     return undefined;
   }
@@ -45,7 +45,9 @@ export const StatusBadge = ({
   tooltipProps = {},
   className,
 }) => {
-  if (autoResolveType) type = resolveType(value);
+  if (autoResolveType) {
+    type = resolveType(value);
+  }
 
   const classes = classNames(
     'status-badge',
@@ -77,4 +79,5 @@ StatusBadge.propTypes = {
   autoResolveType: PropTypes.bool,
   tooltipProps: PropTypes.object,
   className: PropTypes.string,
+  children: PropTypes.string,
 };

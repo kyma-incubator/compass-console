@@ -6,9 +6,7 @@ import { InlineHelp, FormLabel } from 'fundamental-react';
 const pattern = '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$';
 const regex = new RegExp(pattern);
 
-export const isK8SNameValid = (name) => {
-  return regex.test(name);
-};
+export const isK8SNameValid = (name) => regex.test(name);
 
 export const K8sNameInput = ({
   _ref,
@@ -54,4 +52,5 @@ K8sNameInput.propTypes = {
   kind: PropTypes.string.isRequired,
   showHelp: PropTypes.bool,
   required: PropTypes.bool,
+  label: PropTypes.string,
 };

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CustomPropTypes } from 'react-shared';
+import { getRefsValues, FileInput, CustomPropTypes } from 'react-shared';
 import { FormSet, FormItem, FormLabel, FormSelect } from 'fundamental-react';
 import { createApiData, verifyApiFile } from '../ApiHelpers';
 
 import ApiForm from './../Forms/ApiForm';
-import { getRefsValues, FileInput } from 'react-shared';
 
 import { useMutation } from 'react-apollo';
 import { ADD_API_DEFINITION } from '../gql';
 import { GET_API_PACKAGE } from 'components/ApiPackages/gql';
 
 CreateApiForm.propTypes = {
+  applicationId: PropTypes.string.isRequired,
   apiPackageId: PropTypes.string.isRequired,
   formElementRef: CustomPropTypes.ref,
   onChange: PropTypes.func.isRequired,
@@ -32,8 +32,8 @@ export default function CreateApiForm({
       {
         query: GET_API_PACKAGE,
         variables: {
-          applicationId: applicationId,
-          apiPackageId: apiPackageId,
+          applicationId,
+          apiPackageId,
         },
       },
     ],

@@ -28,10 +28,7 @@ export const NotificationProvider = ({
 
   const methods = {
     notify,
-    notifySuccess: function (
-      notificationProps,
-      visibilityTime = defaultVisibilityTime,
-    ) {
+    notifySuccess(notificationProps, visibilityTime = defaultVisibilityTime) {
       notificationProps = {
         title: 'Success',
         type: 'success',
@@ -41,7 +38,7 @@ export const NotificationProvider = ({
       };
       notify(notificationProps, visibilityTime);
     },
-    notifyError: function (
+    notifyError(
       notificationProps,
       visibilityTime = defaultErrorVisibilityTime,
     ) {
@@ -69,7 +66,7 @@ export const NotificationProvider = ({
     >
       {state.isOpen && (
         <Notification
-          visible={true}
+          visible
           {...state.notificationProps}
           onClick={closeNotification}
         />

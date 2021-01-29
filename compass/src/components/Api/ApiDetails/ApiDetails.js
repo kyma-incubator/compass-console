@@ -22,7 +22,7 @@ import { convert } from 'asyncapi-converter';
 const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
   const queryApi = useQuery(GET_API_DEFININTION, {
     variables: {
-      applicationId: applicationId,
+      applicationId,
       apiPackageId,
       apiDefinitionId: apiId,
     },
@@ -31,7 +31,7 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
   });
   const queryEventApi = useQuery(GET_EVENT_DEFINITION, {
     variables: {
-      applicationId: applicationId,
+      applicationId,
       apiPackageId,
       eventDefinitionId: eventApiId,
     },
@@ -43,7 +43,7 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
       {
         query: GET_API_DEFININTION,
         variables: {
-          applicationId: applicationId,
+          applicationId,
           apiPackageId,
           apiDefinitionId: apiId,
         },
@@ -55,7 +55,7 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
       {
         query: GET_EVENT_DEFINITION,
         variables: {
-          applicationId: applicationId,
+          applicationId,
           apiPackageId,
           eventDefinitionId: eventApiId,
         },
@@ -67,7 +67,9 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
 
   const { loading, error, data } = query;
 
-  if (loading) return 'Loading...';
+  if (loading) {
+    return 'Loading...';
+  }
 
   if (!(data && data.application)) {
     if (error) {

@@ -3,9 +3,11 @@ import { createHttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { withClientState } from 'apollo-link-state';
 import { setContext } from 'apollo-link-context';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 import resolvers from './resolvers';
 import defaults from './defaults';
@@ -49,13 +51,15 @@ export function createApolloClient(apiUrl, tenant, token) {
     if (process.env.REACT_APP_ENV !== 'production') {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) =>
-          console.log(
+          console.error(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
       }
 
-      if (networkError) console.log(`[Network error]: ${networkError}`);
+      if (networkError) {
+        console.error(`[Network error]: ${networkError}`);
+      }
     }
   });
 

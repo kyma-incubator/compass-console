@@ -21,6 +21,7 @@ Modal.propTypes = {
   waiting: PropTypes.bool,
   tooltipData: PropTypes.object,
   className: PropTypes.string,
+  children: PropTypes.any,
 };
 
 Modal.defaultProps = {

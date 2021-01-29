@@ -37,8 +37,8 @@ export default function UpdateApplicationForm({
     description: React.useRef(null),
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
     const description = formValues.description.current.value;
     const providerName = formValues.providerName.current.value;
@@ -57,9 +57,9 @@ export default function UpdateApplicationForm({
         integrationSystemID: application.integrationSystemID,
       });
       onCompleted(application.name, 'Application updated successfully');
-    } catch (e) {
-      console.warn(e);
-      onError(`Error occurred while updating Application`, e.message || ``);
+    } catch (err) {
+      console.warn(err);
+      onError('Error occurred while updating Application', err.message || '');
     }
   };
 

@@ -121,6 +121,7 @@ describe('GenericList', () => {
     });
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Renders entries', async () => {
     const { getByText } = render(
       <GenericList
@@ -138,7 +139,7 @@ describe('GenericList', () => {
   it('Renders custom data using custom entryRenderer', async () => {
     const customEntryRenderer = (entry) => [entry.name, 'maskopatol'];
 
-    const { queryByText } = render(
+    const { queryByText: queryByTextList } = render(
       <GenericList
         entries={[mockEntries[0]]}
         headerRenderer={mockHeaderRenderer}
@@ -146,7 +147,7 @@ describe('GenericList', () => {
       />,
     );
 
-    expect(await queryByText(mockEntries[0].name)).toBeInTheDocument();
+    expect(await queryByTextList(mockEntries[0].name)).toBeInTheDocument();
   });
 
   it('Renders collapse entries with collapse control', async () => {
@@ -206,6 +207,7 @@ describe('GenericList', () => {
     expect(foundCollapseContents).toHaveLength(3);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   it('Renders headers', async () => {
     const { getByText } = render(
       <GenericList
@@ -346,7 +348,7 @@ describe('GenericList', () => {
           entries={[]}
           headerRenderer={mockHeaderRenderer}
           rowRenderer={mockEntryRenderer}
-          serverDataError={true}
+          serverDataError
           serverErrorMessage={serverErrorMessage}
         />,
       );
@@ -361,7 +363,7 @@ describe('GenericList', () => {
           entries={[]}
           headerRenderer={mockHeaderRenderer}
           rowRenderer={mockEntryRenderer}
-          serverDataLoading={true}
+          serverDataLoading
         />,
       );
 

@@ -1,10 +1,11 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-//import { getApiDataFromQuery } from '../ApiDetails.component';
-//import ApiDetails from '../ApiDetails.component';
+// import React from 'react';
+// import { shallow } from 'enzyme';
+// import { getApiDataFromQuery } from '../ApiDetails.component';
+// import ApiDetails from '../ApiDetails.component';
 
 // !!! importing anything from ApiDetails causes Jest error because of generic-documentation component. So, no tests for now :(
-
+/* eslint-disable jest/expect-expect */
+/* eslint-disable jest/no-commented-out-tests */
 describe('ApiDetails', () => {
   it('Renders with minimal props', () => {
     // const component = shallow(<ApiDetails />);

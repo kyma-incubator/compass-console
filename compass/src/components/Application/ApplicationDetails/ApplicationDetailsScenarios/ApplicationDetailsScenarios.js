@@ -23,13 +23,13 @@ export default function ApplicationDetailsScenarios({
   const [updateScenarios] = useMutation(SET_APPLICATION_SCENARIOS);
   const [deleteScenarios] = useMutation(DELETE_SCENARIO_LABEL);
 
-  async function handleScenariosUnassign(applicationId, scenarios) {
+  async function handleScenariosUnassign(appId, appScenarios) {
     if (scenarios.length) {
       return await updateScenarios({
-        variables: { id: applicationId, scenarios: scenarios },
+        variables: { id: appId, scenarios: appScenarios },
       });
     }
-    return await deleteScenarios({ variables: { id: applicationId } });
+    return await deleteScenarios({ variables: { id: appId } });
   }
 
   async function unassignScenario(entry) {
@@ -88,8 +88,8 @@ export default function ApplicationDetailsScenarios({
         scenarios={scenarios}
         notSelectedMessage={'Application is not assigned to any scenario.'}
         entityQuery={applicationQuery}
-        updateScenarios={(applicationId, scenarios) =>
-          handleScenariosUnassign(applicationId, scenarios)
+        updateScenarios={(appId, appScenarios) =>
+          handleScenariosUnassign(appId, appScenarios)
         }
       />
     </header>

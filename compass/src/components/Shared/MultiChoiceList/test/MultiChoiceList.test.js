@@ -69,7 +69,7 @@ describe('MultiChoiceList', () => {
 
     // expand dropdown
     const dropdownControl = component.findWhere(
-      (t) => t.text() === 'Choose items...' && t.type() == 'button',
+      (t) => t.text() === 'Choose items...' && t.type() === 'button',
     );
 
     dropdownControl.simulate('click');
@@ -98,7 +98,7 @@ describe('MultiChoiceList', () => {
 
     // expand dropdown
     const dropdownControl = component.findWhere(
-      (t) => t.text() === 'Choose items...' && t.type() == 'button',
+      (t) => t.text() === 'Choose items...' && t.type() === 'button',
     );
     dropdownControl.simulate('click');
 
