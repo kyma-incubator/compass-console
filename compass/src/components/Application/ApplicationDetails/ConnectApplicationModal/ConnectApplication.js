@@ -64,7 +64,7 @@ export default function ConnectApplicationModal({ applicationId }) {
   ) : (
     <FormSet>
       <FormEntry
-        caption="Data to connect Application (base64 encoded)"
+        caption="Data to connect Business System (base64 encoded)"
         name="raw-encoded"
         value={connectionData.rawEncoded}
       />

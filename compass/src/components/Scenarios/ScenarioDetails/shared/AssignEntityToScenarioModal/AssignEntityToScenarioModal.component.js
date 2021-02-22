@@ -27,12 +27,17 @@ export default function AssignEntityToScenarioModal({
   sendNotification,
 }) {
   const scenarioName = React.useContext(ScenarioNameContext);
-  const uppercaseEntityName = entityName;
+  let uppercaseEntityName = entityName;
+  if (uppercaseEntityName === 'applications') {
+    uppercaseEntityName = 'Business systems';
+  } else {
+    uppercaseEntityName = 'Services & Runtimes';
+  }
 
   const showSuccessNotification = scenarioName => {
     sendNotification({
       variables: {
-        content: `Updated all ${entityName}`,
+        content: `Updated all ${uppercaseEntityName}`,
         title: `Update scenario ${scenarioName}`,
         color: '#359c46',
         icon: 'accept',
@@ -45,7 +50,7 @@ export default function AssignEntityToScenarioModal({
     const succeeded = all - rejected;
     sendNotification({
       variables: {
-        content: `Updated ${succeeded}/${all} ${entityName}.`,
+        content: `Updated ${succeeded}/${all} ${uppercaseEntityName}.`,
         title: `Update scenario ${scenarioName}`,
         color: '#d08014',
         icon: 'warning',
@@ -133,7 +138,7 @@ export default function AssignEntityToScenarioModal({
 
   return (
     <Modal
-      title={`Assign ${entityName} to scenario`}
+      title={`Assign ${uppercaseEntityName} to scenario`}
       confirmText="Save"
       cancelText="Cancel"
       type={'emphasized'}
@@ -143,9 +148,9 @@ export default function AssignEntityToScenarioModal({
       <MultiChoiceList
         currentlySelectedItems={assignedEntities}
         currentlyNonSelectedItems={getUnassignedEntities()}
-        notSelectedMessage={`No ${entityName} selected`}
+        notSelectedMessage={`No ${uppercaseEntityName} selected`}
         updateItems={assigned => setAssignedEntities(assigned)}
-        placeholder={`Choose ${entityName}`}
+        placeholder={`Choose ${uppercaseEntityName}`}
         displayPropertySelector="name"
       />
     </Modal>

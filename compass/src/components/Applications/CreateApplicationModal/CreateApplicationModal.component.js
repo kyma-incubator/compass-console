@@ -301,7 +301,7 @@ class CreateApplicationModal extends React.Component {
         <>
           <Input
             label="Name"
-            placeholder="Name of the Application"
+            placeholder="Name of the Business System"
             value={formData.name}
             name="applicationName"
             handleChange={this.onChangeName}
@@ -312,7 +312,7 @@ class CreateApplicationModal extends React.Component {
           />
           <Input
             label="Provider Name"
-            placeholder="Name of the application provider"
+            placeholder="Name of the business system provider"
             value={formData.providerName}
             name="providerName"
             handleChange={this.onChangeProviderName}
@@ -322,7 +322,7 @@ class CreateApplicationModal extends React.Component {
           />
           <Input
             label="Description"
-            placeholder="Description of the Application"
+            placeholder="Description of the Business System"
             value={formData.description}
             name="applicationName"
             handleChange={this.onChangeDescription}
@@ -352,7 +352,7 @@ class CreateApplicationModal extends React.Component {
 
     return (
       <Modal
-        title="Create application"
+        title="Create business system"
         type={'emphasized'}
         modalOpeningComponent={this.props.modalOpeningComponent}
         confirmText="Create"

@@ -110,7 +110,7 @@ export default function ScenarioApplications({ updateApplicationsCount }) {
     <GenericList
       extraHeaderContent={extraHeaderContent}
       title="Systems & Services"
-      notFoundMessage="No Applications for this Scenario"
+      notFoundMessage="No Business Systems for this Scenario"
       entries={assignedApplications}
       headerRenderer={headerRenderer}
       actions={actions}

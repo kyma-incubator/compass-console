@@ -56,10 +56,10 @@ export default function UpdateApplicationForm({
         healthCheckURL: application.healthCheckURL,
         integrationSystemID: application.integrationSystemID,
       });
-      onCompleted(application.name, 'Application updated successfully');
+      onCompleted(application.name, 'Business System updated successfully');
     } catch (e) {
       console.warn(e);
-      onError(`Error occurred while updating Application`, e.message || ``);
+      onError(`Error occurred while updating Business System`, e.message || ``);
     }
   };
 
@@ -81,7 +81,7 @@ export default function UpdateApplicationForm({
         ref={formValues.description}
         id="application-description"
         defaultValue={application.description}
-        placeholder="Application description"
+        placeholder="Business System description"
       />
     </form>
   );

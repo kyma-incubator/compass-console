@@ -97,8 +97,8 @@ export default function ScenarioRuntimes({
   return (
     <GenericList
       extraHeaderContent={extraHeaderContent}
-      title="Runtimes"
-      notFoundMessage="No Runtimes for this Scenario"
+      title="Services & Runtimes"
+      notFoundMessage="No Services & Runtimes for this Scenario"
       entries={assignedRuntimes}
       headerRenderer={() => ['Name']}
       actions={actions}

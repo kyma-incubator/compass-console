@@ -157,7 +157,7 @@ export default function CreateApplicationFromTemplateModal({
       const name = result.data.registerApplicationFromTemplate.name;
       sendNotification({
         variables: {
-          content: `Application "${name}" created successfully`,
+          content: `Business system "${name}" created successfully`,
           title: name,
           color: '#359c46',
           icon: 'accept',
@@ -169,11 +169,11 @@ export default function CreateApplicationFromTemplateModal({
       console.warn(e);
       let message = e.message;
       if (e.message.match('Object is not unique')) {
-        message = 'Application with that name already exists';
+        message = 'Business system with that name already exists';
       }
       sendNotification({
         variables: {
-          content: `Could not create Application: ${message}`,
+          content: `Could not create Business system: ${message}`,
           title: 'Error',
           color: '#BB0000',
           icon: 'decline',
@@ -189,7 +189,7 @@ export default function CreateApplicationFromTemplateModal({
 
   return (
     <Modal
-      title="Create application from template"
+      title="Create Business system from template"
       type={'emphasized'}
       modalOpeningComponent={modalOpeningComponent}
       confirmText="Create"

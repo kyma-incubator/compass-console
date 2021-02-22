@@ -21,7 +21,10 @@ export default function RuntimeDetailsHeader({ runtime }) {
   );
 
   const { name, description, id, status } = runtime;
-  const breadcrumbItems = [{ name: 'Runtimes', path: '/' }, { name: '' }];
+  const breadcrumbItems = [
+    { name: 'Services & Runtimes', path: '/' },
+    { name: '' },
+  ];
 
   return (
     <PageHeader

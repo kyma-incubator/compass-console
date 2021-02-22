@@ -45,7 +45,7 @@ function ApplicationDetailsHeader({ application }) {
         <section>
           <Breadcrumb>
             <Breadcrumb.Item
-              name="Applications"
+              name="Business Systems"
               url="#"
               onClick={navigateToApplications}
             />
@@ -59,7 +59,7 @@ function ApplicationDetailsHeader({ application }) {
           <ApplicationQueryContext.Consumer>
             {applicationQuery => (
               <ModalWithForm
-                title="Update Application"
+                title="Update Business System"
                 button={{ text: 'Edit', option: 'light' }}
                 confirmText="Update"
                 initialIsValid={true}

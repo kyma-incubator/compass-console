@@ -13,9 +13,9 @@ export default function ConnectApplicationModal(props) {
   return (
     <Modal
       modalOpeningComponent={
-        <Button option="emphasized">Connect Application</Button>
+        <Button option="emphasized">Connect Business System</Button>
       }
-      title="Connect Application"
+      title="Connect Business System"
       confirmText="Close"
     >
       <ConnectApplication {...props} />

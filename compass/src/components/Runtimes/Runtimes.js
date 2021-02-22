@@ -50,13 +50,13 @@ const Runtimes = () => {
 
   return (
     <>
-      <PageHeader title="Runtimes" />
+      <PageHeader title="Services & Runtimes" />
       <Panel className="fd-has-margin-m">
         <Panel.Body className="fd-has-padding-none">
           <InfiniteList
             key={tenantId} // force rerender on tenant change
             query={GET_RUNTIMES}
-            noMoreEntriesMessage="No more runtimes to show"
+            noMoreEntriesMessage="No more Services & Runtimes to show"
             headerRenderer={runtimeHeaderRenderer}
             rowRenderer={runtimeRowRenderer}
             actions={actions}

@@ -71,7 +71,7 @@ const navigation = {
             {
               keepSelectedForChildren: true,
               pathSegment: 'runtimes',
-              label: 'Runtimes',
+              label: 'Services & Runtimes',
               viewUrl: compassMfUrl + '/runtimes',
               navigationContext: 'runtimes',
               children: [
@@ -80,7 +80,7 @@ const navigation = {
                   children: [
                     {
                       pathSegment: ':runtimeId',
-                      label: 'Runtimes',
+                      label: 'Services & Runtimes',
                       viewUrl: compassMfUrl + '/runtime/:runtimeId',
                     },
                   ],
@@ -90,7 +90,7 @@ const navigation = {
             {
               keepSelectedForChildren: true,
               pathSegment: 'applications',
-              label: 'Applications',
+              label: 'Business Systems',
               viewUrl: compassMfUrl + '/applications',
               children: [
                 {

@@ -99,7 +99,7 @@ class Applications extends React.Component {
             </Menu.List>
           </Menu>
         }
-        control={<Button option="light">Create application...</Button>}
+        control={<Button option="light">Create Business system...</Button>}
         widthSizingType="matchTarget"
         placement="bottom-end"
       />
@@ -107,7 +107,7 @@ class Applications extends React.Component {
 
     return (
       <>
-        <PageHeader title="Applications" />
+        <PageHeader title="Business Systems" />
         <GenericList
           extraHeaderContent={extraHeaderContent}
           actions={this.actions}

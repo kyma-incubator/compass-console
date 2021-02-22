@@ -50,27 +50,27 @@ export default function CreateScenarioForm({
         {nameError && <FormMessage type="error">{nameError}</FormMessage>}
       </FormItem>
       <div>
-        <p className="fd-has-font-weight-bold">Select Runtimes</p>
+        <p className="fd-has-font-weight-bold">Select Services & Runtimes</p>
         <MultiChoiceList
-          placeholder="Choose runtime"
+          placeholder="Choose Services & Runtimes"
           updateItems={updateRuntimes}
           currentlySelectedItems={runtimesToAssign}
           currentlyNonSelectedItems={nonSelectedRuntimes}
           notSelectedMessage=""
-          noEntitiesAvailableMessage="No Runtimes available"
+          noEntitiesAvailableMessage="No Services & Runtimes available"
           itemSelector="runtimes"
           displayPropertySelector="name"
         />
       </div>
       <div>
-        <p className="fd-has-font-weight-bold">Add Application</p>
+        <p className="fd-has-font-weight-bold">Add Business system</p>
         <MultiChoiceList
-          placeholder="Choose application"
+          placeholder="Choose business system"
           updateItems={updateApplications}
           currentlySelectedItems={applicationsToAssign}
           currentlyNonSelectedItems={nonSelectedApplications}
           notSelectedMessage=""
-          noEntitiesAvailableMessage="No Applications available"
+          noEntitiesAvailableMessage="No business systems available"
           itemSelector="applications"
           displayPropertySelector="name"
         />

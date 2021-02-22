@@ -51,7 +51,7 @@ export default function ApplicationDetailsScenarios({
           applicationQuery.refetch();
           sendNotification({
             variables: {
-              content: `Scenario "${scenarioName}" removed from application.`,
+              content: `Scenario "${scenarioName}" removed from business system.`,
               title: `${scenarioName}`,
               color: '#359c46',
               icon: 'accept',
@@ -86,7 +86,7 @@ export default function ApplicationDetailsScenarios({
       <AssignScenarioModal
         entityId={applicationId}
         scenarios={scenarios}
-        notSelectedMessage={'Application is not assigned to any scenario.'}
+        notSelectedMessage={'Business System is not assigned to any scenario.'}
         entityQuery={applicationQuery}
         updateScenarios={(applicationId, scenarios) =>
           handleScenariosUnassign(applicationId, scenarios)
@@ -101,7 +101,7 @@ export default function ApplicationDetailsScenarios({
     <GenericList
       extraHeaderContent={extraHeaderContent}
       title="Assigned to Scenario"
-      notFoundMessage="This Applications isn't assigned to any scenario"
+      notFoundMessage="This Business system isn't assigned to any scenario"
       actions={actions}
       entries={entries}
       headerRenderer={headerRenderer}

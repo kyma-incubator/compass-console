@@ -36,7 +36,7 @@ function ApplicationDetails({ applicationId }) {
     return (
       <ResourceNotFound
         resource="Application"
-        breadcrumb="Applications"
+        breadcrumb="Business Systems"
         navigationPath="/"
         navigationContext="applications"
       />

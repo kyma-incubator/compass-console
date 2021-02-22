@@ -12,7 +12,7 @@ class Scenarios extends React.Component {
     LuigiClient.linkManager().navigate(`details/${scenarioName}`);
   }
 
-  headerRenderer = () => ['Name', 'Runtimes', 'Applications'];
+  headerRenderer = () => ['Name', 'Services & Runtimes', 'Business Systems'];
 
   rowRenderer = scenario => [
     <span
