@@ -17,7 +17,7 @@ import {
   GET_EVENT_DEFINITION,
 } from './../gql';
 import './ApiDetails.scss';
-import { convert } from 'asyncapi-converter';
+import { convert } from '@asyncapi/converter';
 
 const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
   const queryApi = useQuery(GET_API_DEFININTION, {
