@@ -8,6 +8,7 @@
     "asyncapi-converter": "^0.4.2",
     "file-saver": "^2.0.5",
     "jsoneditor": "^9.1.9",
+    "jwt-decode": "^3.1.2",
     "react-ace": "^7.0.5",
     "sanitize-html": "^1.22.1",
     "xml-js": "^1.6.11"

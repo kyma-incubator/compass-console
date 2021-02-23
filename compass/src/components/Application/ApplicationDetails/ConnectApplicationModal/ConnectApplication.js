@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copyToCliboard from 'copy-to-clipboard';
 import { Tooltip } from 'react-shared';
+import { getUserId } from '../../../../store';
 
 import {
   Button,
@@ -39,7 +40,13 @@ const FormEntry = ({ caption, name, value }) => (
 );
 
 export default function ConnectApplicationModal({ applicationId }) {
-  const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION);
+  const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
+    context: {
+      headers: {
+        client_user: getUserId(),
+      },
+    },
+  });
   const [error, setError] = React.useState('');
   const [connectionData, setConnectionData] = React.useState({});
 

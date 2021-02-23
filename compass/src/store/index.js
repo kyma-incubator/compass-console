@@ -8,9 +8,12 @@ import {
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
+import jwt_decode from 'jwt-decode';
 
 import resolvers from './resolvers';
 import defaults from './defaults';
+
+var userId = null;
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
@@ -85,4 +88,16 @@ export function createApolloClient(apiUrl, tenant, token) {
   });
 
   return client;
+}
+
+export function loadUserIdFromToken(token) {
+  const decodedToken = jwt_decode(token);
+  userId = decodedToken.name;
+}
+
+export function getUserId() {
+  if (!userId) {
+    return null;
+  }
+  return userId;
 }
