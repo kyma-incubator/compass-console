@@ -13,7 +13,7 @@ import jwt_decode from 'jwt-decode';
 import resolvers from './resolvers';
 import defaults from './defaults';
 
-var userId = null;
+let userId = null;
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
