@@ -13,7 +13,7 @@ import jwt_decode from 'jwt-decode';
 import resolvers from './resolvers';
 import defaults from './defaults';
 
-let userId = null;
+let clientId = null;
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
@@ -90,14 +90,14 @@ export function createApolloClient(apiUrl, tenant, token) {
   return client;
 }
 
-export function loadUserIdFromToken(token) {
+export function loadClientIdFromToken(token) {
   const decodedToken = jwt_decode(token);
-  userId = decodedToken.name;
+  clientId = decodedToken.name;
 }
 
-export function getUserId() {
-  if (!userId) {
+export function getClientId() {
+  if (!clientId) {
     return null;
   }
-  return userId;
+  return clientId;
 }

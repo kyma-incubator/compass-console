@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import { createApolloClient, loadUserIdFromToken } from './store';
+import { createApolloClient, loadClientIdFromToken } from './store';
 import { useMicrofrontendContext, useConfig } from 'react-shared';
 
 export const ApolloClientProvider = ({ children }) => {
@@ -11,7 +11,7 @@ export const ApolloClientProvider = ({ children }) => {
     return <p>Loading...</p>;
   }
 
-  loadUserIdFromToken(idToken);
+  loadClientIdFromToken(idToken);
 
   const apiUrl = fromConfig('compassApiUrl');
   const client = createApolloClient(apiUrl, tenantId, idToken);

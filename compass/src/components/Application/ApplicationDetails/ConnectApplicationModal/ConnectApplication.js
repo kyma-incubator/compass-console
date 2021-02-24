@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copyToCliboard from 'copy-to-clipboard';
 import { Tooltip } from 'react-shared';
-import { getUserId } from '../../../../store';
+import { getClientId } from '../../../../store';
 
 import {
   Button,
@@ -43,7 +43,7 @@ export default function ConnectApplicationModal({ applicationId }) {
   const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
     context: {
       headers: {
-        client_user: getUserId(),
+        client_user: getClientId(),
       },
     },
   });
