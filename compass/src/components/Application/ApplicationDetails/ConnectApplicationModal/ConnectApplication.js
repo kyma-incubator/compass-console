@@ -40,7 +40,7 @@ const FormEntry = ({ caption, name, value }) => (
 );
 
 export default function ConnectApplicationModal({ applicationId }) {
-  let additionalHeaders = {};
+  const additionalHeaders = {};
   additionalHeaders[process.env.APP_CLIENT_ID_HTTP_HEADER] = getClientId;
 
   const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
