@@ -40,11 +40,12 @@ const FormEntry = ({ caption, name, value }) => (
 );
 
 export default function ConnectApplicationModal({ applicationId }) {
+  let additionalHeaders = {};
+  additionalHeaders[process.env.APP_CLIENT_ID_HTTP_HEADER] = getClientId;
+
   const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
     context: {
-      headers: {
-        client_user: getClientId(),
-      },
+      headers: additionalHeaders,
     },
   });
   const [error, setError] = React.useState('');
