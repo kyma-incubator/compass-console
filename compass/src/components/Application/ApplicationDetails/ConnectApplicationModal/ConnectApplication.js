@@ -40,7 +40,8 @@ const FormEntry = ({ caption, name, value }) => (
 );
 
 export default function ConnectApplicationModal({ applicationId }) {
-  const clientIdHeaderKey = process.env.REACT_APP_CLIENT_ID_HTTP_HEADER;
+  const { fromConfig } = useConfig();
+  const clientIdHeaderKey = fromConfig('clientIDHeaderKey');
 
   const additionalHeaders = {};
   additionalHeaders[clientIdHeaderKey] = getClientId();
