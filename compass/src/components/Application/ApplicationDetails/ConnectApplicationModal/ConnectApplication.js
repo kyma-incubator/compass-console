@@ -41,7 +41,11 @@ const FormEntry = ({ caption, name, value }) => (
 
 export default function ConnectApplicationModal({ applicationId }) {
   const additionalHeaders = {};
-  additionalHeaders[process.env.APP_CLIENT_ID_HTTP_HEADER] = getClientId;
+  additionalHeaders[
+    process.env.REACT_APP_CLIENT_ID_HTTP_HEADER
+  ] = getClientId();
+
+  console.log('Additional headers for ConnectApplication: ', additionalHeaders);
 
   const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
     context: {

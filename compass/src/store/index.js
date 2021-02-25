@@ -96,8 +96,5 @@ export function loadClientIdFromToken(token) {
 }
 
 export function getClientId() {
-  if (!clientId) {
-    return null;
-  }
-  return clientId;
+  return !clientId ? null : clientId;
 }
