@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import copyToCliboard from 'copy-to-clipboard';
 import { Tooltip } from 'react-shared';
 import { getClientId } from '../../../../store';
+import { useConfig } from 'react-shared';
 
 import {
   Button,
