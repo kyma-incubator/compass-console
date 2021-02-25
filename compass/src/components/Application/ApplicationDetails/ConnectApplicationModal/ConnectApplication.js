@@ -45,8 +45,6 @@ export default function ConnectApplicationModal({ applicationId }) {
     process.env.REACT_APP_CLIENT_ID_HTTP_HEADER
   ] = getClientId();
 
-  console.log('Additional headers for ConnectApplication: ', additionalHeaders);
-
   const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
     context: {
       headers: additionalHeaders,
