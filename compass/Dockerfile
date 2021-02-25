@@ -20,6 +20,10 @@ RUN cd /app/${app_name} && \
 ENV PRODUCTION true
 ENV CI true
 
+# Catch Docker environment variables
+ARG REACT_APP_CLIENT_ID_HTTP_HEADER
+ENV REACT_APP_CLIENT_ID_HTTP_HEADER=${REACT_APP_CLIENT_ID_HTTP_HEADER}
+
 # Test & Build
 RUN cd /app/${app_name} && make build
 
