@@ -4,6 +4,11 @@ import { validMock, errorMock } from './mock';
 import { render, waitForDomChange } from '@testing-library/react';
 import ConnectApplication from '../ConnectApplication';
 
+jest.mock('react-shared', () => ({
+  ...jest.requireActual('react-shared'),
+  useConfig: () => ({ fromConfig: () => 'test-value' }),
+}));
+
 describe('ConnectApplication', () => {
   it('loads connection data on render', async () => {
     const { queryByLabelText } = render(

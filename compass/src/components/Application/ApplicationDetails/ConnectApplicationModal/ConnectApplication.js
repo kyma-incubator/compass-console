@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import copyToCliboard from 'copy-to-clipboard';
-import { Tooltip } from 'react-shared';
+import { Tooltip, useConfig } from 'react-shared';
+import { getClientId } from '../../../../store';
 
 import {
   Button,
@@ -39,7 +40,17 @@ const FormEntry = ({ caption, name, value }) => (
 );
 
 export default function ConnectApplicationModal({ applicationId }) {
-  const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION);
+  const { fromConfig } = useConfig();
+  const clientIdHeaderKey = fromConfig('clientIDHeaderKey');
+
+  const additionalHeaders = {};
+  additionalHeaders[clientIdHeaderKey] = getClientId();
+
+  const [connectApplicationMutation] = useMutation(CONNECT_APPLICATION, {
+    context: {
+      headers: additionalHeaders,
+    },
+  });
   const [error, setError] = React.useState('');
   const [connectionData, setConnectionData] = React.useState({});
 
