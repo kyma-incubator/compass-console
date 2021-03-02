@@ -7,10 +7,10 @@
     "@luigi-project/core": "1.8.0",
     "@luigi-project/plugin-auth-oidc": "1.8.0",
     "file-saver": "^2.0.5",
-    "jsoneditor": "^9.1.9",
+    "jsoneditor": "^9.2.0",
     "jwt-decode": "^3.1.2",
     "react-ace": "^7.0.5",
-    "sanitize-html": "1.27.5",
+    "sanitize-html": "2.3.2",
     "xml-js": "^1.6.11"
   },
   "scripts": {
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "json-loader": "^0.5.7",
     "ncp": "^2.0.0",
     "node-fetch": "^2.6.1"
   },

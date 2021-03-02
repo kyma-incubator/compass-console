@@ -27,6 +27,7 @@ module.exports = {
         options: {
           rootMode: 'root',
         },
+        exclude: /node_modules/,
       },
     ],
   },
