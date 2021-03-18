@@ -23,7 +23,7 @@ export async function handleDelete(
 ) {
   try {
     if (await displayConfirmationMessage(entityType, entityName)) {
-      deleteRequestFn(entityId, entityName);
+      await deleteRequestFn(entityId, entityName);
       callback();
     }
   } catch (err) {
