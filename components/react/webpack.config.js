@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const pkg = require('./package.json');
 
-require('babel-polyfill');
+require('core-js/stable');
+require('regenerator-runtime/runtime');
 
 let libraryName = pkg.name;
 

@@ -28,9 +28,9 @@
     "@kyma-project/generic-documentation": "./components/generic-documentation",
     "@kyma-project/react-components": "./components/react",
     "@luigi-project/client": "^1.11.0",
+    "@monaco-editor/react": "^4.0.7",
     "@reach/router": "^1.3.4",
     "@types/classnames": "^2.2.11",
-    "@monaco-editor/react": "^4.0.7",
     "ajv": "^7.1.1",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
@@ -100,7 +100,7 @@
     "jest": "^24.8.0",
     "jsdom-worker-fix": "^0.1.8",
     "live-server": "^1.2.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "react-app-rewired": "2.1.8",
     "react-scripts": "^3.4.4",
     "react-test-renderer": "^17.0.1",
@@ -112,9 +112,9 @@
     "webpack-cli": "^3.3.12"
   },
   "optionalDependencies": {
-    "lint-staged": "^10.5.3",
     "husky": "^4.3.8",
     "lerna": "^3.22.1",
+    "lint-staged": "^10.5.3",
     "markdownlint-cli": "^0.26.0",
     "prettier": "^2.2.1"
   },
