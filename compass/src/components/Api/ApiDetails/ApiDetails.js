@@ -108,7 +108,8 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
     try {
       const parsedSpec = JSON.parse(specToShow);
       if (parsedSpec.asyncapi && parsedSpec.asyncapi.startsWith('1.')) {
-        specToShow = convert(specToShow, '2.0.0');
+        var cleanedSpec = clean(specToShow);
+        specToShow = convert(cleanedSpec, '2.0.0');
       }
     } catch (e) {
       console.error('Error parsing async api spec', e);
@@ -144,3 +145,12 @@ ApiDetails.propTypes = {
 };
 
 export default ApiDetails;
+
+function clean(obj) {
+  return Object.entries(obj)
+    .filter(([_, v]) => v !== null && v !== undefined)
+    .reduce(
+      (acc, [k, v]) => ({ ...acc, [k]: v === Object(v) ? clean(v) : v }),
+      {},
+    );
+}
