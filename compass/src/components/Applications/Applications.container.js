@@ -14,12 +14,13 @@ export default compose(
   }),
   graphql(UNREGISTER_APPLICATION_MUTATION, {
     props: ({ mutate }) => ({
-      deleteApplication: (id) =>
-        mutate({
+      deleteApplication: async (id) => {
+        await mutate({
           variables: {
             id,
           },
-        }),
+        });
+      },
     }),
   }),
 )(Applications);
