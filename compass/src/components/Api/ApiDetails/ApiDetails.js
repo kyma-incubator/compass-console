@@ -108,8 +108,9 @@ const ApiDetails = ({ apiId, eventApiId, applicationId, apiPackageId }) => {
     try {
       const parsedSpec = JSON.parse(specToShow);
       if (parsedSpec.asyncapi && parsedSpec.asyncapi.startsWith('1.')) {
-        var cleanedSpec = clean(specToShow);
-        specToShow = convert(cleanedSpec, '2.0.0');
+        const cleanedSpec = cleanEmpty(parsedSpec);
+        specToShow = JSON.stringify(cleanedSpec);
+        specToShow = convert(specToShow, '2.0.0');
       }
     } catch (e) {
       console.error('Error parsing async api spec', e);
@@ -146,11 +147,14 @@ ApiDetails.propTypes = {
 
 export default ApiDetails;
 
-function clean(obj) {
-  return Object.entries(obj)
-    .filter(([_, v]) => v !== null && v !== undefined)
-    .reduce(
-      (acc, [k, v]) => ({ ...acc, [k]: v === Object(v) ? clean(v) : v }),
-      {},
-    );
-}
+const cleanEmpty = (obj) => {
+  if (Array.isArray(obj)) {
+    return obj
+      .map((v) => (v && typeof v === 'object' ? cleanEmpty(v) : v))
+      .filter((v) => !(v == null));
+  } else {
+    return Object.entries(obj)
+      .map(([k, v]) => [k, v && typeof v === 'object' ? cleanEmpty(v) : v])
+      .reduce((a, [k, v]) => (v == null ? a : ((a[k] = v), a)), {});
+  }
+};
