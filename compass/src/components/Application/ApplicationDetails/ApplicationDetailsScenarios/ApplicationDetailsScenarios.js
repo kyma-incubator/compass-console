@@ -24,7 +24,7 @@ export default function ApplicationDetailsScenarios({
   const [deleteScenarios] = useMutation(DELETE_SCENARIO_LABEL);
 
   async function handleScenariosUnassign(appId, appScenarios) {
-    if (scenarios.length) {
+    if (appScenarios.length) {
       return await updateScenarios({
         variables: { id: appId, scenarios: appScenarios },
       });
