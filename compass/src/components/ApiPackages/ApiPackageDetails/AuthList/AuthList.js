@@ -6,7 +6,7 @@ import { Badge } from 'fundamental-react';
 import { GenericList, StatusBadge } from 'react-shared';
 
 AuthList.propTypes = {
-  auths: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  auths: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 const AuthStatus = ({ timestamp, message, reason, condition }) => {
@@ -41,6 +41,10 @@ const AuthContext = ({ context }) => {
 };
 
 export default function AuthList({ auths }) {
+  if (auths == null) {
+    auths = [];
+  }
+
   const headerRenderer = () => ['Context', 'Status', ''];
 
   const rowRenderer = (auth) => [
