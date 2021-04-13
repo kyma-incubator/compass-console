@@ -41,7 +41,7 @@ const AuthContext = ({ context }) => {
 };
 
 export default function AuthList({ auths }) {
-  if (auths == null) {
+  if (auths === null) {
     auths = [];
   }
 
