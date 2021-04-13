@@ -41,9 +41,7 @@ const AuthContext = ({ context }) => {
 };
 
 export default function AuthList({ auths }) {
-  if (!auths) {
-    auths = [];
-  }
+  auths = auths || [];
 
   const headerRenderer = () => ['Context', 'Status', ''];
 
