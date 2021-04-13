@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/react-copy-to-clipboard": "^4.2.6",
     "kind-of": "^6.0.3",
-    "swagger-ui-dist": "^3.44.0"
+    "swagger-ui-dist": "^3.46.0"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
