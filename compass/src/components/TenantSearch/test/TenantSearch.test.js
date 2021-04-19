@@ -1,6 +1,6 @@
 import React from 'react';
 import TenantSearch from '../TenantSearch';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, wait } from '@testing-library/react';
 
 const mockedTenants = [
   {
@@ -55,19 +55,23 @@ describe('TenantSearch', () => {
       target: { value: 'id-2' },
     });
 
-    expect(queryByText(/Tenant-1/)).not.toBeInTheDocument();
-    expect(queryByText(/Tenant-2/)).toBeInTheDocument();
+    await wait(() => {
+      expect(queryByText(/Tenant-1/)).not.toBeInTheDocument();
+      expect(queryByText(/Tenant-2/)).toBeInTheDocument();
+    });
   });
 
-  it('Filters only full match', async () => {
+  it('Filters not only full match', async () => {
     const { getByRole, queryByText } = render(<TenantSearch />);
 
     fireEvent.change(getByRole('search'), {
-      target: { value: 'id' },
+      target: { value: 'tenant' },
     });
 
-    expect(queryByText(/Tenant-1/)).not.toBeInTheDocument();
-    expect(queryByText(/Tenant-2/)).not.toBeInTheDocument();
+    await wait(() => {
+      expect(queryByText(/Tenant-1/)).toBeInTheDocument();
+      expect(queryByText(/Tenant-2/)).toBeInTheDocument();
+    });
   });
 
   it('Fires navigation event when user clicks tenant entry', async () => {
