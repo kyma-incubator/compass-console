@@ -7,12 +7,14 @@ import { useMicrofrontendContext } from 'react-shared';
 import { getAlternativePath } from '../../config/luigi-config/helpers/getAlternativePath';
 import './TenantSearch.scss';
 
+const MAX_TENANTS_SEARCH_RESULT = 1000;
+const DELAY_BETWEEN_SEARCH_MILLIS = 200;
+
 const SearchInput = ({ filter, setFilter }) => (
   <input
     autoFocus
     role="search"
     placeholder="Search tenants..."
-    value={filter}
     onChange={(e) => setFilter(e.target.value)}
     type="text"
   />
@@ -39,6 +41,16 @@ export function TenantSearch({ parentPath, token, _tenants }) {
   const [tenants, setTenants] = React.useState(_tenants);
   const [error, setError] = React.useState('');
 
+  let timeOutId;
+  const setFilterWithDelay = (value) => {
+    if (timeOutId) {
+      clearTimeout(timeOutId);
+    }
+    timeOutId = setTimeout(() => {
+      setFilter(value);
+    }, DELAY_BETWEEN_SEARCH_MILLIS);
+  };
+
   React.useEffect(() => {
     if (!tenants.length) {
       fetchTenants(token)
@@ -56,20 +68,24 @@ export function TenantSearch({ parentPath, token, _tenants }) {
   };
 
   const getFilteredTenants = () => {
-    const searchPhrase = filter.toLowerCase();
+    const searchPhrase = filter.toLowerCase().trim();
     if (!searchPhrase.trim()) {
       return tenants.filter((t) => t.initialized);
     }
-    return tenants.filter(
+    const result = tenants.filter(
       (tenant) =>
-        tenant.name.toLowerCase() === searchPhrase ||
+        tenant.name.toLowerCase().includes(searchPhrase) ||
         tenant.id.toLowerCase() === searchPhrase,
     );
+    if (result.length > MAX_TENANTS_SEARCH_RESULT) {
+      result.splice(MAX_TENANTS_SEARCH_RESULT);
+    }
+    return result;
   };
 
   return (
     <Panel className="fd-has-padding-s tenant-search">
-      <SearchInput filter={filter} setFilter={setFilter} />
+      <SearchInput filter={filter} setFilter={setFilterWithDelay} />
       {error && <p className="fd-has-color-status-3">{error}</p>}
       <TenantList tenants={getFilteredTenants()} chooseTenant={chooseTenant} />
     </Panel>
