@@ -108,7 +108,7 @@ export default function MultiChoiceList({
           popperProps={popperCustomProps}
           body={nonChoosenItemsList}
           disableEdgeDetection={false}
-          noArrow={true}
+          noArrow
           control={
             <Button
               className="fd-dropdown__control"
