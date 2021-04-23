@@ -80,6 +80,11 @@
   cursor: unset;
 }
 
+.fd-popover__popper[popper] {
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
 .fd-popover__popper li {
   list-style-type: none;
 }
