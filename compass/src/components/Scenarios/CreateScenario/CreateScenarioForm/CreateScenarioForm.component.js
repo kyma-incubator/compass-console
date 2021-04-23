@@ -61,6 +61,7 @@ export default function CreateScenarioForm({
           noEntitiesAvailableMessage="No Runtimes available"
           itemSelector="runtimes"
           displayPropertySelector="name"
+          elementId="create-scenario"
         />
       </div>
       <div>
@@ -74,6 +75,7 @@ export default function CreateScenarioForm({
           noEntitiesAvailableMessage="No Applications available"
           itemSelector="applications"
           displayPropertySelector="name"
+          elementId="create-scenario"
         />
       </div>
     </section>

@@ -153,6 +153,7 @@ export default function AssignEntityToScenarioModal({
         updateItems={(assigned) => setAssignedEntities(assigned)}
         placeholder={`Choose ${entityName}`}
         displayPropertySelector="name"
+        elementId="assign-to-scenario"
       />
     </Modal>
   );

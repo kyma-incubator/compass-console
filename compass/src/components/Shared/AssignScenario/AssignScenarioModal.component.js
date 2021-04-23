@@ -101,6 +101,7 @@ export default function AssignScenarioModal(props) {
         notSelectedMessage={props.notSelectedMessage}
         updateItems={updateCurrentScenarios}
         placeholder="Choose scenario..."
+        elementId="assign-scenario"
       />
     </Modal>
   );

@@ -341,6 +341,7 @@ class CreateApplicationModal extends React.Component {
                 this.state.scenariosToSelect || availableScenarios
               }
               noEntitiesAvailableMessage="No more scenarios available"
+              elementId="application-modal"
             />
           )}
         </>

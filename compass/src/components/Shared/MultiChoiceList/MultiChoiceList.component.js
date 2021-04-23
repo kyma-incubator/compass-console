@@ -12,11 +12,13 @@ MultiChoiceList.propTypes = {
   notSelectedMessage: PropTypes.string,
   noEntitiesAvailableMessage: PropTypes.string,
   displayPropertySelector: PropTypes.string,
+  elementId: PropTypes.string,
 };
 
 MultiChoiceList.defaultProps = {
   placeholder: 'Choose items...',
   noEntitiesAvailableMessage: 'No more entries available',
+  elementId: '',
 };
 
 export default function MultiChoiceList({
@@ -27,6 +29,7 @@ export default function MultiChoiceList({
   notSelectedMessage,
   noEntitiesAvailableMessage,
   displayPropertySelector,
+  elementId,
 }) {
   function getDisplayName(item) {
     return displayPropertySelector ? item[displayPropertySelector] : item;
@@ -95,10 +98,17 @@ export default function MultiChoiceList({
       </Menu>
     );
 
+    const popperCustomProps = {
+      popper: elementId,
+    };
+
     return (
       <Dropdown fullwidth="true">
         <Popover
+          popperProps={popperCustomProps}
           body={nonChoosenItemsList}
+          disableEdgeDetection={false}
+          noArrow={true}
           control={
             <Button
               className="fd-dropdown__control"
