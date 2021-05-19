@@ -27,7 +27,7 @@ export default class CreateScenarioModal extends React.Component {
   };
 
   updateScenarioName = (e) => {
-    const nameRegex = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
+    const nameRegex = /^[A-Za-z0-9]([-_A-Za-z0-9\\s]*[A-Za-z0-9])$/;
     const scenarioName = e.target.value;
     this.setState({ name: scenarioName });
 
