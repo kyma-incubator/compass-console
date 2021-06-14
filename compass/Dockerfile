@@ -26,6 +26,15 @@ RUN cd /app/${app_name} && make build
 ### Main image ###
 FROM alpine:3.13
 
+### Update apk repositories for the latest nginx
+RUN printf "%s%s%s\n" \
+  "http://nginx.org/packages/alpine/v" \
+  `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
+  "/main" \
+  | tee -a /etc/apk/repositories
+RUN wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
+  && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
+
 ### Install nginx package and remove cache ###
 RUN apk add --update nginx && rm -rf /var/cache/apk/*
 
