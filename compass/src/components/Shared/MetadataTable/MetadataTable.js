@@ -29,7 +29,9 @@ export default function MetadataTable({ labels, ownerType, ignoredLabels }) {
         .map(([key, value]) => ({
           key,
           value:
-            typeof value === 'object' ? JSON.stringify(value, null, 2) : value,
+            typeof value === 'object'
+              ? JSON.stringify(value, null, 2)
+              : value + '',
         }))
     : [];
 
