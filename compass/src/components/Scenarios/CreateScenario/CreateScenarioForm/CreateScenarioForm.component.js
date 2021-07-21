@@ -15,6 +15,7 @@ export default function CreateScenarioForm({
   applicationsToAssign,
   updateRuntimes,
   runtimesToAssign,
+  nameValue,
 }) {
   if (applicationsQuery.loading || runtimesQuery.loading) {
     return 'Loading...';
@@ -47,6 +48,7 @@ export default function CreateScenarioForm({
           type="text"
           onChange={updateScenarioName}
           autoComplete="off"
+          value={nameValue}
         />
         {nameError && <FormMessage type="error">{nameError}</FormMessage>}
       </FormItem>
@@ -85,7 +87,7 @@ export default function CreateScenarioForm({
 CreateScenarioForm.propTypes = {
   applicationsQuery: PropTypes.object.isRequired,
   runtimesQuery: PropTypes.object.isRequired,
-
+  nameValue: PropTypes.string,
   updateScenarioName: PropTypes.func.isRequired,
   nameError: PropTypes.string,
   updateApplications: PropTypes.func.isRequired,
