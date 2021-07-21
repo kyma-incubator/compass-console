@@ -26,6 +26,8 @@ CredentialsForm.propTypes = {
     oAuth: PropTypes.object,
     basic: PropTypes.object,
   }),
+  availableCredentialsList: PropTypes.object,
+  message: PropTypes.string,
 };
 
 export function CredentialsForm({
@@ -33,8 +35,10 @@ export function CredentialsForm({
   credentialType,
   setCredentialType,
   defaultValues,
+  availableCredentialsList,
+  message,
 }) {
-  const credentialsList = {
+  const credentialsList = availableCredentialsList || {
     [CREDENTIAL_TYPE_NONE]: CREDENTIAL_TYPE_NONE,
     [CREDENTIAL_TYPE_OAUTH]: CREDENTIAL_TYPE_OAUTH,
     [CREDENTIAL_TYPE_BASIC]: CREDENTIAL_TYPE_BASIC,
@@ -42,6 +46,9 @@ export function CredentialsForm({
   };
 
   const credentialsMessage = (type) => {
+    if (message) {
+      return message;
+    }
     if (type === CREDENTIAL_TYPE_NONE) {
       return 'AuthData request from runtime will be blocked until credentials are provided.';
     } else {
