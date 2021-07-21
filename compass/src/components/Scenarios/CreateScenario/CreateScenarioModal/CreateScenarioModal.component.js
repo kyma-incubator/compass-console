@@ -18,6 +18,8 @@ export default class CreateScenarioModal extends React.Component {
     applicationsToAssign: [],
     runtimesToAssign: [],
     page: 1,
+    credentials: {},
+    credentialsTypes: {},
   };
 
   applicationsWithCredentials = [];
@@ -57,26 +59,80 @@ export default class CreateScenarioModal extends React.Component {
     }
   };
 
+  resetCredentials = (appId) => {
+    if (this.state.credentialsTypes[appId] === CREDENTIAL_TYPE_OAUTH) {
+      const { username, password, ...credentials } = this.state.credentials[
+        appId
+      ];
+      this.updateCredentialValues(credentials, appId);
+    } else {
+      const {
+        clientId,
+        clientSecret,
+        url,
+        ...credentials
+      } = this.state.credentials[appId];
+      this.updateCredentialValues(credentials, appId);
+    }
+  };
+
   updateCredentials = (e) => {
     this.setState({
       credentialsError: e,
     });
   };
 
-  setCredentialsType = (type) => {
-    this.setState({
-      credentialsType: type,
-    });
+  updateCredentialValues = (values, appId) => {
+    this.setState(
+      {
+        credentials: {
+          ...this.state.credentials,
+          [appId]: values,
+        },
+      },
+      () => (this.components = this.setupComponents()),
+    );
+  };
+
+  setCredentialsType = (type, id) => {
+    this.setState(
+      {
+        credentialsTypes: {
+          ...this.state.credentialsTypes,
+          [id]: type,
+        },
+      },
+      () => {
+        this.resetCredentials(id);
+        this.components = this.setupComponents();
+        this.forceUpdate();
+      },
+    );
   };
 
   updateApplications = (assignedApplications) => {
-    this.setState({ applicationsToAssign: assignedApplications }, () => {
-      this.applicationsWithCredentials = this.state.applicationsToAssign.filter(
-        (application) => onPremIds.includes(application.applicationTemplateID),
-      );
-      this.components = this.setupComponents();
-      this.forceUpdate();
-    });
+    const types = assignedApplications.reduce((prev, curr) => {
+      return {
+        ...prev,
+        ...this.state.credentialsTypes,
+        [curr.id]: CREDENTIAL_TYPE_OAUTH,
+      };
+    }, {});
+
+    this.setState(
+      {
+        applicationsToAssign: assignedApplications,
+        credentialsTypes: types,
+      },
+      () => {
+        this.applicationsWithCredentials = this.state.applicationsToAssign.filter(
+          (application) =>
+            onPremIds.includes(application.applicationTemplateID),
+        );
+        this.components = this.setupComponents();
+        this.forceUpdate();
+      },
+    );
   };
 
   updateRuntimes = (assignedRuntimes) => {
@@ -200,13 +256,19 @@ export default class CreateScenarioModal extends React.Component {
         updateRuntimes={this.updateRuntimes}
         runtimesToAssign={this.state.runtimesToAssign}
       />,
-      ...this.applicationsWithCredentials.map((application, idx) => (
-        <CreateScenarioCredentials
-          applicationToAssign={application}
-          applicationTemplates={this.props.applicationTemplates}
-          updateCredentialsError={this.updateCredentials}
-        />
-      )),
+      ...this.applicationsWithCredentials.map((application, idx) => {
+        return (
+          <CreateScenarioCredentials
+            applicationToAssign={application}
+            applicationTemplates={this.props.applicationTemplates}
+            updateCredentialsError={this.updateCredentials}
+            credentials={this.state.credentials[application.id]}
+            updateCredentials={this.updateCredentialValues}
+            credentialsType={this.state.credentialsTypes[application.id]}
+            updateCredentialType={this.setCredentialsType}
+          />
+        );
+      }),
     ];
   };
 

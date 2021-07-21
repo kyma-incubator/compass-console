@@ -16,14 +16,16 @@ export default function CreateScenarioCredentials({
   applicationTemplates,
   applicationToAssign,
   updateCredentialsError,
+  updateCredentials,
+  credentials,
+  credentialsType,
+  updateCredentialType,
 }) {
   const credentialsList = {
     [CREDENTIAL_TYPE_OAUTH]: CREDENTIAL_TYPE_OAUTH,
     [CREDENTIAL_TYPE_BASIC]: CREDENTIAL_TYPE_BASIC,
   };
-  const [credentialsType, setCredentialsType] = React.useState(
-    CREDENTIAL_TYPE_OAUTH,
-  );
+
   const [credentialsError, setCredentialsError] = React.useState(error);
   const credentialRefs = {
     oAuth: {
@@ -37,14 +39,35 @@ export default function CreateScenarioCredentials({
     },
   };
 
+  let defaultValues;
+  if (credentials) {
+    defaultValues = {
+      oAuth: {
+        clientId: credentials.clientId,
+        clientSecret: credentials.clientSecret,
+        url: credentials.url,
+      },
+      basic: {
+        username: credentials.username,
+        password: credentials.password,
+      },
+    };
+  }
+
   useEffect(() => {
     updateCredentialsError(checkForError());
   }, []);
 
   const onCredentialsChange = () => {
+    const credentialValues =
+      credentialsType === CREDENTIAL_TYPE_OAUTH
+        ? getRefsValues(credentialRefs.oAuth)
+        : getRefsValues(credentialRefs.basic);
+
+    updateCredentials(credentialValues, applicationToAssign.id);
+
     setCredentialsError(checkForError());
 
-    console.log(credentialsError);
     updateCredentialsError(credentialsError);
   };
 
@@ -70,8 +93,11 @@ export default function CreateScenarioCredentials({
         <CredentialsForm
           credentialRefs={credentialRefs}
           credentialType={credentialsType}
-          setCredentialType={setCredentialsType}
+          setCredentialType={(v) =>
+            updateCredentialType(v, applicationToAssign.id)
+          }
           availableCredentialsList={credentialsList}
+          defaultValues={defaultValues}
           message="These credentials will be used to communicate with the on-premise application"
         />
         {credentialsError && (
@@ -86,4 +112,8 @@ CreateScenarioCredentials.propTypes = {
   applicationTemplates: PropTypes.object.isRequired,
   applicationToAssign: PropTypes.object.isRequired,
   updateCredentialsError: PropTypes.func.isRequired,
+  credentials: PropTypes.object,
+  updateCredentials: PropTypes.func,
+  credentialsType: PropTypes.string,
+  updateCredentialType: PropTypes.func,
 };
