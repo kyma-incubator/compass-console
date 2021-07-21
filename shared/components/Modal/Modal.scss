@@ -2,4 +2,15 @@
   .fd-modal {
     max-width: 80vw;
   }
+
+  .position-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      .fd-button--emphasized {
+        margin-right: 12px;
+      }
+    }
+  }
 }

@@ -14,8 +14,12 @@ Modal.propTypes = {
   actions: PropTypes.any,
   onHide: PropTypes.func,
   onConfirm: PropTypes.func,
+  isConfirmHidden: PropTypes.bool,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
+  additionalButtonsText: PropTypes.array,
+  onAdditionalButtons: PropTypes.array,
+  areAdditionalButtonDisabled: PropTypes.array,
   type: PropTypes.string,
   disabledConfirm: PropTypes.bool,
   waiting: PropTypes.bool,
@@ -31,6 +35,7 @@ Modal.defaultProps = {
   type: 'default',
   disabledConfirm: false,
   waiting: false,
+  isConfirmHidden: false,
 };
 
 export function Modal({
@@ -48,6 +53,10 @@ export function Modal({
   tooltipData,
   children,
   className,
+  additionalButtonsText,
+  onAdditionalButtons,
+  isConfirmHidden,
+  areAdditionalButtonDisabled,
 }) {
   const [show, setShow] = React.useState(false);
   function onOpen() {
@@ -78,6 +87,12 @@ export function Modal({
     }
   }
 
+  function handleAdditionButtonClicked(fn) {
+    if (fn) {
+      fn();
+    }
+  }
+
   const createActions = () => {
     const confirmMessage = waiting ? (
       <div style={{ width: '97px', height: '16px' }}>
@@ -97,28 +112,52 @@ export function Modal({
         {confirmMessage}
       </Button>
     );
+
+    const additionalButtons = onAdditionalButtons
+      ? onAdditionalButtons.map((buttonFn, idx) => {
+          return (
+            <Button
+              option="emphasized"
+              onClick={handleAdditionButtonClicked.bind(this, buttonFn)}
+              disabled={areAdditionalButtonDisabled[idx]}
+              data-e2e-id={'modal-addition-button-' + idx}
+            >
+              {additionalButtonsText[idx]}
+            </Button>
+          );
+        })
+      : null;
+
     return (
       <>
-        {cancelText && (
-          <Button
-            style={{ marginRight: '12px' }}
-            option="light"
-            onClick={onClose}
-          >
-            {cancelText}
-          </Button>
-        )}
-
-        {tooltipData ? (
-          <Tooltip
-            {...tooltipData}
-            minWidth={tooltipData.minWidth ? tooltipData.minWidth : '191px'}
-          >
-            {confirmButton}
-          </Tooltip>
-        ) : (
-          confirmButton
-        )}
+        <div className="position-wrapper">
+          <div className="position-wrapper__left">{additionalButtons}</div>
+          <div className="position-wrapper__right">
+            {cancelText && (
+              <Button
+                style={{ marginRight: '12px' }}
+                option="light"
+                onClick={onClose}
+              >
+                {cancelText}
+              </Button>
+            )}
+            {!isConfirmHidden ? (
+              tooltipData ? (
+                <Tooltip
+                  {...tooltipData}
+                  minWidth={
+                    tooltipData.minWidth ? tooltipData.minWidth : '191px'
+                  }
+                >
+                  {confirmButton}
+                </Tooltip>
+              ) : (
+                confirmButton
+              )
+            ) : null}
+          </div>
+        </div>
       </>
     );
   };
