@@ -7,6 +7,7 @@ import {
   CREATE_SCENARIOS_LABEL,
   SET_APPLICATION_SCENARIOS,
   SET_RUNTIME_SCENARIOS,
+  GET_APPLICATION_TEMPLATES,
 } from '../../gql';
 import { SEND_NOTIFICATION } from '../../../../gql';
 
@@ -79,5 +80,8 @@ export default compose(
   }),
   graphql(SEND_NOTIFICATION, {
     name: 'sendNotification',
+  }),
+  graphql(GET_APPLICATION_TEMPLATES, {
+    name: 'applicationTemplates',
   }),
 )(CreateScenarioModal);

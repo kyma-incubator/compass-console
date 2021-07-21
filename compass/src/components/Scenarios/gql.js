@@ -35,6 +35,18 @@ export const GET_APPLICATIONS = gql`
         name
         id
         labels
+        applicationTemplateID
+      }
+    }
+  }
+`;
+
+export const GET_APPLICATION_TEMPLATES = gql`
+  query {
+    entities: applicationTemplates {
+      data {
+        id
+        name
       }
     }
   }
