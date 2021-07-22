@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { FormSet, FormMessage } from 'fundamental-react';
 
 import {
   CREDENTIAL_TYPE_OAUTH,
@@ -8,12 +9,9 @@ import {
   CredentialsForm,
 } from 'react-shared';
 
-import { FormSet, FormMessage } from 'fundamental-react';
-
-const error = 'At least one form value in empty';
+const error = 'At least one form value is empty';
 
 export default function CreateScenarioCredentials({
-  applicationTemplates,
   applicationToAssign,
   updateCredentialsError,
   updateCredentials,
@@ -114,7 +112,6 @@ export default function CreateScenarioCredentials({
 }
 
 CreateScenarioCredentials.propTypes = {
-  applicationTemplates: PropTypes.object.isRequired,
   applicationToAssign: PropTypes.object.isRequired,
   updateCredentialsError: PropTypes.func.isRequired,
   credentials: PropTypes.object,
