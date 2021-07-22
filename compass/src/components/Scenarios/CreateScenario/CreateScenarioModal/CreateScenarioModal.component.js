@@ -365,6 +365,7 @@ export default class CreateScenarioModal extends React.Component {
 
     const components = [
       <CreateScenarioForm
+        key="create-scenario-form"
         updateScenarioName={this.updateScenarioName}
         nameError={this.state.nameError}
         updateApplications={this.updateApplications}
@@ -375,6 +376,7 @@ export default class CreateScenarioModal extends React.Component {
       ...this.state.applicationsWithCredentials.map((application, idx) => {
         return (
           <CreateScenarioCredentials
+            key={application.id}
             applicationToAssign={application}
             updateCredentialsError={this.updateCredentials}
             credentials={this.state.credentials[application.id]}
@@ -393,6 +395,7 @@ export default class CreateScenarioModal extends React.Component {
 
     return (
       <Modal
+        key="create-scenario-modal"
         title="Create scenario"
         confirmText="Save"
         cancelText="Close"
