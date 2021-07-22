@@ -25,7 +25,6 @@ export default function CreateScenarioCredentials({
     [CREDENTIAL_TYPE_BASIC]: CREDENTIAL_TYPE_BASIC,
   };
 
-  // const [credentialsError, setCredentialsError] = React.useState(error);
   const credentialRefs = {
     oAuth: {
       clientId: React.useRef(null),
@@ -38,21 +37,20 @@ export default function CreateScenarioCredentials({
     },
   };
 
-  let defaultValues;
-  const appCreds = credentials;
-  if (appCreds) {
-    defaultValues = {
-      oAuth: {
-        clientId: appCreds.clientId,
-        clientSecret: appCreds.clientSecret,
-        url: appCreds.url,
-      },
-      basic: {
-        username: appCreds.username,
-        password: appCreds.password,
-      },
-    };
-  }
+  const defaultValues = credentials
+    ? {
+        oAuth: {
+          clientId: credentials.clientId,
+          clientSecret: credentials.clientSecret,
+          url: credentials.url,
+        },
+        basic: {
+          username: credentials.username,
+          password: credentials.password,
+        },
+      }
+    : null;
+
   useEffect(() => {
     updateCredentialsError(checkForError(), applicationToAssign.id);
     console.log(applicationToAssign.name, checkForError());
@@ -65,8 +63,6 @@ export default function CreateScenarioCredentials({
         : getRefsValues(credentialRefs.basic);
 
     updateCredentials(credentialValues, applicationToAssign.id);
-
-    // setCredentialsError(checkForError());
 
     updateCredentialsError(credentialsError, applicationToAssign.id);
   };
