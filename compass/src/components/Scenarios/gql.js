@@ -35,19 +35,31 @@ export const GET_APPLICATIONS = gql`
         name
         id
         labels
-        applicationTemplateID
+        bundles {
+          data {
+            id
+          }
+        }
       }
     }
   }
 `;
 
-export const GET_APPLICATION_TEMPLATES = gql`
-  query {
-    entities: applicationTemplates {
-      data {
-        id
-        name
-      }
+export const REQUEST_BUNDLE_INSTANCE_AUTH_CREATION = gql`
+  mutation requestBundleInstanceAuthCreation(
+    $id: ID!
+    $in: BundleInstanceAuthRequestInput!
+  ) {
+    requestBundleInstanceAuthCreation(bundleID: $id, in: $in) {
+      id
+    }
+  }
+`;
+
+export const SET_BUNDLE_INSTANCE_AUTH = gql`
+  mutation setBundleInstanceAuth($id: ID!, $in: BundleInstanceAuthSetInput!) {
+    setBundleInstanceAuth(authID: $id, in: $in) {
+      id
     }
   }
 `;
