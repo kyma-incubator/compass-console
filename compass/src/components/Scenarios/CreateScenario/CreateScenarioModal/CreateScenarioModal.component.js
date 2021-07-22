@@ -36,7 +36,7 @@ export default class CreateScenarioModal extends React.Component {
     );
   };
 
-  onHide = () => {
+  resetState = () => {
     this.setState({ ...this.defaultState });
   };
 
@@ -70,13 +70,20 @@ export default class CreateScenarioModal extends React.Component {
       ];
       this.updateCredentialValues(credentials, appId);
     } else {
-      const {
-        clientId,
-        clientSecret,
-        url,
-        ...credentials
-      } = this.state.credentials[appId];
-      this.updateCredentialValues(credentials, appId);
+      if (
+        this.state.credentials[appId] &&
+        this.state.credentials[appId].clientId
+      ) {
+        const {
+          clientId,
+          clientSecret,
+          url,
+          ...credentials
+        } = this.state.credentials[appId];
+        this.updateCredentialValues(credentials, appId);
+      }
+
+      this.updateCredentialValues(this.state.credentials[appId], appId);
     }
   };
 
@@ -125,12 +132,8 @@ export default class CreateScenarioModal extends React.Component {
       };
     }, {});
 
-    const applicationsWithCredentials = applicationsToAssign.filter(
-      (application) => {
-        const applicationType =
-          application.labels && application.labels.applicationType;
-        return onPremApplicationTypes.includes(applicationType);
-      },
+    const applicationsWithCredentials = this.getApplicationsNeedingAuth(
+      applicationsToAssign,
     );
 
     this.setState(
@@ -149,6 +152,14 @@ export default class CreateScenarioModal extends React.Component {
     this.setState({ runtimesToAssign: assignedRuntimes });
   };
 
+  getApplicationsNeedingAuth = (applications) => {
+    return applications.filter((application) => {
+      const applicationType =
+        application.labels && application.labels.applicationType;
+      return onPremApplicationTypes.includes(applicationType);
+    });
+  };
+
   disabledConfirm = () => {
     const { name, nameError, credentialsErrors } = this.state;
     const hasError = Object.keys(credentialsErrors).reduce(
@@ -160,12 +171,64 @@ export default class CreateScenarioModal extends React.Component {
 
   addScenarioAndAssignEntries = async () => {
     try {
+      await this.createBundleInstanceAuths();
       await this.addScenario();
       await this.assignEntries();
+      this.resetState();
     } catch (e) {
       console.warn(e);
       this.showError(e);
     }
+  };
+
+  createBundleInstanceAuths = async () => {
+    const {
+      requestBundleInstanceAuthCreation,
+      setBundleInstanceAuth,
+    } = this.props;
+    const { applicationsToAssign, credentials, credentialsTypes } = this.state;
+    const applicationsWithCredentials = this.getApplicationsNeedingAuth(
+      applicationsToAssign,
+    );
+
+    applicationsWithCredentials.map(async (application) => {
+      const bundles = application.bundles.data;
+      const rawCredentials = credentials[application.id];
+      const applicationCredentialsType =
+        credentialsTypes[application.id] === CREDENTIAL_TYPE_OAUTH
+          ? 'oauth'
+          : 'basic';
+
+      const applicationCredentials = {
+        [applicationCredentialsType]: rawCredentials,
+      };
+
+      const requestBundleInstanceAuthCreationPromises = bundles.map((bundle) =>
+        requestBundleInstanceAuthCreation(bundle.id),
+      );
+
+      let bundleAuths;
+      try {
+        bundleAuths = await Promise.all([
+          ...requestBundleInstanceAuthCreationPromises,
+        ]);
+      } catch (e) {
+        this.showError(e);
+      }
+
+      try {
+        if (bundleAuths && bundleAuths.length > 0) {
+          bundleAuths.forEach(async (bundleAuth) => {
+            await setBundleInstanceAuth(
+              bundleAuth.data.requestBundleInstanceAuthCreation.id,
+              applicationCredentials,
+            );
+          });
+        }
+      } catch (e) {
+        this.showError(e);
+      }
+    });
   };
 
   addScenario = async () => {
@@ -338,7 +401,7 @@ export default class CreateScenarioModal extends React.Component {
           this.onClickPrev.bind(this),
           this.onClickNext.bind(this),
         ]}
-        onHide={this.onHide}
+        onCancel={this.resetState}
         areAdditionalButtonsDisabled={[
           this.state.page === 1,
           this.state.page === components.length,

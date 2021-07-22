@@ -7,6 +7,8 @@ import {
   CREATE_SCENARIOS_LABEL,
   SET_APPLICATION_SCENARIOS,
   SET_RUNTIME_SCENARIOS,
+  REQUEST_BUNDLE_INSTANCE_AUTH_CREATION,
+  SET_BUNDLE_INSTANCE_AUTH,
 } from '../../gql';
 import { SEND_NOTIFICATION } from '../../../../gql';
 
@@ -79,5 +81,38 @@ export default compose(
   }),
   graphql(SEND_NOTIFICATION, {
     name: 'sendNotification',
+  }),
+  graphql(REQUEST_BUNDLE_INSTANCE_AUTH_CREATION, {
+    props: (props) => ({
+      requestBundleInstanceAuthCreation: async (bundleId) =>
+        // in variables are hardcoded as they give no meaning in the current situation
+        props.mutate({
+          variables: {
+            id: bundleId,
+            in: {
+              context: '{"ContextData":"ContextValue"}',
+              inputParams: '{"InKey":"InValue"}',
+            },
+          },
+        }),
+    }),
+  }),
+  graphql(SET_BUNDLE_INSTANCE_AUTH, {
+    props: (props) => ({
+      setBundleInstanceAuth: async (authId, rawInput) => {
+        const input = {
+          auth: {
+            credential: rawInput,
+          },
+        };
+
+        return props.mutate({
+          variables: {
+            id: authId,
+            in: input,
+          },
+        });
+      },
+    }),
   }),
 )(CreateScenarioModal);

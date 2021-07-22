@@ -53,7 +53,6 @@ export default function CreateScenarioCredentials({
 
   useEffect(() => {
     updateCredentialsError(checkForError(), applicationToAssign.id);
-    console.log(applicationToAssign.name, checkForError());
   }, [credentials, credentialsType]);
 
   const onCredentialsChange = () => {
@@ -81,8 +80,6 @@ export default function CreateScenarioCredentials({
         : null;
     }
   };
-
-  // console.log( 'credentialsError', credentialsError, applicationToAssign.id)
 
   return (
     <section className="create-scenario-credentials">
