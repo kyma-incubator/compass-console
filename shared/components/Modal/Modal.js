@@ -19,7 +19,8 @@ Modal.propTypes = {
   cancelText: PropTypes.string,
   additionalButtonsText: PropTypes.array,
   onAdditionalButtons: PropTypes.array,
-  areAdditionalButtonDisabled: PropTypes.array,
+  areAdditionalButtonsDisabled: PropTypes.array,
+  areAdditionalButtonsHidden: PropTypes.array,
   type: PropTypes.string,
   disabledConfirm: PropTypes.bool,
   waiting: PropTypes.bool,
@@ -56,7 +57,8 @@ export function Modal({
   additionalButtonsText,
   onAdditionalButtons,
   isConfirmHidden,
-  areAdditionalButtonDisabled,
+  areAdditionalButtonsDisabled,
+  areAdditionalButtonsHidden,
 }) {
   const [show, setShow] = React.useState(false);
   function onOpen() {
@@ -115,16 +117,17 @@ export function Modal({
 
     const additionalButtons = onAdditionalButtons
       ? onAdditionalButtons.map((buttonFn, idx) => {
-          return (
+          const button = !areAdditionalButtonsHidden[idx] ? (
             <Button
               option="emphasized"
               onClick={handleAdditionButtonClicked.bind(this, buttonFn)}
-              disabled={areAdditionalButtonDisabled[idx]}
+              disabled={areAdditionalButtonsDisabled[idx]}
               data-e2e-id={'modal-addition-button-' + idx}
             >
               {additionalButtonsText[idx]}
             </Button>
-          );
+          ) : null;
+          return button;
         })
       : null;
 

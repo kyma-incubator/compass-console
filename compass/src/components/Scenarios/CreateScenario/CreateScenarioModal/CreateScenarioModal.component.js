@@ -8,10 +8,7 @@ import { Modal, CREDENTIAL_TYPE_OAUTH } from 'react-shared';
 import CreateScenarioCredentials from '../CreateScenarioCredentials/CreateScenarioCredentials.container';
 import CreateScenarioForm from './../CreateScenarioForm/CreateScenarioForm.container';
 
-const onPremIds = [
-  'b119e9c4-1cbc-4f36-abac-4ab70d7a743e',
-  '08417a0f-17b6-4c49-b862-b0f95aefc8ca',
-];
+const onPremApplicationTypes = ['SAP S/4HANA OnPremise'];
 
 export default class CreateScenarioModal extends React.Component {
   state = {
@@ -129,7 +126,11 @@ export default class CreateScenarioModal extends React.Component {
     }, {});
 
     const applicationsWithCredentials = applicationsToAssign.filter(
-      (application) => onPremIds.includes(application.applicationTemplateID),
+      (application) => {
+        const applicationType =
+          application.labels && application.labels.applicationType;
+        return onPremApplicationTypes.includes(applicationType);
+      },
     );
 
     this.setState(
@@ -150,12 +151,10 @@ export default class CreateScenarioModal extends React.Component {
 
   disabledConfirm = () => {
     const { name, nameError, credentialsErrors } = this.state;
-    // console.log(credentialsErrors, Object.keys(credentialsErrors).length)
-    const hasError = Object.keys(credentialsErrors).reduce((prev, curr) => {
-      // console.log('prev', prev, 'curr', curr)
-      return prev || !!credentialsErrors[curr];
-    }, false);
-    // console.log(hasError)
+    const hasError = Object.keys(credentialsErrors).reduce(
+      (prev, curr) => prev || !!credentialsErrors[curr],
+      false,
+    );
     return !name.trim() || !!nameError || hasError;
   };
 
@@ -276,7 +275,6 @@ export default class CreateScenarioModal extends React.Component {
           <CreateScenarioCredentials
             key={application.id + '_' + idx}
             applicationToAssign={application}
-            applicationTemplates={this.props.applicationTemplates}
             updateCredentialsError={this.updateCredentials}
             credentials={this.state.credentials}
             updateCredentials={this.updateCredentialValues}
@@ -315,7 +313,6 @@ export default class CreateScenarioModal extends React.Component {
         return (
           <CreateScenarioCredentials
             applicationToAssign={application}
-            applicationTemplates={this.props.applicationTemplates}
             updateCredentialsError={this.updateCredentials}
             credentials={this.state.credentials[application.id]}
             updateCredentials={this.updateCredentialValues}
@@ -342,10 +339,13 @@ export default class CreateScenarioModal extends React.Component {
           this.onClickNext.bind(this),
         ]}
         onHide={this.onHide}
-        onShow={this.onShow}
-        areAdditionalButtonDisabled={[
+        areAdditionalButtonsDisabled={[
           this.state.page === 1,
           this.state.page === components.length,
+        ]}
+        areAdditionalButtonsHidden={[
+          components.length === 1,
+          components.length === 1,
         ]}
         type={'emphasized'}
         isConfirmHidden={this.isConfirmationHidden(components)}
@@ -368,7 +368,6 @@ CreateScenarioModal.propTypes = {
   createScenarios: PropTypes.func.isRequired,
   addScenario: PropTypes.func.isRequired,
   sendNotification: PropTypes.func.isRequired,
-  applicationTemplates: PropTypes.object.isRequired,
 
   setRuntimeScenarios: PropTypes.func.isRequired,
   setApplicationScenarios: PropTypes.func.isRequired,
