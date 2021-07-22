@@ -20,13 +20,14 @@ export default function CreateScenarioCredentials({
   credentials,
   credentialsType,
   updateCredentialType,
+  credentialsError,
 }) {
   const credentialsList = {
     [CREDENTIAL_TYPE_OAUTH]: CREDENTIAL_TYPE_OAUTH,
     [CREDENTIAL_TYPE_BASIC]: CREDENTIAL_TYPE_BASIC,
   };
 
-  const [credentialsError, setCredentialsError] = React.useState(error);
+  // const [credentialsError, setCredentialsError] = React.useState(error);
   const credentialRefs = {
     oAuth: {
       clientId: React.useRef(null),
@@ -40,23 +41,24 @@ export default function CreateScenarioCredentials({
   };
 
   let defaultValues;
-  if (credentials) {
+  const appCreds = credentials;
+  if (appCreds) {
     defaultValues = {
       oAuth: {
-        clientId: credentials.clientId,
-        clientSecret: credentials.clientSecret,
-        url: credentials.url,
+        clientId: appCreds.clientId,
+        clientSecret: appCreds.clientSecret,
+        url: appCreds.url,
       },
       basic: {
-        username: credentials.username,
-        password: credentials.password,
+        username: appCreds.username,
+        password: appCreds.password,
       },
     };
   }
-
   useEffect(() => {
-    updateCredentialsError(checkForError());
-  }, []);
+    updateCredentialsError(checkForError(), applicationToAssign.id);
+    console.log(applicationToAssign.name, checkForError());
+  }, [credentials, credentialsType]);
 
   const onCredentialsChange = () => {
     const credentialValues =
@@ -66,9 +68,9 @@ export default function CreateScenarioCredentials({
 
     updateCredentials(credentialValues, applicationToAssign.id);
 
-    setCredentialsError(checkForError());
+    // setCredentialsError(checkForError());
 
-    updateCredentialsError(credentialsError);
+    updateCredentialsError(credentialsError, applicationToAssign.id);
   };
 
   const checkForError = () => {
@@ -86,11 +88,14 @@ export default function CreateScenarioCredentials({
     }
   };
 
+  // console.log( 'credentialsError', credentialsError, applicationToAssign.id)
+
   return (
     <section className="create-scenario-credentials">
       <h3>{applicationToAssign.name}</h3>
       <FormSet onChange={onCredentialsChange}>
         <CredentialsForm
+          id={applicationToAssign.id}
           credentialRefs={credentialRefs}
           credentialType={credentialsType}
           setCredentialType={(v) =>
@@ -116,4 +121,5 @@ CreateScenarioCredentials.propTypes = {
   updateCredentials: PropTypes.func,
   credentialsType: PropTypes.string,
   updateCredentialType: PropTypes.func,
+  credentialsError: PropTypes.string,
 };
