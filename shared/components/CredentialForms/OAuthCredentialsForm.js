@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
+
 import CustomPropTypes from '../../typechecking/CustomPropTypes';
 import { TextFormItem } from '../TextFormItem/TextFormItem';
 
@@ -14,13 +16,18 @@ export const oAuthRefPropTypes = PropTypes.shape({
 OAuthCredentialsForm.propTypes = {
   refs: oAuthRefPropTypes,
   defaultValues: PropTypes.object,
+  id: PropTypes.string,
 };
 
-export function OAuthCredentialsForm({ refs, defaultValues }) {
+OAuthCredentialsForm.defaultProps = {
+  id: uuidv4(),
+};
+
+export function OAuthCredentialsForm({ refs, defaultValues, id }) {
   return (
     <>
       <TextFormItem
-        inputKey="client-id"
+        inputKey={id + 'client-id'}
         required
         type="password"
         label="Client ID"
@@ -28,7 +35,7 @@ export function OAuthCredentialsForm({ refs, defaultValues }) {
         defaultValue={defaultValues && defaultValues.clientId}
       />
       <TextFormItem
-        inputKey="client-secret"
+        inputKey={id + 'client-secret'}
         required
         type="password"
         label="Client Secret"
@@ -36,7 +43,7 @@ export function OAuthCredentialsForm({ refs, defaultValues }) {
         defaultValue={defaultValues && defaultValues.clientSecret}
       />
       <TextFormItem
-        inputKey="url"
+        inputKey={id + 'url'}
         required
         type="url"
         label="Url"

@@ -16,6 +16,7 @@ export const CREDENTIAL_TYPE_NONE = 'None';
 export const CREDENTIAL_TYPE_EMPTY = 'Empty';
 
 CredentialsForm.propTypes = {
+  id: PropTypes.string,
   credentialType: PropTypes.string.isRequired,
   setCredentialType: PropTypes.func.isRequired,
   credentialRefs: PropTypes.shape({
@@ -37,6 +38,7 @@ export function CredentialsForm({
   defaultValues,
   availableCredentialsList,
   message,
+  id,
 }) {
   const credentialsList = availableCredentialsList || {
     [CREDENTIAL_TYPE_NONE]: CREDENTIAL_TYPE_NONE,
@@ -70,6 +72,7 @@ export function CredentialsForm({
       </p>
       {credentialType === CREDENTIAL_TYPE_OAUTH && (
         <OAuthCredentialsForm
+          id={id}
           refs={credentialRefs.oAuth}
           defaultValues={defaultValues && defaultValues.oAuth}
         />
