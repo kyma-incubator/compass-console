@@ -1,6 +1,6 @@
 import React from 'react';
 import LuigiClient from '@luigi-project/client';
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 import classNames from 'classnames';
 import './Modal.scss';
 import { Modal as FdModal, Button } from 'fundamental-react';
@@ -13,6 +13,7 @@ Modal.propTypes = {
   onShow: PropTypes.func,
   actions: PropTypes.any,
   onHide: PropTypes.func,
+  onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
   isConfirmHidden: PropTypes.bool,
   confirmText: PropTypes.string,
@@ -45,6 +46,7 @@ export function Modal({
   modalOpeningComponent,
   onShow,
   onHide,
+  onCancel,
   onConfirm,
   confirmText,
   cancelText,
@@ -69,10 +71,17 @@ export function Modal({
     setShow(true);
   }
 
+  function onCancelCall() {
+    if (onCancel) {
+      onCancel();
+    }
+  }
+
   function onClose() {
     if (onHide) {
       onHide();
     }
+
     LuigiClient.uxManager().removeBackdrop();
     setShow(false);
   }
@@ -140,7 +149,10 @@ export function Modal({
               <Button
                 style={{ marginRight: '12px' }}
                 option="light"
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  onCancelCall();
+                }}
               >
                 {cancelText}
               </Button>
