@@ -25,6 +25,11 @@ export default class CreateScenarioModal extends React.Component {
 
   defaultState = {};
 
+  constructor() {
+    super();
+    this.defaultState = { ...this.state };
+  }
+
   checkScenarioAlreadyExists = (scenarioName) => {
     const scenariosQuery = this.props.scenariosQuery;
     return (
@@ -39,10 +44,6 @@ export default class CreateScenarioModal extends React.Component {
   resetState = () => {
     this.setState({ ...this.defaultState });
   };
-
-  componentWillMount() {
-    this.defaultState = { ...this.state };
-  }
 
   updateScenarioName = (e) => {
     const nameRegex = /^[A-Za-z0-9]([-_A-Za-z0-9\s]*[A-Za-z0-9])$/;
@@ -124,13 +125,14 @@ export default class CreateScenarioModal extends React.Component {
   };
 
   updateApplications = (applicationsToAssign) => {
-    const credentialsTypes = applicationsToAssign.reduce((prev, curr) => {
-      return {
+    const credentialsTypes = applicationsToAssign.reduce(
+      (prev, curr) => ({
         ...prev,
         ...this.state.credentialsTypes,
         [curr.id]: CREDENTIAL_TYPE_OAUTH,
-      };
-    }, {});
+      }),
+      {},
+    );
 
     const applicationsWithCredentials = this.getApplicationsNeedingAuth(
       applicationsToAssign,
@@ -152,13 +154,12 @@ export default class CreateScenarioModal extends React.Component {
     this.setState({ runtimesToAssign: assignedRuntimes });
   };
 
-  getApplicationsNeedingAuth = (applications) => {
-    return applications.filter((application) => {
+  getApplicationsNeedingAuth = (applications) =>
+    applications.filter((application) => {
       const applicationType =
         application.labels && application.labels.applicationType;
       return onPremApplicationTypes.includes(applicationType);
     });
-  };
 
   disabledConfirm = () => {
     const { name, nameError, credentialsErrors } = this.state;
@@ -319,50 +320,31 @@ export default class CreateScenarioModal extends React.Component {
     this.setState({ page: this.state.page + 1 });
   };
 
-  isConfirmationHidden = (components) => {
-    return this.state.page !== components.length;
-  };
+  isConfirmationHidden = (components) => this.state.page !== components.length;
 
-  setupComponents = () => {
-    return [
-      <CreateScenarioForm
-        updateScenarioName={this.updateScenarioName}
-        nameError={this.state.nameError}
-        updateApplications={this.updateApplications}
-        applicationsToAssign={this.state.applicationsToAssign}
-        updateRuntimes={this.updateRuntimes}
-        runtimesToAssign={this.state.runtimesToAssign}
-      />,
-      ...this.state.applicationsWithCredentials.map((application, idx) => {
-        return (
-          <CreateScenarioCredentials
-            key={application.id + '_' + idx}
-            applicationToAssign={application}
-            updateCredentialsError={this.updateCredentials}
-            credentials={this.state.credentials}
-            updateCredentials={this.updateCredentialValues}
-            credentialsType={this.state.credentialsTypes[application.id]}
-            updateCredentialType={this.setCredentialsType}
-          />
-        );
-      }),
-    ];
-  };
+  setupComponents = () => [
+    <CreateScenarioForm
+      updateScenarioName={this.updateScenarioName}
+      nameError={this.state.nameError}
+      updateApplications={this.updateApplications}
+      applicationsToAssign={this.state.applicationsToAssign}
+      updateRuntimes={this.updateRuntimes}
+      runtimesToAssign={this.state.runtimesToAssign}
+    />,
+    ...this.state.applicationsWithCredentials.map((application, idx) => (
+      <CreateScenarioCredentials
+        key={application.id + '_' + idx}
+        applicationToAssign={application}
+        updateCredentialsError={this.updateCredentials}
+        credentials={this.state.credentials}
+        updateCredentials={this.updateCredentialValues}
+        credentialsType={this.state.credentialsTypes[application.id]}
+        updateCredentialType={this.setCredentialsType}
+      />
+    )),
+  ];
 
   render() {
-    const loading =
-      this.props.applicationTemplates &&
-      this.props.applicationTemplates.loading;
-    const error =
-      this.props.applicationTemplates && this.props.applicationTemplates.error;
-
-    if (loading) {
-      return 'Loading...';
-    }
-    if (error) {
-      return `Error! ${error.message}`;
-    }
-
     const components = [
       <CreateScenarioForm
         key="create-scenario-form"
@@ -373,20 +355,18 @@ export default class CreateScenarioModal extends React.Component {
         updateRuntimes={this.updateRuntimes}
         runtimesToAssign={this.state.runtimesToAssign}
       />,
-      ...this.state.applicationsWithCredentials.map((application, idx) => {
-        return (
-          <CreateScenarioCredentials
-            key={application.id}
-            applicationToAssign={application}
-            updateCredentialsError={this.updateCredentials}
-            credentials={this.state.credentials[application.id]}
-            updateCredentials={this.updateCredentialValues}
-            credentialsType={this.state.credentialsTypes[application.id]}
-            updateCredentialType={this.setCredentialsType}
-            credentialsError={this.state.credentialsErrors[application.id]}
-          />
-        );
-      }),
+      ...this.state.applicationsWithCredentials.map((application, idx) => (
+        <CreateScenarioCredentials
+          key={application.id}
+          applicationToAssign={application}
+          updateCredentialsError={this.updateCredentials}
+          credentials={this.state.credentials[application.id]}
+          updateCredentials={this.updateCredentialValues}
+          credentialsType={this.state.credentialsTypes[application.id]}
+          updateCredentialType={this.setCredentialsType}
+          credentialsError={this.state.credentialsErrors[application.id]}
+        />
+      )),
     ];
 
     const modalOpeningComponent = (
@@ -437,4 +417,6 @@ CreateScenarioModal.propTypes = {
 
   setRuntimeScenarios: PropTypes.func.isRequired,
   setApplicationScenarios: PropTypes.func.isRequired,
+  requestBundleInstanceAuthCreation: PropTypes.func.isRequired,
+  setBundleInstanceAuth: PropTypes.func.isRequired,
 };

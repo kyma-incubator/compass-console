@@ -129,7 +129,7 @@ export function Modal({
           const button = !areAdditionalButtonsHidden[idx] ? (
             <Button
               option="emphasized"
-              onClick={handleAdditionButtonClicked.bind(this, buttonFn)}
+              onClick={() => handleAdditionButtonClicked(buttonFn)}
               disabled={areAdditionalButtonsDisabled[idx]}
               data-e2e-id={'modal-addition-button-' + idx}
             >
