@@ -187,7 +187,10 @@ export function Modal({
         type={type}
         title={title}
         show={show}
-        onClose={onClose}
+        onClose={() => {
+          onClose();
+          onCancelCall();
+        }}
         actions={actions || createActions()}
       >
         {children}
