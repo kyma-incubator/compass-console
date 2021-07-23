@@ -53,7 +53,7 @@ export default function CreateScenarioCredentials({
 
   useEffect(() => {
     updateCredentialsError(checkForError(), applicationToAssign.id);
-  }, [credentials, credentialsType]);
+  }, [credentials, credentialsType]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onCredentialsChange = () => {
     const credentialValues =
