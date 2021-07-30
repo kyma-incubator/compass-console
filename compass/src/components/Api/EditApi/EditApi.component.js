@@ -142,11 +142,17 @@ function EditApi({
                         width="90px"
                       />
                       <Dropdown
-                        options={{ OPEN_API: 'Open API', ODATA: 'OData' }}
+                        options={{
+                          OPEN_API: 'Open API',
+                          'openapi-v2': 'Open API V2',
+                          'openapi-v3': 'Open API V3',
+                          ODATA: 'OData',
+                          edmx: 'EDMX',
+                        }}
                         selectedOption={apiType}
                         onSelect={setApiType}
                         className="fd-has-margin-x-small"
-                        width="120px"
+                        width="130px"
                       />
                       <Button
                         type="negative"
