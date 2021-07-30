@@ -47,11 +47,21 @@ export default function EditApiHeader({
     { name: '' },
   ];
 
-  let specType = api.spec.type;
+  const specType = api.spec.type;
   let headerDescription;
-  if (specType !== 'ODATA' && specType !== 'OPEN_API' && specType !== 'ASYNC_API') {
+  if (
+    specType !== 'ODATA' &&
+    specType !== 'OPEN_API' &&
+    specType !== 'ASYNC_API'
+  ) {
     canSaveChanges = false;
-    headerDescription =  <i>This API/Event definition has been fetched from a remote system in an automated flow. Manual intervention of the API/Event definition is not allowed.</i>
+    headerDescription = (
+      <i>
+        This API/Event definition has been fetched from a remote system in an
+        automated flow. Manual intervention of the API/Event definition is not
+        allowed.
+      </i>
+    );
   }
 
   const actions = (

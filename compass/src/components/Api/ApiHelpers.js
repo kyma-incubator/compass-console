@@ -220,6 +220,6 @@ export function getApiType(api) {
 
 export function getApiDisplayName(api) {
   if (api.spec && api.spec.type) {
-      return api.spec.type.toUpperCase();
+    return api.spec.type.toUpperCase();
   }
 }
