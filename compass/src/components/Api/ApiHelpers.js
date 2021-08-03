@@ -18,6 +18,11 @@ function isAsyncApi(spec) {
   return spec && !!spec.asyncapi;
 }
 
+function isSwaggerApi(spec) {
+  // according to https://swagger.io/specification/#versions
+  return spec && !!spec.swagger;
+}
+
 function isOpenApi(spec) {
   // according to https://swagger.io/specification/#fixed-fields
   return spec && !!spec.openapi;
@@ -135,7 +140,19 @@ export async function verifyApiFile(file, expectedType) {
     return { error: 'Parse error' };
   }
 
-  if (!isOpenApi(spec) && expectedType === 'OPEN_API') {
+  if (!isSwaggerApi(spec) && !isOpenApi(spec) && expectedType === 'OPEN_API') {
+    return {
+      error:
+        'Supplied spec does not have required "swagger" or "openapi" property',
+    };
+  }
+
+  if (!isSwaggerApi(spec) && expectedType === 'openapi-v2') {
+    return {
+      error: 'Supplied spec does not have required "swagger" property',
+    };
+  }
+  if (!isOpenApi(spec) && expectedType === 'openapi-v3') {
     return {
       error: 'Supplied spec does not have required "openapi" property',
     };
@@ -155,10 +172,17 @@ export function verifyApiInput(apiText, format, apiType) {
     return { error: 'Parse error' };
   }
 
-  if (!isOpenApi(spec) && apiType === 'OPEN_API') {
+  if (!isSwaggerApi(spec) && !isOpenApi(spec) && apiType === 'OPEN_API') {
+    return { error: '"swagger" or "openapi" property is required' };
+  }
+
+  if (!isSwaggerApi(spec) && apiType === 'openapi-v2') {
+    return { error: '"swagger" property is required' };
+  }
+  if (!isOpenApi(spec) && apiType === 'openapi-v3') {
     return { error: '"openapi" property is required' };
   }
-  if (!isOData(spec) && apiType === 'ODATA') {
+  if (!isOData(spec) && (apiType === 'ODATA' || apiType === 'edmx')) {
     return { error: '"edmx:Edmx" property is required' };
   }
 
@@ -181,8 +205,11 @@ export function verifyEventApiInput(eventApiText, format) {
 export function getApiType(api) {
   switch (api.spec && api.spec.type) {
     case 'OPEN_API':
+    case 'openapi-v2':
+    case 'openapi-v3':
       return 'openapi';
     case 'ODATA':
+    case 'edmx':
       return 'odata';
     case 'ASYNC_API':
       return 'asyncapi';
@@ -192,14 +219,7 @@ export function getApiType(api) {
 }
 
 export function getApiDisplayName(api) {
-  switch (api.spec && api.spec.type) {
-    case 'OPEN_API':
-      return 'Open API';
-    case 'ODATA':
-      return 'OData';
-    case 'ASYNC_API':
-      return 'Events API';
-    default:
-      return null;
+  if (api.spec && api.spec.type) {
+    return api.spec.type.toUpperCase();
   }
 }

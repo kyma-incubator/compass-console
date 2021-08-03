@@ -47,6 +47,23 @@ export default function EditApiHeader({
     { name: '' },
   ];
 
+  const specType = api.spec.type;
+  let headerDescription;
+  if (
+    specType !== 'ODATA' &&
+    specType !== 'OPEN_API' &&
+    specType !== 'ASYNC_API'
+  ) {
+    canSaveChanges = false;
+    headerDescription = (
+      <i>
+        This API/Event definition has been fetched from a remote system in an
+        automated flow. Manual intervention of the API/Event definition is not
+        allowed.
+      </i>
+    );
+  }
+
   const actions = (
     <>
       <Button
@@ -65,6 +82,7 @@ export default function EditApiHeader({
   return (
     <PageHeader
       title={api.name}
+      description={headerDescription}
       breadcrumbItems={breadcrumbItems}
       actions={actions}
     >
