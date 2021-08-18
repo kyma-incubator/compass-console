@@ -3,7 +3,7 @@
   "private": false,
   "license": "Apache-2.0",
   "dependencies": {
-    "@braintree/sanitize-url": "^5.0.1",
+    "@braintree/sanitize-url": "^5.0.2",
     "@kyma-project/dc-async-api-render-engine": "0.3.4",
     "@kyma-project/dc-markdown-render-engine": "0.3.2",
     "@kyma-project/dc-odata-render-engine": "0.3.2",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/react-copy-to-clipboard": "^4.2.6",
     "kind-of": "^6.0.3",
-    "swagger-ui-dist": "^3.46.0"
+    "swagger-ui-dist": "^3.52.0"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
