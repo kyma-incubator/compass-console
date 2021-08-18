@@ -32,9 +32,9 @@
     }
   },
   "dependencies": {
-    "browserslist": "^4.16.5",
+    "browserslist": "^4.16.7",
     "caniuse-lite": "^1.0.30001227",
-    "jsoneditor": "^9.3.1",
+    "jsoneditor": "^9.5.3",
     "react-tippy": "^1.4.0"
   }
 }
