@@ -24,7 +24,7 @@ ENV CI true
 RUN cd /app/${app_name} && make build
 
 ### Main image ###
-FROM alpine:3.13
+FROM alpine:3.14.2
 
 ### Update apk repositories for the latest nginx
 RUN printf "%s%s%s\n" \
