@@ -1,5 +1,5 @@
 ci-pr: root-pr resolve build test
-ci-master: root-master resolve build test
+ci-main: root-master resolve build test
 
 .PHONY: root-pr
 root-pr:
@@ -7,7 +7,7 @@ root-pr:
 
 .PHONY: root-master
 root-master:
-	make -C "../../" ci-master
+	make -C "../../" ci-main
 
 .PHONY: resolve
 resolve:
