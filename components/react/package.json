@@ -59,7 +59,7 @@
     "webpack-merge": "^4.2.2"
   },
   "peerDependencies": {
-    "styled-components": "^5.3.1"
+    "styled-components": "^3.2.3"
   },
   "resolutions": {
     "uglify-es": "3.3.7"
