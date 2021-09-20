@@ -17,7 +17,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.0",
     "sass-loader": "^12.1.0",
-    "webpack": "^5.53.0"
+    "webpack": "^5.50.0"
   },
   "peerDependencies": {
     "react": "16.12.0",
