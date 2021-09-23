@@ -11,16 +11,17 @@ import { highlightTheme } from './highlightTheme';
 import { headingPrefix } from './helpers';
 import { disableInternalLinksParserPlugin } from './plugins';
 
-export const markdownRE: RenderEngineWithOptions<MarkdownRenderEngineOptions> = {
-  renderEngine: markdownRenderEngine,
-  options: {
-    customRenderers: {
-      link: Link,
-      listItem: ListItem,
+export const markdownRE: RenderEngineWithOptions<MarkdownRenderEngineOptions> =
+  {
+    renderEngine: markdownRenderEngine,
+    options: {
+      customRenderers: {
+        link: Link,
+        listItem: ListItem,
+      },
+      parsers: [plugins.tabsParserPlugin, disableInternalLinksParserPlugin],
+      headingPrefix,
+      highlightTheme,
+      copyButton: CopyButton,
     },
-    parsers: [plugins.tabsParserPlugin, disableInternalLinksParserPlugin],
-    headingPrefix,
-    highlightTheme,
-    copyButton: CopyButton,
-  },
-};
+  };

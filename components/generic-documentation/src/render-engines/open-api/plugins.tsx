@@ -8,12 +8,11 @@ import {
 
 const plugin = {
   wrapComponents: {
-    parameters: (Original: typeof React.Component, system: any) => (
-      props: any,
-    ) => {
-      const customProps = { ...props, allowTryItOut: false };
-      return <Original {...customProps} />;
-    },
+    parameters:
+      (Original: typeof React.Component, system: any) => (props: any) => {
+        const customProps = { ...props, allowTryItOut: false };
+        return <Original {...customProps} />;
+      },
     authorizeBtn: () => () => null,
     authorizeOperationBtn: () => () => null,
     info: () => () => null,

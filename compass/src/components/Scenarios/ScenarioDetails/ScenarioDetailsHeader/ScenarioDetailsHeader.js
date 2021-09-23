@@ -40,9 +40,11 @@ export default function ScenarioDetailsHeader({
 }) {
   const scenarioName = useContext(ScenarioNameContext);
 
-  const { data: scenariosLabelSchema, error, loading } = useQuery(
-    GET_SCENARIOS_LABEL_SCHEMA,
-  );
+  const {
+    data: scenariosLabelSchema,
+    error,
+    loading,
+  } = useQuery(GET_SCENARIOS_LABEL_SCHEMA);
   const [deleteScenarioMutation] = useMutation(UPDATE_SCENARIOS);
 
   if (loading) {

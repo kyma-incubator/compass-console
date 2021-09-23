@@ -27,12 +27,8 @@ describe('HeaderLabelsEditor', () => {
   });
 
   it('Allows for editing labels, resets on "Cancel"', () => {
-    const {
-      getByText,
-      getByLabelText,
-      queryByText,
-      getByPlaceholderText,
-    } = render(<HeaderLabelsEditor labels={labels} onApply={() => {}} />);
+    const { getByText, getByLabelText, queryByText, getByPlaceholderText } =
+      render(<HeaderLabelsEditor labels={labels} onApply={() => {}} />);
 
     // switch to editor state
     fireEvent.click(getByLabelText('Edit labels'));

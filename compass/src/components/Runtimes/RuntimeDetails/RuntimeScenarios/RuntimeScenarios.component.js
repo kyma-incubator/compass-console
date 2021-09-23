@@ -23,9 +23,11 @@ export default function RuntimeScenarios({
 }) {
   const runtimeQuery = React.useContext(RuntimeQueryContext);
 
-  const { data: fetchedScenarioAssignments, error, loading } = useQuery(
-    GET_SCENARIO_ASSIGNMENTS,
-  );
+  const {
+    data: fetchedScenarioAssignments,
+    error,
+    loading,
+  } = useQuery(GET_SCENARIO_ASSIGNMENTS);
 
   if (loading) {
     return <p>Loading...</p>;

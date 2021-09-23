@@ -3,11 +3,12 @@ import { ConfigProvider } from './ConfigContext';
 import { NotificationProvider } from './NotificationContext';
 import { MicrofrontendContextProvider } from './MicrofrontendContext';
 
-const withProvider = (Provider) => (Component) => (props) => (
-  <Provider {...props}>
-    <Component {...props} />
-  </Provider>
-);
+const withProvider = (Provider) => (Component) => (props) =>
+  (
+    <Provider {...props}>
+      <Component {...props} />
+    </Provider>
+  );
 
 export const Microfrontend = [
   MicrofrontendContextProvider,

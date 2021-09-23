@@ -64,20 +64,18 @@ const Text = styled.p<TextProps>`
   color: #32363a;
 `;
 
-export const SchemesWrapperExtended = (
-  Orig: typeof React.Component,
-  system: any,
-) => (props: any) => {
-  if (props.className === 'schemes wrapper') {
-    return (
-      <Wrapper>
-        <Text>API Console</Text>
-        <ContentWrapper>
-          <Text light={true}>Schemes</Text>
-          <Orig {...props} />
-        </ContentWrapper>
-      </Wrapper>
-    );
-  }
-  return <Orig {...props} />;
-};
+export const SchemesWrapperExtended =
+  (Orig: typeof React.Component, system: any) => (props: any) => {
+    if (props.className === 'schemes wrapper') {
+      return (
+        <Wrapper>
+          <Text>API Console</Text>
+          <ContentWrapper>
+            <Text light={true}>Schemes</Text>
+            <Orig {...props} />
+          </ContentWrapper>
+        </Wrapper>
+      );
+    }
+    return <Orig {...props} />;
+  };
