@@ -51,7 +51,7 @@
     "elliptic": ">=6.5.4",
     "fiori-fundamentals": "^1.7.9",
     "fundamental-react": "0.8.0-rc.12",
-    "fundamental-styles": "^0.19.0",
+    "fundamental-styles": "^0.10.0",
     "graphql": "^15.5.3",
     "graphql-tag": "^2.12.5",
     "lodash": "^4.17.21",
