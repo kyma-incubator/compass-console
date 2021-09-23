@@ -67,7 +67,7 @@ export const InputField = styled.input`
     margin-right: 10px;
   }
 `;
-// some comment
+
 export const InputPasswordField = styled.span`
   display: block;
   font-family: SAP-Icons;
