@@ -98,7 +98,7 @@
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-watch": "^5.0.1",
-    "jest": "^24.8.0",
+    "jest": "^27.2.1",
     "jsdom-worker-fix": "^0.1.8",
     "live-server": "^1.2.1",
     "node-sass": "^4.12.0",
