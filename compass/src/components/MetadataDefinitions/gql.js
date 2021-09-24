@@ -10,7 +10,7 @@ export const GET_LABEL_DEFINITIONS = gql`
 `;
 
 export const GET_LABEL_DEFINITION = gql`
-  query($key: String!) {
+  query ($key: String!) {
     labelDefinition(key: $key) {
       key
       schema

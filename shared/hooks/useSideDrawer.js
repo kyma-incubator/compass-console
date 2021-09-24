@@ -16,7 +16,8 @@ export const useSideDrawer = (
   useEffect(
     () =>
       // return a function to skip changing the open state on initial render
-      (_) => setOpen(true),
+      (_) =>
+        setOpen(true),
     [content],
   );
 

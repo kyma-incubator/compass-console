@@ -56,11 +56,8 @@ const InfiniteList = ({
   const canScrollMore = loading || data.runtimes.totalCount > entries.length;
 
   function handleScroll(ev) {
-    const {
-      scrollHeight,
-      scrollTop,
-      clientHeight,
-    } = ev.target.scrollingElement;
+    const { scrollHeight, scrollTop, clientHeight } =
+      ev.target.scrollingElement;
     const hasReachedBottom =
       scrollHeight - scrollTop - SCROLL_MARGIN <= clientHeight;
 

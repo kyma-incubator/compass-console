@@ -9,6 +9,7 @@ const disableInternalLinksMutationPlugin: Plugin = {
   sourceTypes: ['markdown', 'md'],
   fn: disableInternalLinks,
 };
-const disableInternalLinksParserPlugin: MarkdownParserPlugin = disabledInternalLinkParser;
+const disableInternalLinksParserPlugin: MarkdownParserPlugin =
+  disabledInternalLinkParser;
 
 export { disableInternalLinksMutationPlugin, disableInternalLinksParserPlugin };

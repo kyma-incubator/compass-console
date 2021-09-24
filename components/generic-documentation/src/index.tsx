@@ -98,70 +98,73 @@ export interface GenericDocumentationProps {
   additionalTabs?: TabProps[];
 }
 
-export const GenericDocumentation: React.FunctionComponent<GenericDocumentationProps> = ({
-  assetGroup,
-  sources: srcs = [],
-  layout = LayoutType.CONTENT_UI,
-  ...others
-}) => {
-  useEffect(() => {
-    disableClickEventFromSwagger();
-  }, []);
+export const GenericDocumentation: React.FunctionComponent<GenericDocumentationProps> =
+  ({
+    assetGroup,
+    sources: srcs = [],
+    layout = LayoutType.CONTENT_UI,
+    ...others
+  }) => {
+    useEffect(() => {
+      disableClickEventFromSwagger();
+    }, []);
 
-  const [sources, setSources] = useState<Sources>(srcs);
+    const [sources, setSources] = useState<Sources>(srcs);
 
-  useEffect(() => {
-    const fetchAssets = async () => {
-      if (!assetGroup) {
+    useEffect(() => {
+      const fetchAssets = async () => {
+        if (!assetGroup) {
+          return;
+        }
+
+        loader.setAssetGroup(assetGroup);
+        loader.setSortServiceClassDocumentation(
+          layout !== LayoutType.CONTENT_UI,
+        );
+
+        await loader.fetchAssets();
+
+        setSources(loader.getSources(layout !== LayoutType.CONTENT_UI));
+      };
+      fetchAssets();
+    }, [assetGroup, setSources]);
+
+    // Allow rendering additionalTabs when no sources is present
+    useEffect(() => {
+      if (sources.length) {
+        return;
+      }
+      if (!others.additionalTabs || !others.additionalTabs.length) {
         return;
       }
 
-      loader.setAssetGroup(assetGroup);
-      loader.setSortServiceClassDocumentation(layout !== LayoutType.CONTENT_UI);
-
-      await loader.fetchAssets();
-
-      setSources(loader.getSources(layout !== LayoutType.CONTENT_UI));
-    };
-    fetchAssets();
-  }, [assetGroup, setSources]);
-
-  // Allow rendering additionalTabs when no sources is present
-  useEffect(() => {
-    if (sources.length) {
-      return;
-    }
-    if (!others.additionalTabs || !others.additionalTabs.length) {
-      return;
-    }
-
-    setSources([
-      {
-        sources: [
-          {
-            source: {
-              type: 'mock',
-              rawContent: '',
+      setSources([
+        {
+          sources: [
+            {
+              source: {
+                type: 'mock',
+                rawContent: '',
+              },
             },
-          },
-        ],
-      },
-    ]);
-  }, [sources]);
+          ],
+        },
+      ]);
+    }, [sources]);
 
-  if (!sources || !sources.length) {
-    return null;
-  }
+    if (!sources || !sources.length) {
+      return null;
+    }
 
-  return (
-    <DC.Provider
-      sources={sources}
-      plugins={PLUGINS}
-      renderEngines={RENDER_ENGINES}
-    >
-      {renderContent(layout, others)}
-    </DC.Provider>
-  );
-};
+    return (
+      <DC.Provider
+        sources={sources}
+        plugins={PLUGINS}
+        renderEngines={RENDER_ENGINES}
+      >
+        {renderContent(layout, others)}
+      </DC.Provider>
+    );
+  };
 
 export const GenericComponent = GenericDocumentation;

@@ -20,10 +20,8 @@ describe('ConnectApplication', () => {
     // wait for data to load
     await waitForDomChange();
 
-    const {
-      rawEncoded,
-      legacyConnectorURL,
-    } = validMock[0].result.data.requestOneTimeTokenForApplication;
+    const { rawEncoded, legacyConnectorURL } =
+      validMock[0].result.data.requestOneTimeTokenForApplication;
 
     const rawEncodedInput = queryByLabelText(
       'Data to connect Application (base64 encoded)',

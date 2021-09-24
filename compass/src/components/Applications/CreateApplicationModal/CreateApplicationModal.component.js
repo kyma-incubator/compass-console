@@ -125,7 +125,8 @@ class CreateApplicationModal extends React.Component {
   }
 
   validateApplicationName = (value) => {
-    const regex = /^[a-z]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
+    const regex =
+      /^[a-z]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
     const wrongApplicationName =
       value && (!Boolean(regex.test(value || '')) || value.length > 36);
     return wrongApplicationName;

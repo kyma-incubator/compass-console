@@ -51,9 +51,8 @@ export default function CreateApiPackageForm({
     },
   };
   const [requestInputSchema, setRequestInputSchema] = React.useState({});
-  const [credentialsType, setCredentialsType] = React.useState(
-    CREDENTIAL_TYPE_NONE,
-  );
+  const [credentialsType, setCredentialsType] =
+    React.useState(CREDENTIAL_TYPE_NONE);
 
   const handleSchemaChange = (schema) => {
     const isNonNullObject = (o) => typeof o === 'object' && !!o;
