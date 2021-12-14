@@ -59,18 +59,20 @@ class App extends React.Component {
             <Route path="/tenant-search" exact component={TenantSearch} />
             <Route path="/runtimes" exact component={Runtimes} />
             <Route
-              path="/runtime/:id"
+              path="/runtime/:runtimeId"
               exact
               render={({ match }) => (
-                <RuntimeDetails runtimeId={match.params.id} />
+                <RuntimeDetails runtimeId={match.params.runtimeId} />
               )}
             />
             <Route path="/applications" exact component={Applications} />
             <Route
-              path="/application/:id"
+              path="/application/:applicationId"
               exact
               render={({ match }) => (
-                <ApplicationDetails applicationId={match.params.id} />
+                <ApplicationDetails
+                  applicationId={match.params.applicationId}
+                />
               )}
             />
             <Route
