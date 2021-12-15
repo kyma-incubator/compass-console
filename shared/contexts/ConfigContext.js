@@ -21,6 +21,8 @@ export const ConfigProvider = ({
   prefix = DEFAULT_PREFIX,
 }) => {
   const config = configFromEnvVariables(env, prefix, window.clusterConfig);
+  window.clusterConfig = window.clusterConfig || config;
+
   return (
     <ConfigContext.Provider value={{ fromConfig: fromConfig(config) }}>
       {children}

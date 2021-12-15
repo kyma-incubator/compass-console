@@ -1,5 +1,4 @@
-export default async function fetchTenants(token) {
-  const url = window.clusterConfig.compassApiUrl;
+export default async function fetchTenants(token, apiUrl) {
   const query = {
     query: `{
     tenants {
@@ -11,7 +10,7 @@ export default async function fetchTenants(token) {
   `,
   };
 
-  const response = await fetch(url, {
+  const response = await fetch(apiUrl, {
     method: 'POST',
     cache: 'no-cache',
     headers: {

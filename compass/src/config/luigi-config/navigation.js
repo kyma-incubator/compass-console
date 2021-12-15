@@ -12,9 +12,9 @@ const compassMfUrl = clusterConfig.compassModuleUrl;
 const token = getToken();
 let tenants = [];
 
-(async () => {
-  tenants = await fetchTenants();
-})();
+fetchTenants()
+  .then((t) => (tenants = t))
+  .catch((e) => setError(`Error: tenants could not be loaded: ${e.message}`));
 
 const getTenantName = (tenantId) => {
   const tenantsToCheck = tenants.length > 0 ? tenants : getTenantsFromCache();
