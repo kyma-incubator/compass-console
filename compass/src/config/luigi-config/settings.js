@@ -1,7 +1,7 @@
 const settings = {
   header: {
     logo: '/compass-logo.png',
-    title: 'Management Plane',
+    title: 'Unified Customer Landscape',
     favicon: '/compass-logo.png',
   },
   customSandboxRules: ['allow-downloads'],

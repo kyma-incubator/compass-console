@@ -29,7 +29,7 @@ const Overview = () => {
     >
       <Panel>
         <Panel.Header>
-          <Panel.Head title="Welcome to the Management Plane UI" />
+          <Panel.Head title="Welcome to the Unified Customer Landscape UI" />
         </Panel.Header>
         <Panel.Body>
           <div className="logo">
