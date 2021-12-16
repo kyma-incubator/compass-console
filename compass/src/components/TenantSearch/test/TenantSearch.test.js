@@ -15,6 +15,10 @@ const mockedTenants = [
   },
 ];
 
+const mockedConfig = {
+  compassUrl: 'http://compass/director/graphql',
+};
+
 const mockNavigate = jest.fn();
 jest.mock('@luigi-project/client', () => ({
   linkManager: () => ({ navigate: mockNavigate }),
@@ -22,6 +26,7 @@ jest.mock('@luigi-project/client', () => ({
 
 jest.mock('react-shared', () => ({
   useMicrofrontendContext: () => ({ tenants: mockedTenants }),
+  useConfig: () => ({ fromConfig: () => mockedConfig }),
 }));
 
 describe('TenantSearch', () => {

@@ -3,7 +3,7 @@ import LuigiClient from '@luigi-project/client';
 
 import fetchTenants from './fetchTenants';
 import { ListGroup, Panel } from 'fundamental-react';
-import { useMicrofrontendContext } from 'react-shared';
+import { useMicrofrontendContext, useConfig } from 'react-shared';
 import { getAlternativePath } from '../../config/luigi-config/helpers/getAlternativePath';
 import './TenantSearch.scss';
 
@@ -51,9 +51,12 @@ export function TenantSearch({ parentPath, token, _tenants }) {
     }, DELAY_BETWEEN_SEARCH_MILLIS);
   };
 
+  const { fromConfig } = useConfig();
+  const compassUrl = fromConfig('compassApiUrl');
+
   React.useEffect(() => {
     if (!tenants.length) {
-      fetchTenants(token)
+      fetchTenants(token, compassUrl)
         .then(setTenants)
         .catch((e) =>
           setError(`Error: tenants could not be loaded: ${e.message}`),
