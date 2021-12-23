@@ -6,12 +6,10 @@ const mockedTenants = [
   {
     name: 'Tenant-1',
     id: 'id-1',
-    initialized: true,
   },
   {
     name: 'Tenant-2',
     id: 'id-2',
-    initialized: false,
   },
 ];
 
@@ -30,12 +28,6 @@ jest.mock('react-shared', () => ({
 }));
 
 describe('TenantSearch', () => {
-  it('Renders list of initalized tenants', async () => {
-    const { queryAllByRole } = render(<TenantSearch />);
-
-    expect(queryAllByRole('row')).toHaveLength(1);
-  });
-
   it('Focuses search field on load', async () => {
     const { queryByRole } = render(<TenantSearch />);
 
