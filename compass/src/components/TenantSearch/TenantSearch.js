@@ -8,7 +8,6 @@ import { useMicrofrontendContext, useConfig, Spinner } from 'react-shared';
 import { getAlternativePath } from '../../config/luigi-config/helpers/getAlternativePath';
 import './TenantSearch.scss';
 
-// const MAX_TENANTS_SEARCH_RESULT = 1000;
 const DELAY_BETWEEN_SEARCH_MILLIS = 300;
 
 const SearchInput = ({ setFilter }) => (
@@ -31,7 +30,7 @@ const TenantList = ({
 }) => (
   <div id="scrollable" className="scrollable-field">
     <InfiniteScroll
-      dataLength={tenants.data.length} //This is important field to render the next data
+      dataLength={tenants.data.length}
       next={() => fetcher(searchTerm, pageSize, tenants.pageInfo.endCursor)}
       hasMore={tenants.pageInfo ? tenants.pageInfo.hasNextPage : null}
       loader={<Spinner />}
