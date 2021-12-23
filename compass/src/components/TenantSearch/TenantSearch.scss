@@ -1,10 +1,15 @@
+.scrollable-field {
+    height: 10rem;
+    overflow: auto;
+}
+
 .tenant-search { 
+    .list-group {
+        margin-top: 0 !important;
+    }
     .list-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
-
-        > * {
-            cursor: pointer;
-        }
+        cursor: pointer;
     }
 }
