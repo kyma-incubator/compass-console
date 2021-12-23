@@ -75,8 +75,8 @@ export function TenantSearch({ parentPath, token }) {
   const { fromConfig } = useConfig();
   const compassUrl = fromConfig('compassApiUrl');
 
-  const getTenants = (searchTerm, pageSize, endCursor) => {
-    fetchTenants(token, compassUrl, searchTerm, pageSize, endCursor)
+  const getTenants = (searchTerm, page, endCursor) => {
+    fetchTenants(token, compassUrl, searchTerm, page, endCursor)
       .then((t) => {
         setTenants({
           ...t,
