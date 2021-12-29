@@ -4,7 +4,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import fetchTenants from './fetchTenants';
 import { ListGroup, Panel } from 'fundamental-react';
-import { useMicrofrontendContext, useConfig, Spinner } from 'react-shared';
+import { useMicrofrontendContext, useConfig } from 'react-shared';
+import { Spinner } from '@kyma-project/components';
 import { getAlternativePath } from '../../config/luigi-config/helpers/getAlternativePath';
 import './TenantSearch.scss';
 
@@ -33,7 +34,7 @@ const TenantList = ({
       dataLength={tenants.data.length}
       next={() => fetcher(searchTerm, pageSize, tenants.pageInfo.endCursor)}
       hasMore={tenants.pageInfo ? tenants.pageInfo.hasNextPage : null}
-      loader={<Spinner />}
+      loader={<Spinner key={searchTerm} />}
       scrollableTarget="scrollable"
     >
       <ListGroup className="fd-has-margin-top-s list-group">
@@ -77,7 +78,6 @@ export function TenantSearch({ parentPath, token }) {
   const compassUrl = fromConfig('compassApiUrl');
 
   const getTenants = (searchTerm, page, endCursor) => {
-    setIsLoading(true);
     fetchTenants(token, compassUrl, searchTerm, page, endCursor)
       .then((t) => {
         setTenants({
@@ -101,6 +101,7 @@ export function TenantSearch({ parentPath, token }) {
     if (didMount) {
       const searchPhrase = filter.toLowerCase().trim();
       const cursor = tenants.pageInfo.endCursor;
+      setIsLoading(true);
       getTenants(searchPhrase, pageSize, cursor);
     }
 
