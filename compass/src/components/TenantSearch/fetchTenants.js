@@ -16,7 +16,6 @@ export default async function fetchTenants(
         }
       : {
           searchTerm,
-          first: 5,
         };
   const query = {
     query: `query tenants($first:Int, $after: PageCursor, $searchTerm: String) {

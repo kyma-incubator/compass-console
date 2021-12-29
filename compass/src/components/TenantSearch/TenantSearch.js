@@ -60,6 +60,7 @@ export function TenantSearch({ parentPath, token }) {
   const [error, setError] = React.useState('');
   const [didMount, setDidMount] = React.useState(false);
   const [pageSize, setPageSize] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   let timeOutId;
   const setFilterWithDelay = (value) => {
@@ -76,6 +77,7 @@ export function TenantSearch({ parentPath, token }) {
   const compassUrl = fromConfig('compassApiUrl');
 
   const getTenants = (searchTerm, page, endCursor) => {
+    setIsLoading(true);
     fetchTenants(token, compassUrl, searchTerm, page, endCursor)
       .then((t) => {
         setTenants({
@@ -86,7 +88,8 @@ export function TenantSearch({ parentPath, token }) {
       })
       .catch((e) =>
         setError(`Error: tenants could not be loaded: ${e.message}`),
-      );
+      )
+      .finally(() => setIsLoading(false));
   };
 
   // used to determine when was the first component render
@@ -113,6 +116,11 @@ export function TenantSearch({ parentPath, token }) {
     <Panel className="fd-has-padding-s tenant-search">
       <SearchInput setFilter={setFilterWithDelay} />
       {error && <p className="fd-has-color-status-3">{error}</p>}
+      {isLoading && (
+        <div className="tenant-search-spinner">
+          <Spinner />
+        </div>
+      )}
       <TenantList
         fetcher={getTenants}
         pageSize={pageSize}

@@ -1,9 +1,16 @@
 .scrollable-field {
-    height: 10rem;
+    height: 22rem;
     overflow: auto;
 }
 
-.tenant-search { 
+.tenant-search {
+    height: 26rem;
+
+    &-spinner {
+        position: relative;
+        top: 35%;
+    }
+
     .list-group {
         margin-top: 0 !important;
     }
