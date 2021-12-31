@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import TenantSearch from '../TenantSearch';
 import { render, fireEvent, wait } from '@testing-library/react';
@@ -6,17 +7,45 @@ const mockedTenants = [
   {
     name: 'Tenant-1',
     id: 'id-1',
-    initialized: true,
   },
   {
     name: 'Tenant-2',
     id: 'id-2',
-    initialized: false,
   },
 ];
 
 const mockedConfig = {
   compassUrl: 'http://compass/director/graphql',
+};
+
+const fullData = {
+  data: mockedTenants,
+  pageInfo: {
+    hasNextPage: false,
+    endCursor: '',
+    startCursor: '',
+  },
+  totalCount: mockedTenants.length,
+};
+
+const partialDataFirstTenant = {
+  data: [mockedTenants[0]],
+  pageInfo: {
+    hasNextPage: false,
+    endCursor: '',
+    startCursor: '',
+  },
+  totalCount: mockedTenants.length,
+};
+
+const partialDataSecondTenant = {
+  data: [mockedTenants[1]],
+  pageInfo: {
+    hasNextPage: false,
+    endCursor: '',
+    startCursor: '',
+  },
+  totalCount: mockedTenants.length,
 };
 
 const mockNavigate = jest.fn();
@@ -26,14 +55,20 @@ jest.mock('@luigi-project/client', () => ({
 
 jest.mock('react-shared', () => ({
   useMicrofrontendContext: () => ({ tenants: mockedTenants }),
-  useConfig: () => ({ fromConfig: () => mockedConfig }),
+  useConfig: () => ({ fromConfig: () => mockedConfig.compassUrl }),
 }));
 
-describe('TenantSearch', () => {
-  it('Renders list of initalized tenants', async () => {
-    const { queryAllByRole } = render(<TenantSearch />);
+jest.mock('axios');
 
-    expect(queryAllByRole('row')).toHaveLength(1);
+describe('TenantSearch', () => {
+  beforeEach(() => {
+    axios.post.mockResolvedValue({
+      data: {
+        data: {
+          tenants: fullData,
+        },
+      },
+    });
   });
 
   it('Focuses search field on load', async () => {
@@ -45,16 +80,34 @@ describe('TenantSearch', () => {
   it('Filters list by tenant name, case-insensitive', async () => {
     const { getByRole, queryByText } = render(<TenantSearch />);
 
+    axios.post.mockResolvedValue({
+      data: {
+        data: {
+          tenants: partialDataFirstTenant,
+        },
+      },
+    });
+
     fireEvent.change(getByRole('search'), {
       target: { value: 'tenant-1' },
     });
 
-    expect(queryByText(/id-1/)).toBeInTheDocument();
-    expect(queryByText(/id-2/)).not.toBeInTheDocument();
+    await wait(() => {
+      expect(queryByText(/id-1/)).toBeInTheDocument();
+      expect(queryByText(/id-2/)).not.toBeInTheDocument();
+    });
   });
 
   it('Filters list by tenant id', async () => {
     const { getByRole, queryByText } = render(<TenantSearch />);
+
+    axios.post.mockResolvedValue({
+      data: {
+        data: {
+          tenants: partialDataSecondTenant,
+        },
+      },
+    });
 
     fireEvent.change(getByRole('search'), {
       target: { value: 'id-2' },
@@ -80,10 +133,15 @@ describe('TenantSearch', () => {
   });
 
   it('Fires navigation event when user clicks tenant entry', async () => {
-    const { getByText } = render(<TenantSearch />);
+    const { getByText, getByRole } = render(<TenantSearch />);
 
-    fireEvent.click(getByText(/Tenant-1/));
+    fireEvent.change(getByRole('search'), {
+      target: { value: 'tenant' },
+    });
 
-    expect(mockNavigate).toHaveBeenCalled();
+    await wait(() => {
+      fireEvent.click(getByText(/Tenant-1/));
+      expect(mockNavigate).toHaveBeenCalled();
+    });
   });
 });

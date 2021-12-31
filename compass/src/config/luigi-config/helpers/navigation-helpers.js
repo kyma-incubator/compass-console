@@ -18,16 +18,23 @@ export async function fetchTenants() {
   const payload = {
     query: `{
       tenants {
-        name
-        id
-        initialized
+        data {
+          id
+          name
+        }
+        pageInfo {
+          startCursor
+          hasNextPage
+          endCursor
+        }
+        totalCount
       }
     }
     `,
   };
   try {
     const response = await fetchFromGraphql(payload);
-    const tenants = response.data.tenants;
+    const tenants = response.data.tenants.data;
     cacheTenants(tenants);
     return tenants;
   } catch (err) {
