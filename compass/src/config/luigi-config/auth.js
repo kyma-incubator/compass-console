@@ -68,7 +68,7 @@ export default async function createAuth() {
       onLogout: (settings) => {
         sessionStorage.removeItem(oidcUserStoreKey),
           window.location.replace(
-            `${clusterConfig['idpUrl']}/oauth2/logout?post_logout_redirect_uri=${window.location.origin}/logout.html`,
+            `${clusterConfig.idpUrl}/oauth2/logout?post_logout_redirect_uri=${window.location.origin}/logout.html`,
           );
       },
     },
