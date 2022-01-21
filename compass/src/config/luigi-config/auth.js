@@ -24,13 +24,14 @@ export default async function createAuth() {
     ? authClusterConfig['client_id']
     : 'compass-ui';
 
+  const oidcUserStoreKey = `oidc.user:https://dex.${domain}:${clientId}`;
+
   const dexMetadata = await fetchDexMetadata();
   return {
     use: 'openIdConnect',
     openIdConnect: {
       metadata: {
         ...dexMetadata,
-        end_session_endpoint: 'logout.html',
       },
       idpProvider: OpenIdConnect,
       authority: authClusterConfig
@@ -44,7 +45,6 @@ export default async function createAuth() {
       logoutUrl: '/logout.html',
       profileStorageInterceptorFn: () => {
         try {
-          const oidcUserStoreKey = `oidc.user:https://dex.${domain}:${clientId}`;
           const oidsUserStore = JSON.parse(
             sessionStorage.getItem(oidcUserStoreKey),
           );
@@ -64,6 +64,12 @@ export default async function createAuth() {
         if (prevLocation) {
           window.location.replace(prevLocation);
         }
+      },
+      onLogout: (settings) => {
+        sessionStorage.removeItem(oidcUserStoreKey),
+          window.location.replace(
+            `${clusterConfig['idpUrl']}/oauth2/logout?post_logout_redirect_uri=${window.location.origin}/logout.html`,
+          );
       },
     },
     storage: 'sessionStorage',
