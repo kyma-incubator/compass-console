@@ -5,6 +5,15 @@
 # 'setClusterConfig.sh example.that.has.dot' will generate clusterConfig.gen file for domain example.that.has.dot
 # in both cases, the full domain will also be added to clusterRegistry.txt file
 
+if [ -z "$1" ] ; then
+    echo -e "\033[91mERROR: DOMAIN is not set\033[39m"
+    exit 1
+fi
+
+if [ -z "$2" ] ; then
+    echo -e "\033[91mWARNING: IDP_URL is not set. Logout functionality may not work...\033[39m\n"
+fi
+
 if [ -z "${BASH_SOURCE}" ]; then
     SCRIPTPATH=$0
 else
@@ -82,10 +91,11 @@ cp -rf $CLUSTER_CONFIG_ORIGINAL $CLUSTER_CONFIG_GEN
 sed -i '' "s/REACT_APP_localDomain=.*/REACT_APP_localDomain=\"$LOCALDOMAIN\"/" $CLUSTER_CONFIG_GEN
 sed -i '' "s/REACT_APP_domain=.*/REACT_APP_domain=\"$DOMAIN\"/" $CLUSTER_CONFIG_GEN
 
+echo "REACT_APP_idpUrl=$2" >> $CLUSTER_CONFIG_GEN
 
 echo "Root permissions needed to remove previous cluster->localhost bindings in /etc/hosts"
 
-if [ $HOST != "kyma.local" ]; then
+if [[ $HOST != "kyma.local" ]]; then
     sudo sed -i '' "/.$HOST/d" /etc/hosts
 fi
 
