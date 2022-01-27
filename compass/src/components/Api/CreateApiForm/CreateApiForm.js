@@ -64,6 +64,12 @@ export default function CreateApiForm({
       return;
     }
 
+    if (file.size > 1048576) {
+      // 1MB limit
+      input.setCustomValidity('File size must be less than 1MB');
+      form.reportValidity();
+    }
+
     const expectedType = apiTypeRef.current.value;
     const { data, format, error } = await verifyApiFile(file, expectedType);
     if (error) {
@@ -71,7 +77,6 @@ export default function CreateApiForm({
       form.reportValidity();
     } else {
       setSpec({ data, format });
-
       onChange(formElementRef.current);
     }
   };
