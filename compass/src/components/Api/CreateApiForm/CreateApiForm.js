@@ -65,7 +65,6 @@ export default function CreateApiForm({
     }
 
     if (file.size > 1048576) {
-      // 1MB limit
       input.setCustomValidity('File size must be less than 1MB');
       form.reportValidity();
     }
