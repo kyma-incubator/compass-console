@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@asyncapi/converter": "^0.6.1",
+    "@asyncapi/converter": "^0.6.0",
     "@luigi-project/core": "1.19.0",
     "@luigi-project/plugin-auth-oidc": "1.19.0",
     "axios": "^0.24.0",
