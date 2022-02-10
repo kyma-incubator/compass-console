@@ -46,7 +46,7 @@ else
     fi
 fi
 
-LOCALDOMAIN=compass-dev.$DOMAIN
+LOCALDOMAIN="localhost"
 $SCRIPT_DIR/checkClusterAvailability.sh -s $DOMAIN
 
 if [ $? != 0 ]
@@ -92,15 +92,7 @@ sed -i '' "s/REACT_APP_localDomain=.*/REACT_APP_localDomain=\"$LOCALDOMAIN\"/" $
 sed -i '' "s/REACT_APP_domain=.*/REACT_APP_domain=\"$DOMAIN\"/" $CLUSTER_CONFIG_GEN
 
 echo "REACT_APP_idpUrl=$2" >> $CLUSTER_CONFIG_GEN
-
-echo "Root permissions needed to remove previous cluster->localhost bindings in /etc/hosts"
-
-if [[ $HOST != "kyma.local" ]]; then
-    sudo sed -i '' "/.$HOST/d" /etc/hosts
-fi
-
-# add new cluster->localhost binding to hosts file
-echo "127.0.0.1 compass-dev.$DOMAIN localhost"| sudo tee -a /etc/hosts
+echo "REACT_APP_oidcClientID=$3" >> $CLUSTER_CONFIG_GEN
 
 echo "Added ClusterConfig to Console"
 echo ""
