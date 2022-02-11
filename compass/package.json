@@ -41,7 +41,7 @@
   "devDependencies": {
     "json-loader": "^0.5.7",
     "ncp": "^2.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "config": {
     "unsafe-perm": true
