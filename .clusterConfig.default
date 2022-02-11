@@ -9,7 +9,7 @@ REACT_APP_authRedirectUri="http://$REACT_APP_localDomain:4200"
 REACT_APP_consoleClientId="console"
 REACT_APP_orgId="my-org-123"
 REACT_APP_orgName="My Organization"
-REACT_APP_scope="openid profile email"
+REACT_APP_oidcScopes="openid profile email"
 REACT_APP_gateway_kyma_cx_api_version="v1alpha2"
 
 REACT_APP_compassModuleUrl="http://$REACT_APP_localDomain:8888"

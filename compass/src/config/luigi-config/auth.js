@@ -20,10 +20,7 @@ export default async function createAuth() {
   const domain = clusterConfig['domain'];
 
   const authClusterConfig = clusterConfig.auth;
-  const clientId = authClusterConfig
-    ? authClusterConfig['client_id']
-    : `${clusterConfig.oidcClientID}`;
-
+  const clientId = `${clusterConfig.oidcClientID}`;
   const oidcUserStoreKey = `oidc.user:${clusterConfig.idpUrl}:${clientId}`;
 
   const oidcMetadata = await fetchOIDCMetadata();
@@ -34,13 +31,9 @@ export default async function createAuth() {
         ...oidcMetadata,
       },
       idpProvider: OpenIdConnect,
-      authority: authClusterConfig
-        ? authClusterConfig['authority']
-        : `${clusterConfig.idpUrl}`,
+      authority: `${clusterConfig.idpUrl}`,
       client_id: clientId,
-      scope: authClusterConfig
-        ? authClusterConfig['scope']
-        : 'openid profile email',
+      scope: `${clusterConfig.oidcScopes}`,
       loadUserInfo: false,
       response_type: 'id_token',
       logoutUrl: `${clusterConfig.idpUrl}/oauth2/logout`,
