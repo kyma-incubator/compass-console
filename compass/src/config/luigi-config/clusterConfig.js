@@ -1,1 +1,1 @@
-export const clusterConfig = INJECTED_CLUSTER_CONFIG || window.clusterConfig;
+export const clusterConfig = window.clusterConfig || INJECTED_CLUSTER_CONFIG;
