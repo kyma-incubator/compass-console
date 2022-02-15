@@ -19,7 +19,6 @@ async function fetchOIDCMetadata() {
 export default async function createAuth() {
   const domain = clusterConfig['domain'];
 
-  const authClusterConfig = clusterConfig.auth;
   const clientId = `${clusterConfig.oidcClientID}`;
   const oidcUserStoreKey = `oidc.user:${clusterConfig.idpUrl}:${clientId}`;
 
