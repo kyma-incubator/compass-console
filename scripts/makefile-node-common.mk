@@ -54,7 +54,7 @@ endef
 verify:: test validate-shared 
 
 
-release: build-image push-image
+release: build-image
 
 .PHONY: validate
 validate-shared:
@@ -62,12 +62,10 @@ validate-shared:
 	npm run --prefix=../ test-shared-lib
 
 
-.PHONY: build-image push-image
+.PHONY: build-image
 build-image: pull-licenses
-	docker build -t $(APP_NAME) -f Dockerfile ..
-push-image:
-	docker tag $(APP_NAME):latest $(IMG_NAME):$(TAG)
-	docker push $(IMG_NAME):$(TAG)
+	docker buildx create --name multi-arch-builder --use
+	docker buildx build --platform linux/amd64,linux/arm64 -t $(IMG_NAME):$(TAG) --push -f Dockerfile ..
 docker-create-opts:
 	@echo $(DOCKER_CREATE_OPTS)
 
