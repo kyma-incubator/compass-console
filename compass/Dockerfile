@@ -42,6 +42,7 @@ LABEL source git@github.com:kyma-project/console.git
 ARG app_name=compass
 
 COPY ./${app_name}/nginx.conf /etc/nginx/nginx.conf
+COPY ./${app_name}/start.sh /app
 COPY --from=builder /app/${app_name}/build var/public
 COPY --from=builder /app/${app_name}/public-luigi var/public-luigi
 COPY --from=builder /app/${app_name}/licenses/ /app/licenses/
@@ -51,4 +52,4 @@ RUN touch /var/run/nginx.pid && \
 
 EXPOSE 81 8888
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/app/start.sh", "/etc/nginx/nginx.conf"]
