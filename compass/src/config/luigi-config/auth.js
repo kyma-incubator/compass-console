@@ -66,9 +66,13 @@ export default async function createAuth() {
         }
       },
       onLogout: (settings) => {
+        let redirectUri = clusterConfig.localDomain
+          ? 'http://' + clusterConfig.localDomain
+          : 'https://' + clusterConfig.domain;
+        redirectUri = redirectUri + '/logout.html';
         sessionStorage.removeItem(oidcUserStoreKey),
           window.location.replace(
-            `${clusterConfig.idpUrl}/oauth2/logout?post_logout_redirect_uri=${window.location.origin}/logout.html`,
+            `${clusterConfig.idpUrl}/oauth2/logout?post_logout_redirect_uri=${redirectUri}`,
           );
       },
     },
