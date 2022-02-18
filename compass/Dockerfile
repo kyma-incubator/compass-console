@@ -52,4 +52,4 @@ RUN touch /var/run/nginx.pid && \
 
 EXPOSE 81 8888
 
-CMD ["/start.sh", "/etc/nginx/nginx.conf"]
+CMD ["./start.sh", "/etc/nginx/nginx.conf"]
