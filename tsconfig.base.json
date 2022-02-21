@@ -2,7 +2,7 @@
   "include": ["./common", "./add-ons", "./components/generic-documentation"],
   "exclude": ["**/node_modules/**/*", "**/dist/**/*"],
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "jsx": "react",
