@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.2",
-    "@kyma-project/dc-async-api-render-engine": "0.3.6-next",
+    "@kyma-project/dc-async-api-render-engine": "0.3.6",
     "@kyma-project/dc-markdown-render-engine": "0.3.6",
     "@kyma-project/dc-odata-render-engine": "0.3.6",
     "@kyma-project/dc-open-api-render-engine": "0.3.6",
