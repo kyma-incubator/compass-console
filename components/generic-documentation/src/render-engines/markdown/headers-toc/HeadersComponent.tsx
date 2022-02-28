@@ -10,24 +10,25 @@ export interface HeadersNavigationProps {
   enableSmoothScroll?: boolean;
 }
 
-export const HeadersNavigation: React.FunctionComponent<HeadersNavigationProps> =
-  ({ enableSmoothScroll = false }) => {
-    const headersWrapperRef = useRef<HTMLDivElement>();
+export const HeadersNavigation: React.FunctionComponent<
+  HeadersNavigationProps
+> = ({ enableSmoothScroll = false }) => {
+  const headersWrapperRef = useRef<HTMLDivElement>();
 
-    return (
-      <HeadersNavigationWrapper
-        ref={headersWrapperRef as any}
-        className="headers-navigation-wrapper"
+  return (
+    <HeadersNavigationWrapper
+      ref={headersWrapperRef as any}
+      className="headers-navigation-wrapper"
+    >
+      <HN
+        postProcessing={postProcessingHeaders}
+        enableSmoothScroll={enableSmoothScroll}
+        offset={16}
       >
-        <HN
-          postProcessing={postProcessingHeaders}
-          enableSmoothScroll={enableSmoothScroll}
-          offset={16}
-        >
-          <StyledHeadersNavigation className="dc-markdown__toc-wrapper">
-            <RenderedHeader />
-          </StyledHeadersNavigation>
-        </HN>
-      </HeadersNavigationWrapper>
-    );
-  };
+        <StyledHeadersNavigation className="dc-markdown__toc-wrapper">
+          <RenderedHeader />
+        </StyledHeadersNavigation>
+      </HN>
+    </HeadersNavigationWrapper>
+  );
+};

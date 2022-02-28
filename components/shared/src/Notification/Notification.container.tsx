@@ -7,17 +7,18 @@ export interface NotificationContainerProps {
   orientation?: string;
 }
 
-export const NotificationContainer: React.FunctionComponent<NotificationContainerProps> =
-  ({ orientation = 'bottom' }) => {
-    const { notification, showNotification, hideNotification } =
-      useContext(NotificationsService);
+export const NotificationContainer: React.FunctionComponent<
+  NotificationContainerProps
+> = ({ orientation = 'bottom' }) => {
+  const { notification, showNotification, hideNotification } =
+    useContext(NotificationsService);
 
-    return (
-      <Notification
-        {...notification}
-        orientation={orientation}
-        visible={showNotification}
-        onClick={hideNotification}
-      />
-    );
-  };
+  return (
+    <Notification
+      {...notification}
+      orientation={orientation}
+      visible={showNotification}
+      onClick={hideNotification}
+    />
+  );
+};
