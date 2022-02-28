@@ -24,13 +24,13 @@ The Console includes React and Angular libraries:
 
 2. Run the following commands in your terminal:
 
-    ```bash
-    npm install
-    cd ..
-    npm run bootstrap https://{YOUR-OIDC-PROVIDER-DOMAIN} {YOUR-OIDC-CLIENT-ID}
-    cd compass
-    npm start
-    ```
+   ```bash
+   npm install
+   cd ..
+   npm run bootstrap -- https://{YOUR-OIDC-PROVIDER-DOMAIN} {YOUR-OIDC-CLIENT-ID}
+   cd compass
+   npm start
+   ```
 
    > **NOTE:** The `npm run bootstrap` command does the following:
    >
@@ -38,7 +38,7 @@ The Console includes React and Angular libraries:
    > 2. Installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries.
    > 3. Builds all the libraries.
    > 4. Installs dependencies for all the [components](#components).
-   > 5. Creates the `.clusterConfig.gen` configuration file if it doesn't exist, pointing at the `kyma.local` domain.  
+   > 5. Creates the `.clusterConfig.gen` configuration file if it doesn't exist, pointing at the `kyma.local` domain.
 
 3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
