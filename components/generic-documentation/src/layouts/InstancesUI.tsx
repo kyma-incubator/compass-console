@@ -11,17 +11,18 @@ export interface InstancesUILayoutProps {
   renderers: Renderers;
 }
 
-export const InstancesUILayout: React.FunctionComponent<InstancesUILayoutProps> =
-  ({ renderers }) => {
-    const selectedApiState = useState<Source | undefined>();
+export const InstancesUILayout: React.FunctionComponent<
+  InstancesUILayoutProps
+> = ({ renderers }) => {
+  const selectedApiState = useState<Source | undefined>();
 
-    renderers.group = (otherProps: any) => (
-      <GroupRenderer {...otherProps} selectedApiState={selectedApiState} />
-    );
+  renderers.group = (otherProps: any) => (
+    <GroupRenderer {...otherProps} selectedApiState={selectedApiState} />
+  );
 
-    return (
-      <InstancesUIWrapper>
-        <Content renderers={renderers} />
-      </InstancesUIWrapper>
-    );
-  };
+  return (
+    <InstancesUIWrapper>
+      <Content renderers={renderers} />
+    </InstancesUIWrapper>
+  );
+};
