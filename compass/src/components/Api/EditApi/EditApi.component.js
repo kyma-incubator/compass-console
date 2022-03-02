@@ -15,8 +15,8 @@ import ApiEditorForm from '../Forms/ApiEditorForm';
 
 const commonPropTypes = {
   apiId: PropTypes.string.isRequired,
-  applicationId: PropTypes.string.isRequired, // used in container file
-  apiPackageId: PropTypes.string.isRequired, // used in container file
+  applicationId: PropTypes.string.isRequired, // used in the container file
+  apiPackageId: PropTypes.string.isRequired, // used in the container file
   updateApiDefinition: PropTypes.func.isRequired,
   sendNotification: PropTypes.func.isRequired,
 };
