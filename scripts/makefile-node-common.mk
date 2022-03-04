@@ -64,6 +64,7 @@ validate-shared:
 
 .PHONY: build-image
 build-image: pull-licenses
+	update-binfmts --enable
 	docker buildx create --name multi-arch-builder --use
 	docker buildx build --platform linux/amd64,linux/arm64 -t $(IMG_NAME):$(TAG) --push -f Dockerfile ..
 docker-create-opts:
