@@ -33,7 +33,6 @@ The Console includes React and Angular libraries:
    ```
 
    > **NOTE:**
-   >
    > The `npm run bootstrap` command does the following:
    >
    > 1. Installs root dependencies provided in the [package.json](./package.json) file.
@@ -41,20 +40,20 @@ The Console includes React and Angular libraries:
    > 3. Builds all the libraries.
    > 4. Installs dependencies for all the [components](#components).
    > 5. Creates the `.clusterConfig.gen` configuration file if it doesn't exist, pointing at the `kyma.local` domain.
+   
+   
+   > **NOTE:**
+   > To skip the OIDC configuration arguments `{OIDC-PROVIDER-DOMAIN}` and `{OIDC-CLIENT-ID}`, you can use the `npm run bootstrap:compass` command instead of the `npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}` command. This way, the npm script tries to get the required values from the **~/.compass.yaml** file.
+   > To carry out the command, you need the [yq](https://mikefarah.gitbook.io/yq/) tool.
+   > The **~/compass.yaml** file must have the following structure:
    >
-   > **NOTE 2:**
-   >
-   > If you want to skip the OIDC configuration arguments `({OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID})` you can replace the `npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}` command described above with the `npm run bootstrap:compass` command. In that case, the npm script will try to get those values from the **~/.compass.yaml** file.You will need the [yq](https://mikefarah.gitbook.io/yq/) tool in order to execute this command.
-   >
-   > The **~/compass.yaml** file is expected to have the following structure:
-   >
-   > > idpHost: {ULR_TO_OIDC_SERVER}
-   > >
+   > > idpHost: {URL_TO_OIDC_SERVER}
+   > > 
    > > clientID: {OIDC_CLIENT_ID}
-   > >
+   > > 
    > > adminGroupNames: {OIDC_ADMIN_GROUPS}
    >
-   > If neither the configuration arguments are passed, nor the **~\.compass.yaml** file exists, the Compass console will not work correctly.
+   > Note that the Compass console works properly only when the configuration arguments are passed or the **~\.compass.yaml** file exists.
 
 3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
