@@ -27,18 +27,34 @@ The Console includes React and Angular libraries:
    ```bash
    npm install
    cd ..
-   npm run bootstrap -- https://{YOUR-OIDC-PROVIDER-DOMAIN} {YOUR-OIDC-CLIENT-ID}
+   npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}
    cd compass
    npm start
    ```
 
-   > **NOTE:** The `npm run bootstrap` command does the following:
+   > **NOTE:**
+   >
+   > The `npm run bootstrap` command does the following:
    >
    > 1. Installs root dependencies provided in the [package.json](./package.json) file.
    > 2. Installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries.
    > 3. Builds all the libraries.
    > 4. Installs dependencies for all the [components](#components).
    > 5. Creates the `.clusterConfig.gen` configuration file if it doesn't exist, pointing at the `kyma.local` domain.
+   >
+   > **NOTE 2:**
+   >
+   > If you want to skip the OIDC configuration arguments `({OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID})` you can replace the `npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}` command described above with the `npm run bootstrap:compass` command. In that case, the npm script will try to get those values from the **~/.compass.yaml** file.You will need the [yq](https://mikefarah.gitbook.io/yq/) tool in order to execute this command.
+   >
+   > The **~/compass.yaml** file is expected to have the following structure:
+   >
+   > > idpHost: {ULR_TO_OIDC_SERVER}
+   > >
+   > > clientID: {OIDC_CLIENT_ID}
+   > >
+   > > adminGroupNames: {OIDC_ADMIN_GROUPS}
+   >
+   > If neither the configuration arguments are passed, nor the **~\.compass.yaml** file exists, the Compass console will not work correctly.
 
 3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
