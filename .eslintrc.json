@@ -20,6 +20,7 @@
     "scripts/**/*",
     "**/*/tests/**/*",
     "**/*/config.js",
+    "**/*/secret.js",
     "**/*.config.*",
     "gulpfile.js",
     "*/build/**/*",

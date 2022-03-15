@@ -24,21 +24,36 @@ The Console includes React and Angular libraries:
 
 2. Run the following commands in your terminal:
 
-    ```bash
-    npm install
-    cd ..
-    npm run bootstrap
-    cd compass
-    npm start
-    ```
+   ```bash
+   npm install
+   cd ..
+   npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}
+   cd compass
+   npm start
+   ```
 
-   > **NOTE:** The `npm run bootstrap` command does the following:
+   > **NOTE:**
+   > The `npm run bootstrap` command does the following:
+   >
    > 1. Installs root dependencies provided in the [package.json](./package.json) file.
    > 2. Installs dependencies for the [`React common`](./common), [`React components`](./components/react), [`Shared components`](./components/shared) and [`Generic documentation`](./components/generic-documentation) libraries.
    > 3. Builds all the libraries.
    > 4. Installs dependencies for all the [components](#components).
-   > 5. Updates your `/etc/hosts` with the `127.0.0.1 compass-dev.kyma.local` host.
-   > 6. Creates the `.clusterConfig.gen` file if it doesn't exist, pointing at the `kyma.local` domain.
+   > 5. Creates the `.clusterConfig.gen` configuration file if it doesn't exist, pointing at the `kyma.local` domain.
+   
+   
+   > **NOTE:**
+   > To skip the OIDC configuration arguments `{OIDC-PROVIDER-DOMAIN}` and `{OIDC-CLIENT-ID}`, you can use the `npm run bootstrap:compass` command instead of the `npm run bootstrap -- https://{OIDC-PROVIDER-DOMAIN} {OIDC-CLIENT-ID}` command. This way, the npm script tries to get the required values from the **~/.compass.yaml** file.
+   > To carry out the command, you need the [yq](https://mikefarah.gitbook.io/yq/) tool.
+   > The **~/compass.yaml** file must have the following structure:
+   >
+   > > idpHost: {URL_TO_OIDC_SERVER}
+   > > 
+   > > clientID: {OIDC_CLIENT_ID}
+   > > 
+   > > adminGroupNames: {OIDC_ADMIN_GROUPS}
+   >
+   > Note that the Compass console works properly only when the configuration arguments are passed or the **~\.compass.yaml** file exists.
 
 3. As a result, the Compass UI opens in a new tab of your browser. Alternatively, you can go to `http://localhost:8080`.
 
@@ -49,7 +64,7 @@ The Console includes React and Angular libraries:
 By default, the Compass cluster URL, with which the Console communicates, is set to `kyma.local`. To change the address of the cluster, run:
 
 ```bash
-./scripts/setClusterConfig.sh {CLUSTER_URL}
+./scripts/setClusterConfig.sh {CLUSTER_URL} https://{YOUR-OIDC-PROVIDER-DOMAIN} {YOUR-OIDC-CLIENT-ID}
 ```
 
 To simplify switching of clusters, hosted on the same domain, you can assign the domain to `CLUSTER_HOST` environment variable, and then, use any subdomain as a cluster name.
