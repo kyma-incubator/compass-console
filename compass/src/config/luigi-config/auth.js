@@ -2,47 +2,40 @@ import OpenIdConnect from '@luigi-project/plugin-auth-oidc';
 import { clusterConfig } from './clusterConfig';
 import { getPreviousLocation } from './helpers/navigation-helpers';
 
-async function fetchDexMetadata() {
+async function fetchOIDCMetadata() {
   const domain = clusterConfig['domain'];
 
   try {
     const response = await fetch(
-      `https://dex.${domain}/.well-known/openid-configuration`,
+      `${clusterConfig.idpUrl}/.well-known/openid-configuration`,
     );
     return await response.json();
   } catch (e) {
-    alert('Cannot fetch dex metadata');
-    console.error('cannot fetch dex metadata', e);
+    alert('Cannot fetch OIDC metadata');
+    console.error('cannot fetch OIDC metadata', e);
   }
 }
 
 export default async function createAuth() {
   const domain = clusterConfig['domain'];
 
-  const authClusterConfig = clusterConfig.auth;
-  const clientId = authClusterConfig
-    ? authClusterConfig['client_id']
-    : 'compass-ui';
+  const clientId = `${clusterConfig.oidcClientID}`;
+  const oidcUserStoreKey = `oidc.user:${clusterConfig.idpUrl}:${clientId}`;
 
-  const oidcUserStoreKey = `oidc.user:https://dex.${domain}:${clientId}`;
-
-  const dexMetadata = await fetchDexMetadata();
+  const oidcMetadata = await fetchOIDCMetadata();
   return {
     use: 'openIdConnect',
     openIdConnect: {
       metadata: {
-        ...dexMetadata,
+        ...oidcMetadata,
       },
       idpProvider: OpenIdConnect,
-      authority: authClusterConfig
-        ? authClusterConfig['authority']
-        : `https://dex.${domain}`,
+      authority: `${clusterConfig.idpUrl}`,
       client_id: clientId,
-      scope: authClusterConfig
-        ? authClusterConfig['scope']
-        : 'audience:server:client_id:compass-ui openid profile email groups',
+      scope: `${clusterConfig.oidcScopes}`,
       loadUserInfo: false,
-      logoutUrl: '/logout.html',
+      response_type: 'id_token',
+      logoutUrl: `${clusterConfig.idpUrl}/oauth2/logout`,
       profileStorageInterceptorFn: () => {
         try {
           const oidsUserStore = JSON.parse(
@@ -64,12 +57,6 @@ export default async function createAuth() {
         if (prevLocation) {
           window.location.replace(prevLocation);
         }
-      },
-      onLogout: (settings) => {
-        sessionStorage.removeItem(oidcUserStoreKey),
-          window.location.replace(
-            `${clusterConfig.idpUrl}/oauth2/logout?post_logout_redirect_uri=${window.location.origin}/logout.html`,
-          );
       },
     },
     storage: 'sessionStorage',

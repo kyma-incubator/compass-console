@@ -10,10 +10,6 @@ if [ -z "$1" ] ; then
     exit 1
 fi
 
-if [ -z "$2" ] ; then
-    echo -e "\033[91mWARNING: IDP_URL is not set. Logout functionality may not work...\033[39m\n"
-fi
-
 if [ -z "${BASH_SOURCE}" ]; then
     SCRIPTPATH=$0
 else
@@ -25,6 +21,7 @@ HOST="$(echo $CLUSTER_HOST)"
 CLUSTER_HISTORY_REGISTRY_FILE=$SCRIPT_DIR/clusterRegistry.txt
 CLUSTER_CONFIG_ORIGINAL="$SCRIPT_DIR/../.clusterConfig.default"
 CLUSTER_CONFIG_GEN="$SCRIPT_DIR/../.clusterConfig.gen"
+PATH_TO_COMPASS_OIDC_CONFIG_FILE="$HOME/.compass.yaml"
 
 if [  -z "$HOST"  ]
 then
@@ -38,6 +35,16 @@ fi
 if [ $1 = "local" ]
 then
     DOMAIN=kyma.local
+    if [ -z "$2" ] ; then
+      echo -e "\033[91mWARNING: IDP_URL is not set. Logout functionality may not work...\033[39m\n"
+    fi
+    OIDC_HOST="$2"
+    OIDC_CLIENT_ID="$3"
+elif [ $1 = "local-compass-config" ]
+then
+    DOMAIN=kyma.local
+    OIDC_HOST=$(yq ".idpHost" "$PATH_TO_COMPASS_OIDC_CONFIG_FILE")
+    OIDC_CLIENT_ID=$(yq ".clientID" "$PATH_TO_COMPASS_OIDC_CONFIG_FILE")
 else
     if [[ $1 == *"."* ]]; then
         DOMAIN=$1 # given argument (cluster name) contains a dot => it is a full cluster URL
@@ -46,7 +53,7 @@ else
     fi
 fi
 
-LOCALDOMAIN=compass-dev.$DOMAIN
+LOCALDOMAIN="localhost"
 $SCRIPT_DIR/checkClusterAvailability.sh -s $DOMAIN
 
 if [ $? != 0 ]
@@ -91,16 +98,8 @@ cp -rf $CLUSTER_CONFIG_ORIGINAL $CLUSTER_CONFIG_GEN
 sed -i '' "s/REACT_APP_localDomain=.*/REACT_APP_localDomain=\"$LOCALDOMAIN\"/" $CLUSTER_CONFIG_GEN
 sed -i '' "s/REACT_APP_domain=.*/REACT_APP_domain=\"$DOMAIN\"/" $CLUSTER_CONFIG_GEN
 
-echo "REACT_APP_idpUrl=$2" >> $CLUSTER_CONFIG_GEN
-
-echo "Root permissions needed to remove previous cluster->localhost bindings in /etc/hosts"
-
-if [[ $HOST != "kyma.local" ]]; then
-    sudo sed -i '' "/.$HOST/d" /etc/hosts
-fi
-
-# add new cluster->localhost binding to hosts file
-echo "127.0.0.1 compass-dev.$DOMAIN localhost"| sudo tee -a /etc/hosts
+echo "REACT_APP_idpUrl=$OIDC_HOST" >> $CLUSTER_CONFIG_GEN
+echo "REACT_APP_oidcClientID=$OIDC_CLIENT_ID" >> $CLUSTER_CONFIG_GEN
 
 echo "Added ClusterConfig to Console"
 echo ""
