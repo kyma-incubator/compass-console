@@ -1,25 +1,25 @@
 .scrollable-field {
-    height: 22rem;
-    overflow: auto;
+  height: 85vh;
+  overflow: auto;
 }
 
 .tenant-search {
-    height: 26rem;
+  height: 100vh;
 
-    &-spinner {
-        position: absolute;
-        top: 15%;
-        left: 40%;
-        z-index: 9999;
-        text-align: center;
-    }
+  &-spinner {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    z-index: 9999;
+    text-align: center;
+  }
 
-    .list-group {
-        margin-top: 0 !important;
-    }
-    .list-item {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        cursor: pointer;
-    }
+  .list-group {
+    margin-top: 0 !important;
+  }
+  .list-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+  }
 }

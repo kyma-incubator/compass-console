@@ -117,11 +117,7 @@ export function TenantSearch({ parentPath, token }) {
     <Panel className="fd-has-padding-s tenant-search">
       <SearchInput setFilter={setFilterWithDelay} />
       {error && <p className="fd-has-color-status-3">{error}</p>}
-      {isLoading && (
-        <div className="tenant-search-spinner">
-          <Spinner />
-        </div>
-      )}
+      {isLoading && <Spinner />}
       <TenantList
         fetcher={getTenants}
         pageSize={pageSize}
