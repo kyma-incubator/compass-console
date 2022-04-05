@@ -20,8 +20,8 @@ validate-libraries:
 .PHONY: update-deps
 update-deps:
 	rm -fr node_modules && rm package-lock.json && npm install && npm update && npm upgrade
-	cd components/generic-documentation && rm package-lock.json && npm install && npm update && npm upgrade
-	cd components/react && rm package-lock.json && npm install && npm update && npm upgrade
-	cd components/shared && rm package-lock.json && npm install && npm update && npm upgrade
-	cd compass && rm package-lock.json && npm install && npm update && npm upgrade
-	cd shared && rm package-lock.json && npm install && npm update && npm upgrade
+	cd components/generic-documentation && rm -fr node_modules &&  rm package-lock.json && npm install && npm update && npm upgrade
+	cd components/react && rm -fr node_modules && rm package-lock.json && npm install && npm update && npm upgrade
+	cd components/shared && rm -fr node_modules && rm package-lock.json && npm install && npm update && npm upgrade
+	cd compass && rm -fr node_modules && rm package-lock.json && npm install && npm update && npm upgrade
+	cd shared && rm -fr node_modules && rm package-lock.json && npm install && npm update && npm upgrade
