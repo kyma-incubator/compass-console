@@ -10,6 +10,7 @@ export const GET_APPLICATION = gql`
       labels
       healthCheckURL
       integrationSystemID
+      baseUrl
       status {
         condition
       }
