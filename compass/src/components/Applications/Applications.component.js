@@ -16,6 +16,11 @@ import CreateApplicationFromTemplateModal from './CreateApplicationFromTemplateM
 import ScenariosDisplay from './../Shared/ScenariosDisplay/ScenariosDisplay';
 import { getBadgeTypeForStatus } from './../Shared/getBadgeTypeForStatus';
 
+import './Applications.scss';
+
+const DISCOVERY_SAP_MANAGED = 'SAP Managed';
+const DISCOVERY_CUSTOMER_MANAGED = 'Customer Managed';
+
 class Applications extends React.Component {
   static propTypes = {
     applications: PropTypes.object.isRequired,
@@ -24,36 +29,50 @@ class Applications extends React.Component {
 
   headerRenderer = (applications) => [
     'Name',
-    'Provider name',
     'Description',
+    'URL',
+    'Discovery',
     'Scenarios',
     'Packages',
     'Status',
   ];
 
-  rowRenderer = (application) => [
-    <span
-      className="link"
-      onClick={() =>
-        LuigiClient.linkManager().navigate(`details/${application.id}`)
-      }
-    >
-      {application.name}
-    </span>,
-    application.providerName
-      ? application.providerName
-      : EMPTY_TEXT_PLACEHOLDER,
-    application.description ? application.description : EMPTY_TEXT_PLACEHOLDER,
-    <ScenariosDisplay
-      scenarios={(application.labels && application.labels.scenarios) || []}
-    />,
-    <Counter>{application.packages.totalCount}</Counter>,
-    <StatusBadge type={getBadgeTypeForStatus(application.status)}>
-      {application.status && application.status.condition
-        ? application.status.condition
-        : 'UNKNOWN'}
-    </StatusBadge>,
-  ];
+  rowRenderer = (application) => {
+    const managedLabel = application.labels && application.labels.managed;
+    let managedState;
+    try {
+      managedState = JSON.parse(managedLabel.toLowerCase())
+        ? DISCOVERY_SAP_MANAGED
+        : DISCOVERY_CUSTOMER_MANAGED;
+    } catch {
+      managedState = DISCOVERY_CUSTOMER_MANAGED;
+    }
+
+    return [
+      <span
+        className="link"
+        onClick={() =>
+          LuigiClient.linkManager().navigate(`details/${application.id}`)
+        }
+      >
+        {application.name}
+      </span>,
+      application.description
+        ? application.description
+        : EMPTY_TEXT_PLACEHOLDER,
+      application.baseUrl ? application.baseUrl : EMPTY_TEXT_PLACEHOLDER,
+      managedState,
+      <ScenariosDisplay
+        scenarios={(application.labels && application.labels.scenarios) || []}
+      />,
+      <Counter>{application.packages.totalCount}</Counter>,
+      <StatusBadge type={getBadgeTypeForStatus(application.status)}>
+        {application.status && application.status.condition
+          ? application.status.condition
+          : 'UNKNOWN'}
+      </StatusBadge>,
+    ];
+  };
 
   actions = [
     {

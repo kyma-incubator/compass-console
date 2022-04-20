@@ -8,6 +8,7 @@ export const GET_APPLICATIONS = gql`
         providerName
         name
         description
+        baseUrl
         labels
         status {
           condition
