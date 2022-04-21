@@ -71,12 +71,14 @@ const MOCK_GET_APPLICATION = {
       application: {
         id: '123',
         providerName: 'testProviderName',
+        baseUrl: 'http://kyma.local',
         description: 'testDescription',
         name: 'testName',
         labels: {
           integrationSystemID: '',
           name: 'testName',
           scenarios: ['DEFAULT', 'new'],
+          managed: 'true',
         },
         healthCheckURL: null,
         integrationSystemID: null,

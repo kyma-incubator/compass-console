@@ -8,10 +8,12 @@ import { GET_APPLICATIONS } from './gql';
 const mockApplication1 = {
   id: 'testapp',
   name: 'still a testapp',
+  baseUrl: 'http://kyma.local',
   description: 'ahh, again?',
   providerName: 'I am the creator of this app',
   labels: {
     scenarios: ['DEFAULT'],
+    managed: 'true',
   },
   status: { condition: 'most likely running' },
   packages: { totalCount: 9 },
@@ -45,6 +47,22 @@ describe('Applications', () => {
 
     await wait(() => {
       expect(queryByText(mockApplication1.name)).toBeInTheDocument();
+    });
+  });
+
+  it('shows the baseUrl', async () => {
+    const { queryByText } = component;
+
+    await wait(() => {
+      expect(queryByText(mockApplication1.baseUrl)).toBeInTheDocument();
+    });
+  });
+
+  it('shows the discovery', async () => {
+    const { queryByText } = component;
+
+    await wait(() => {
+      expect(queryByText('SAP Managed')).toBeInTheDocument();
     });
   });
 
