@@ -1,8 +1,9 @@
 import LuigiClient from '@luigi-project/client';
 
-export default async function deleteScenarioAssignmentHandler(
-  deleteScenarioAssignmentMutation,
+export default async function unassignFormationHandler(
+  unassignFormationMutation,
   scenarioName,
+  objectID,
   successCallback,
 ) {
   const showConfirmation = () =>
@@ -13,9 +14,9 @@ export default async function deleteScenarioAssignmentHandler(
       buttonDismiss: 'Cancel',
     });
 
-  const tryDeleteScenarioAssignment = async () => {
+  const tryUnassignFormation = async () => {
     try {
-      await deleteScenarioAssignmentMutation(scenarioName);
+      await unassignFormationMutation(scenarioName, objectID);
 
       if (successCallback) {
         successCallback();
@@ -31,6 +32,6 @@ export default async function deleteScenarioAssignmentHandler(
   };
 
   showConfirmation()
-    .then(tryDeleteScenarioAssignment)
+    .then(tryUnassignFormation)
     .catch(() => {});
 }
