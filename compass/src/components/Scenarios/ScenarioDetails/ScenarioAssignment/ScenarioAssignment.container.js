@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import { compose, fromRenderProps } from 'recompose';
 import {
   GET_ASSIGNMENT_FOR_SCENARIO,
-  DELETE_ASSIGNMENT_FOR_SCENARIO,
+  UNASSIGN_FORMATION,
   GET_RUNTIMES_FOR_SCENARIO,
   createEqualityQuery,
 } from '../../gql';
@@ -15,11 +15,15 @@ export default compose(
   fromRenderProps(ScenarioNameContext.Consumer, (scenarioName) => ({
     scenarioName,
   })),
-  graphql(DELETE_ASSIGNMENT_FOR_SCENARIO, {
+  graphql(UNASSIGN_FORMATION, {
     props: ({ mutate }) => ({
-      deleteScenarioAssignment: async (scenarioName) =>
+      unassignFormation: async (formationName, objectID) =>
         await mutate({
-          variables: { scenarioName },
+          variables: {
+            formationName,
+            objectID,
+            objectType: 'TENANT',
+          },
         }),
     }),
   }),

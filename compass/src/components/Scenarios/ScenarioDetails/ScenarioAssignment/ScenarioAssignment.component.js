@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 import { GenericList } from 'react-shared';
 import { useMutation } from '@apollo/react-hooks';
 
-import deleteScenarioAssignmentHandler from '../shared/deleteScenarioAssignmentHandler';
+import unassignFormationHandler from '../shared/unassginFormationHandler';
 import { SEND_NOTIFICATION } from '../../../../gql';
 
 ScenarioAssignment.propTypes = {
   scenarioName: PropTypes.string.isRequired,
   getRuntimesForScenario: PropTypes.object.isRequired,
   getScenarioAssignment: PropTypes.object.isRequired,
-  deleteScenarioAssignment: PropTypes.func.isRequired,
+  unassignFormation: PropTypes.func.isRequired,
 };
 
 export default function ScenarioAssignment({
   scenarioName,
   getRuntimesForScenario,
   getScenarioAssignment,
-  deleteScenarioAssignment,
+  unassignFormation,
 }) {
   const [sendNotification] = useMutation(SEND_NOTIFICATION);
   const NOT_FOUND_MSG = 'NotFound';
@@ -53,9 +53,10 @@ export default function ScenarioAssignment({
     {
       name: 'Delete',
       handler: async (scenarioAssignment) => {
-        await deleteScenarioAssignmentHandler(
-          deleteScenarioAssignment,
+        await unassignFormationHandler(
+          unassignFormation,
           scenarioName,
+          scenarioAssignment.selector.value,
           async () => {
             showSuccessNotification(scenarioAssignment.selector.key);
             await getScenarioAssignment.refetch();

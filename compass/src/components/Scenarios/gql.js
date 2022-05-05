@@ -147,16 +147,18 @@ export const GET_ASSIGNMENT_FOR_SCENARIO = gql`
   }
 `;
 
-export const DELETE_ASSIGNMENT_FOR_SCENARIO = gql`
-  mutation deleteAutomaticScenarioAssignmentForScenario(
-    $scenarioName: String!
+export const UNASSIGN_FORMATION = gql`
+  mutation unassignFormation(
+    $objectID: ID!
+    $objectType: FormationObjectType!
+    $formationName: String!
   ) {
-    deleteAutomaticScenarioAssignmentForScenario(scenarioName: $scenarioName) {
-      scenarioName
-      selector {
-        key
-        value
-      }
+    unassignFormation(
+      objectID: $objectID
+      objectType: $objectType
+      formation: { name: $formationName }
+    ) {
+      name
     }
   }
 `;
