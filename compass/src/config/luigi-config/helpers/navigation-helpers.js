@@ -32,15 +32,14 @@ export async function fetchTenants() {
     }
     `,
   };
-  try {
-    const response = await fetchFromGraphql(payload);
-    const tenants = response.data.tenants.data;
-    cacheTenants(tenants);
-    return tenants;
-  } catch (err) {
-    console.error('Tenants could not be loaded', err);
-    return [];
+
+  const response = await fetchFromGraphql(payload);
+  if (!response.data && response.errors && response.errors.length > 0) {
+    throw new Error(response.errors[0].message);
   }
+  const tenants = response.data.tenants.data;
+  cacheTenants(tenants);
+  return tenants;
 }
 
 const cacheTenants = (tenants) =>
