@@ -43,5 +43,8 @@ export default async function fetchTenants(
     },
   });
 
+  if (!data.data && data.errors && data.errors.length > 0) {
+    throw new Error(data.errors[0].message);
+  }
   return data.data.tenants;
 }
