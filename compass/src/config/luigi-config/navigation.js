@@ -14,7 +14,7 @@ let tenants = [];
 
 fetchTenants()
   .then((t) => (tenants = t))
-  .catch((e) => alert(`Error: tenants could not be loaded: ${e.message}`));
+  .catch((e) => setError(`Error: tenants could not be loaded: ${e.message}`));
 
 const getTenantName = (tenantId) => {
   const tenantsToCheck = tenants.length > 0 ? tenants : getTenantsFromCache();

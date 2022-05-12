@@ -32,14 +32,19 @@ export async function fetchTenants() {
     }
     `,
   };
-
-  const response = await fetchFromGraphql(payload);
-  if (!response.data && response.errors && response.errors.length > 0) {
-    throw new Error(response.errors[0].message);
+  try {
+    const response = await fetchFromGraphql(payload);
+    if (!response.data && response.errors && response.errors.length > 0) {
+      console.error('Tenants could not be loaded.', response.errors[0].message);
+      return [];
+    }
+    const tenants = response.data.tenants.data;
+    cacheTenants(tenants);
+    return tenants;
+  } catch (err) {
+    console.error('Tenants could not be loaded.', err);
+    return [];
   }
-  const tenants = response.data.tenants.data;
-  cacheTenants(tenants);
-  return tenants;
 }
 
 const cacheTenants = (tenants) =>
