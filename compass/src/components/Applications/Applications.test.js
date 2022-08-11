@@ -12,7 +12,7 @@ const mockApplication1 = {
   description: 'ahh, again?',
   providerName: 'I am the creator of this app',
   labels: {
-    scenarios: ['DEFAULT'],
+    scenarios: [],
     managed: 'true',
   },
   status: { condition: 'most likely running' },

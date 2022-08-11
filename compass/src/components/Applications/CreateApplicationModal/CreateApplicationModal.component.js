@@ -39,6 +39,8 @@ class CreateApplicationModal extends React.Component {
     requiredFieldsFilled: false,
     tooltipData: null,
     enableCheckNameExists: false,
+    scenariosToSelect: null,
+    selectedScenarios: [],
   });
 
   updateCurrentScenarios = (selectedScenarios, scenariosToSelect) => {
@@ -320,9 +322,11 @@ class CreateApplicationModal extends React.Component {
             <MultiChoiceList
               placeholder="Choose scenarios..."
               notSelectedMessage=""
-              currentlySelectedItems={[]}
+              currentlySelectedItems={this.state.selectedScenarios}
               updateItems={this.updateCurrentScenarios}
-              currentlyNonSelectedItems={availableScenarios}
+              currentlyNonSelectedItems={
+                  this.state.scenariosToSelect || availableScenarios
+              }
               noEntitiesAvailableMessage="No more scenarios available"
               elementId="application-modal"
             />
