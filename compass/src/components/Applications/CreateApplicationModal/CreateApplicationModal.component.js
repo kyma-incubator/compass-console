@@ -25,23 +25,21 @@ class CreateApplicationModal extends React.Component {
     modalOpeningComponent: PropTypes.node.isRequired,
   };
 
-  getInitialState = () => {
-    return {
-      formData: {
-        name: '',
-        providerName: '',
-        description: '',
-        labels: {},
-      },
-      applicationWithNameAlreadyExists: false,
-      invalidApplicationName: false,
-      invalidProviderName: false,
-      nameFilled: false,
-      requiredFieldsFilled: false,
-      tooltipData: null,
-      enableCheckNameExists: false,
-    };
-  };
+  getInitialState = () => ({
+    formData: {
+      name: '',
+      providerName: '',
+      description: '',
+      labels: {},
+    },
+    applicationWithNameAlreadyExists: false,
+    invalidApplicationName: false,
+    invalidProviderName: false,
+    nameFilled: false,
+    requiredFieldsFilled: false,
+    tooltipData: null,
+    enableCheckNameExists: false,
+  });
 
   updateCurrentScenarios = (selectedScenarios, scenariosToSelect) => {
     this.setState({
