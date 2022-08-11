@@ -320,7 +320,7 @@ class CreateApplicationModal extends React.Component {
             <MultiChoiceList
               placeholder="Choose scenarios..."
               notSelectedMessage=""
-              currentlySelectedItems={this.state.selectedScenarios}
+              currentlySelectedItems={[]}
               updateItems={this.updateCurrentScenarios}
               currentlyNonSelectedItems={availableScenarios}
               noEntitiesAvailableMessage="No more scenarios available"
