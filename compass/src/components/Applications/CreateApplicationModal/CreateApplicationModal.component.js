@@ -325,7 +325,7 @@ class CreateApplicationModal extends React.Component {
               currentlySelectedItems={this.state.selectedScenarios}
               updateItems={this.updateCurrentScenarios}
               currentlyNonSelectedItems={
-                  this.state.scenariosToSelect || availableScenarios
+                this.state.scenariosToSelect || availableScenarios
               }
               noEntitiesAvailableMessage="No more scenarios available"
               elementId="application-modal"
