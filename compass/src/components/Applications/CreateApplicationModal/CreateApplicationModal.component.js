@@ -7,8 +7,6 @@ import LuigiClient from '@luigi-project/client';
 
 import MultiChoiceList from '../../Shared/MultiChoiceList/MultiChoiceList.component';
 
-const DEFAULT_SCENARIO_LABEL = 'DEFAULT';
-
 class CreateApplicationModal extends React.Component {
   static contextType = ConfigContext;
 
@@ -28,9 +26,6 @@ class CreateApplicationModal extends React.Component {
   };
 
   getInitialState = () => {
-    const AUTOMATIC_DEFAULT_SCENARIO = this.context.fromConfig(
-      'compassAutomaticDefaultScenario',
-    );
     return {
       formData: {
         name: '',
@@ -45,12 +40,6 @@ class CreateApplicationModal extends React.Component {
       requiredFieldsFilled: false,
       tooltipData: null,
       enableCheckNameExists: false,
-      scenariosToSelect: AUTOMATIC_DEFAULT_SCENARIO
-        ? null
-        : [DEFAULT_SCENARIO_LABEL],
-      selectedScenarios: AUTOMATIC_DEFAULT_SCENARIO
-        ? [DEFAULT_SCENARIO_LABEL]
-        : [],
     };
   };
 
@@ -290,9 +279,6 @@ class CreateApplicationModal extends React.Component {
       if (scenariosQuery.labelDefinition) {
         availableScenarios = JSON.parse(scenariosQuery.labelDefinition.schema)
           .items.enum;
-        availableScenarios = availableScenarios.filter(
-          (el) => el !== DEFAULT_SCENARIO_LABEL,
-        );
       }
 
       content = (
@@ -338,9 +324,7 @@ class CreateApplicationModal extends React.Component {
               notSelectedMessage=""
               currentlySelectedItems={this.state.selectedScenarios}
               updateItems={this.updateCurrentScenarios}
-              currentlyNonSelectedItems={
-                this.state.scenariosToSelect || availableScenarios
-              }
+              currentlyNonSelectedItems={availableScenarios}
               noEntitiesAvailableMessage="No more scenarios available"
               elementId="application-modal"
             />
