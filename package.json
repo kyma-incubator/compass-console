@@ -55,7 +55,7 @@
     "lodash": "^4.17.21",
     "lodash.clonedeep": "^4.5.0",
     "merge": "2.1.1",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "node-fetch": "^2.6.7",
     "prop-types": "^15.8.1",
     "property-expr": "^2.0.5",
