@@ -7,8 +7,6 @@ import LuigiClient from '@luigi-project/client';
 
 import MultiChoiceList from '../../Shared/MultiChoiceList/MultiChoiceList.component';
 
-const DEFAULT_SCENARIO_LABEL = 'DEFAULT';
-
 class CreateApplicationModal extends React.Component {
   static contextType = ConfigContext;
 
@@ -27,32 +25,23 @@ class CreateApplicationModal extends React.Component {
     modalOpeningComponent: PropTypes.node.isRequired,
   };
 
-  getInitialState = () => {
-    const AUTOMATIC_DEFAULT_SCENARIO = this.context.fromConfig(
-      'compassAutomaticDefaultScenario',
-    );
-    return {
-      formData: {
-        name: '',
-        providerName: '',
-        description: '',
-        labels: {},
-      },
-      applicationWithNameAlreadyExists: false,
-      invalidApplicationName: false,
-      invalidProviderName: false,
-      nameFilled: false,
-      requiredFieldsFilled: false,
-      tooltipData: null,
-      enableCheckNameExists: false,
-      scenariosToSelect: AUTOMATIC_DEFAULT_SCENARIO
-        ? null
-        : [DEFAULT_SCENARIO_LABEL],
-      selectedScenarios: AUTOMATIC_DEFAULT_SCENARIO
-        ? [DEFAULT_SCENARIO_LABEL]
-        : [],
-    };
-  };
+  getInitialState = () => ({
+    formData: {
+      name: '',
+      providerName: '',
+      description: '',
+      labels: {},
+    },
+    applicationWithNameAlreadyExists: false,
+    invalidApplicationName: false,
+    invalidProviderName: false,
+    nameFilled: false,
+    requiredFieldsFilled: false,
+    tooltipData: null,
+    enableCheckNameExists: false,
+    scenariosToSelect: null,
+    selectedScenarios: [],
+  });
 
   updateCurrentScenarios = (selectedScenarios, scenariosToSelect) => {
     this.setState({
@@ -286,13 +275,14 @@ class CreateApplicationModal extends React.Component {
     if (scenariosQuery.error) {
       content = `Error! ${scenariosQuery.error.message}`;
     } else {
-      let availableScenarios = [];
-      if (scenariosQuery.labelDefinition) {
-        availableScenarios = JSON.parse(scenariosQuery.labelDefinition.schema)
-          .items.enum;
-        availableScenarios = availableScenarios.filter(
-          (el) => el !== DEFAULT_SCENARIO_LABEL,
-        );
+      let availableScenarios;
+      try {
+        availableScenarios = scenariosQuery.labelDefinition
+          ? JSON.parse(scenariosQuery.labelDefinition.schema).items.enum
+          : [];
+      } catch (err) {
+        availableScenarios = [];
+        console.error('Error label definition schema', err);
       }
 
       content = (
