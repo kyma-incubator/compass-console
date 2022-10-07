@@ -63,17 +63,13 @@ validate-shared:
 
 
 .PHONY: build-image push-image
-build-image: pull-licenses
+build-image: 
 	docker build -t $(APP_NAME) -f Dockerfile ..
 push-image:
 	docker tag $(APP_NAME):latest $(IMG_NAME):$(TAG)
 	docker push $(IMG_NAME):$(TAG)
 docker-create-opts:
 	@echo $(DOCKER_CREATE_OPTS)
-
-# Targets mounting sources to buildpack
-MOUNT_TARGETS = pull-licenses
-$(foreach t,$(MOUNT_TARGETS),$(eval $(call buildpack-mount,$(t))))
 
 build:
 	npm run build
@@ -84,14 +80,6 @@ test:
 resolve:
 	cd .. && npm run bootstrap:ci
 	npm ci --no-optional
-
-pull-licenses-local:
-ifdef LICENSE_PULLER_PATH
-	bash $(LICENSE_PULLER_PATH) --dirs-to-pulling="../,../common,../components/react,../components/shared,../components/generic-documentation"
-else
-	mkdir -p licenses
-endif
-
 
 # Targets copying sources to buildpack
 COPY_TARGETS = do-npm-stuff

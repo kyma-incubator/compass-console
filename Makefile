@@ -4,6 +4,7 @@ ci-main: resolve validate validate-libraries
 .PHONY: resolve
 resolve:
 	npm run bootstrap:ci
+	npx update-browserslist-db@latest
 
 .PHONY: validate
 validate:
