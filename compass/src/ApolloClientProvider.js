@@ -8,7 +8,7 @@ export const ApolloClientProvider = ({ children }) => {
   const { fromConfig } = useConfig();
 
   if (!idToken) {
-    return <p>Loading...</p>;
+    return <p>Loading....</p>;
   }
 
   loadClientIdFromToken(idToken);
