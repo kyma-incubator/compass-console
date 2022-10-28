@@ -32,7 +32,7 @@ RUN printf "%s%s%s\n" \
   `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
   "/main" \
   | tee -a /etc/apk/repositories
-RUN wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
+RUN curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
   && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 ### Install nginx package and remove cache ###
