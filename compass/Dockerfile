@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install global dependencies
 RUN apt-get update && \
-  apt-get install -y curl && \
+  apt-get install -y apt-utils && \
   apt-get install -y make
 
 # Install root and app dependencies
