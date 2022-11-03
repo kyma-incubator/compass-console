@@ -26,6 +26,9 @@ RUN cd /app/${app_name} && make build
 ### Main image ###
 FROM alpine:3.15.6
 
+### Install curl
+RUN apk --no-cache add curl
+
 ### Update apk repositories for the latest nginx
 RUN printf "%s%s%s\n" \
   "http://nginx.org/packages/alpine/v" \
