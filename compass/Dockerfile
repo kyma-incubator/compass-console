@@ -28,7 +28,7 @@ FROM ubuntu/nginx:1.18-22.04_edge
 
 ### Install curl
 RUN apt-get update && \
-  apt-get install -y curl
+  apt install -y curl
 
 LABEL source git@github.com:kyma-project/console.git
 ARG app_name=compass
