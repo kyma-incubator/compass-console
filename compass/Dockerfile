@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install global dependencies
 RUN apt-get update && \
-  apt-get install -y curl \
+  apt-get install -y curl && \
   apt-get install -y make
 
 # Install root and app dependencies
@@ -24,23 +24,11 @@ ENV CI true
 RUN cd /app/${app_name} && make build
 
 ### Main image ###
-FROM debian:buster-20221024-slim
+FROM ubuntu/nginx:1.18-22.04_edge
 
 ### Install curl
 RUN apt-get update && \
   apt-get install -y curl
-
-### Update apk repositories for the latest nginx
-RUN printf "%s%s%s\n" \
-  "http://nginx.org/packages/alpine/v" \
-  `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
-  "/main" \
-  | tee -a /etc/apk/repositories
-RUN curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
-  && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
-
-### Install nginx package and remove cache ###
-RUN apt-get install -y nginx && apt-get clean
 
 LABEL source git@github.com:kyma-project/console.git
 ARG app_name=compass
