@@ -24,11 +24,11 @@ ENV CI true
 RUN cd /app/${app_name} && make build
 
 ### Main image ###
-FROM debian:buster-slim
+FROM debian:buster-20221024-slim
 
 ### Install curl
 RUN apt-get update && \
-  apt-get install curl
+  apt-get install -y curl
 
 ### Update apk repositories for the latest nginx
 RUN printf "%s%s%s\n" \
