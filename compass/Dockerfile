@@ -4,13 +4,13 @@ FROM node:12.16.3-stretch as builder
 ARG app_name=compass
 WORKDIR /app
 
-RUN ln -s /usr/bin/dpkg-split /usr/sbin/dpkg-split
-RUN ln -s /usr/bin/dpkg-deb /usr/sbin/dpkg-deb
-RUN ln -s /bin/rm /usr/sbin/rm
-RUN ln -s /bin/tar /usr/sbin/tar
 
 # Install global dependencies
-RUN apt-get update && \
+RUN ln -s /usr/bin/dpkg-split /usr/local/sbin/dpkg-split && \
+  ln -s /usr/bin/dpkg-deb /usr/local/sbin/dpkg-deb && \
+  ln -s /bin/rm /usr/local/sbin/rm && \
+  ln -s /bin/tar /usr/local/sbin/tar && \
+  apt-get update && \
   apt-get install -y apt-utils && \
   apt-get install -y make
 
