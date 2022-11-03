@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install global dependencies
 RUN apk update
+RUN apk upgrade
 RUN apk add --no-cache curl make
 
 # Install root and app dependencies
