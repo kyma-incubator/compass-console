@@ -8,6 +8,7 @@ WORKDIR /app
 # Install global dependencies
 RUN ln -s /usr/bin/dpkg-split /usr/local/sbin/dpkg-split && \
   ln -s /usr/bin/dpkg-deb /usr/local/sbin/dpkg-deb && \
+  ln -s /usr/bin/perl /usr/local/sbin/perl && \
   ln -s /bin/rm /usr/local/sbin/rm && \
   ln -s /bin/tar /usr/local/sbin/tar && \
   apt-get update && \
