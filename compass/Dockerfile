@@ -27,6 +27,8 @@ RUN cd /app/${app_name} && make build
 ### Main image ###
 FROM alpine:3.15.6
 
+ENV PATH="${PATH}:/sbin"
+
 ### Install curl
 RUN apk --no-cache add curl
 
