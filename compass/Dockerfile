@@ -1,12 +1,11 @@
 # This Dockerfile must be execute with higher context, because firstly we have to create react components lib with local changes.
 # If you want to build image without local changes of react components, delete 16 line of code.
-FROM node:12.16.3-stretch-slim as builder
+FROM node:12.16.3-stretch as builder
 ARG app_name=compass
 WORKDIR /app
 
 # Install global dependencies
 RUN apt-get update && \
-  apt-get install -y apt-utils && \
   apt-get install -y curl && \
   apt-get install -y make
 
