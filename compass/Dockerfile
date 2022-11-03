@@ -5,9 +5,9 @@ ARG app_name=compass
 WORKDIR /app
 
 # Install global dependencies
-RUN apk update && \
-  apk upgrade && \
-  apk add --no-cache curl make
+RUN apk update
+RUN apk upgrade
+RUN apk add --no-cache curl make
 
 # Install root and app dependencies
 COPY . /app
