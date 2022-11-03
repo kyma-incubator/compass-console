@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Install global dependencies
 RUN apt update
-RUN apt upgrade
+RUN apt upgrade -y
 RUN apt-get install curl make
 
 # Install root and app dependencies
