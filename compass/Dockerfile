@@ -28,17 +28,17 @@ RUN cd /app/${app_name} && make build
 FROM alpine:3.15.6
 
 ### Update apk repositories for the latest nginx
-#RUN printf "%s%s%s\n" \
-#  "http://nginx.org/packages/alpine/v" \
-#  `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
-#  "/main" \
-#  | tee -a /etc/apk/repositories
- #RUN wget -c --tries=5 -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
- # && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
+RUN printf "%s%s%s\n" \
+  "http://nginx.org/packages/alpine/v" \
+  `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
+  "/main" \
+  | tee -a /etc/apk/repositories
+RUN wget -c --tries=5 -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
+  && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 ### Install nginx package and remove cache ###
-RUN apk add --update nginx 
-#&& rm -rf /var/cache/apk/*
+RUN apk add --update nginx \
+  && rm -rf /var/cache/apk/*
 
 LABEL source git@github.com:kyma-project/console.git
 ARG app_name=compass
