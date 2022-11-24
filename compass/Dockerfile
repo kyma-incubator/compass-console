@@ -7,7 +7,9 @@ WORKDIR /app
 # Install global dependencies
 RUN apk update && \
   apk upgrade && \
-  apk add --no-cache curl make python2 g++
+  apk add --no-cache curl make
+
+RUN if [ "$(apk --print-arch)" = "aarch64" ]; then apk add --no-cache python2 g++; fi;
 
 # Install root and app dependencies
 COPY . /app
