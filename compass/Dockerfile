@@ -7,13 +7,12 @@ WORKDIR /app
 # Install global dependencies
 RUN apk update && \
   apk upgrade && \
-  apk add --no-cache curl make
+  apk add --no-cache curl make python2 g++
 
 # Install root and app dependencies
 COPY . /app
 RUN cd /app/${app_name} && \
-  make resolve && \
-  make verify
+  make resolve
 
 
 # Set env variables
@@ -32,7 +31,7 @@ RUN printf "%s%s%s\n" \
   `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
   "/main" \
   | tee -a /etc/apk/repositories
-RUN wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
+ RUN wget -c --tries=5 -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
   && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 ### Install nginx package and remove cache ###
