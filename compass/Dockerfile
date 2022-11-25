@@ -48,8 +48,8 @@ COPY ./${app_name}/start.sh /
 COPY --from=builder /app/${app_name}/build var/public
 COPY --from=builder /app/${app_name}/public-luigi var/public-luigi
 
-RUN touch /var/run/nginx.pid && \
-  chown -R nginx:nginx /var/run/nginx.pid
+RUN touch /var/run/nginx.pid
+RUN chown -R nginx:nginx /var/run/nginx.pid
 
 EXPOSE 81 8888
 
