@@ -1,0 +1,9 @@
+pjConfigs:
+  prConfigs:
+      kyma-project:
+        test-infra:
+          prNumber: 6451
+prConfigs:
+  kyma-incubator:
+    compass-console:
+      prNumber: 79
