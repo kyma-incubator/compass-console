@@ -34,22 +34,22 @@ RUN printf "%s%s%s\n" \
   "/main" \
   | tee -a /etc/apk/repositories
 RUN wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \ 
-  && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/ 
+  && mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 
 ### Install nginx package and remove cache ###
+### Due to caching of the built images, this should be done in one command
 RUN apk add --update nginx \
-  && rm -rf /var/cache/apk/*
+  && rm -rf /var/cache/apk/* && \
+  touch /var/run/nginx.pid && \
+  chown -R nginx:nginx /var/run/nginx.pid
 
 LABEL source git@github.com:kyma-project/console.git
 ARG app_name=compass
 
 COPY ./${app_name}/nginx.conf /etc/nginx/nginx.conf
-COPY ./${app_name}/start.sh /
+COPY ./${app_name}/start.sh / 
 COPY --from=builder /app/${app_name}/build var/public
 COPY --from=builder /app/${app_name}/public-luigi var/public-luigi
-
-RUN touch /var/run/nginx.pid && \
-  chown -R nginx:nginx /var/run/nginx.pid
 
 EXPOSE 81 8888
 
