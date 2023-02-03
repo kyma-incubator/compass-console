@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
+import { compose } from 'react-recompose';
 
 import { GET_LABEL_DEFINITIONS, DELETE_LABEL_DEFINITION } from './gql';
 
