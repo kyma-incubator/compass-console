@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import { compose, withProps } from 'recompose';
+import { compose, withProps } from 'react-recompose';
 
 import { GET_APPLICATIONS, SET_APPLICATION_SCENARIOS } from './../../../gql';
 import { SEND_NOTIFICATION } from '../../../../../gql';

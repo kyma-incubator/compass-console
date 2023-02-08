@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
+import { compose } from 'react-recompose';
 
 import { SEND_NOTIFICATION } from './../../../gql';
 import { GET_API_DEFININTION } from '../gql';
