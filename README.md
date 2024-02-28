@@ -1,3 +1,5 @@
+## :warning: This repository has been deprecated and will be archived soon. :warning:
+
 # Compass Console
 
 ## Overview
